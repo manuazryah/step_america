@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 
-$this->title = 'Universal Business Links Corporate Service Provider';
+$this->title = 'STEP AMERICA';
 ?>
 <section class="content-header">
     <h1>
