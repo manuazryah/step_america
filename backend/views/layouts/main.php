@@ -30,11 +30,11 @@ $controler = Yii::$app->controller->id;
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
-                <a href="../../index2.html" class="logo">
+                <a href="<?= yii::$app->homeUrl; ?>" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>S</b> A</span>
+                    <span class="logo-mini"><img class="img-responsive" src="<?= yii::$app->homeUrl; ?>img/logo.png" alt="" /></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Step</b> America</span>
+                    <span class="logo-lg"><img class="img-responsive" src="<?= yii::$app->homeUrl; ?>img/logo.png" alt="" /></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -114,6 +114,48 @@ $controler = Yii::$app->controller->id;
                                     <li>
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i> Admin Users', ['/admin/admin-users/index'], ['class' => 'title']) ?>
                                     </li>
+                                </ul>
+                            </li>
+                            <li class="treeview <?= $controler == 'step1' || $controler == 'step2' ? 'active' : '' ?>">
+                                <a href="">
+                                    <i class="fa fa-bar-chart"></i>
+                                    <span>Steps Content</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 1', ['/steps/step1/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 2', ['/steps/step2/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 3', ['/steps/step3/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 4', ['/steps/step4/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 5', ['/steps/step5/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 6', ['/steps/step6/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 7', ['/steps/step7/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 8', ['/steps/step8/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 9', ['/steps/step9/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 10', ['/steps/step10/index'], ['class' => 'title']) ?>
+                                    </li>
+
                                 </ul>
                             </li>
                             <?php

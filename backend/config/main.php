@@ -28,6 +28,9 @@ return [
         'masters' => [
             'class' => 'backend\modules\masters\Module',
         ],
+        'steps' => [
+            'class' => 'backend\modules\steps\Module',
+        ],
     ],
     'components' => [
         'request' => [

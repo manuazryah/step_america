@@ -557,3 +557,6 @@ input[type="file"] {
 .btn-default:hover + .sign-out-btn {
     background-color: #e7e7e7;
 }
+.login-logo img{
+    margin: 0 auto;
+}

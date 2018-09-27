@@ -29,7 +29,7 @@ AppAssetLogin::register($this);
             <!-- /.login-logo -->
             <div class="login-box-body">
                 <div class="login-logo">
-                    <h4>STEP AMERICA</h4>
+                    <img class="img-responsive" src="<?= yii::$app->homeUrl; ?>img/logo.png" alt="" />
                 </div>
                 <p class="login-box-msg">Dear user, log in to access the admin area!</p>
                 <?= $content ?>
