@@ -116,7 +116,7 @@ $controler = Yii::$app->controller->id;
                                     </li>
                                 </ul>
                             </li>
-                            <li class="treeview <?= $controler == 'step1' || $controler == 'step2' ? 'active' : '' ?>">
+                            <li class="treeview <?= $controler == 'step1' || $controler == 'step2' || $controler == 'step3' || $controler == 'step4' || $controler == 'step5' || $controler == 'step6' || $controler == 'step7' || $controler == 'step8' || $controler == 'step9' || $controler == 'step10' ? 'active' : '' ?>">
                                 <a href="">
                                     <i class="fa fa-bar-chart"></i>
                                     <span>Steps Content</span>
