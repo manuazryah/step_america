@@ -118,7 +118,7 @@
     color: #fff;
 }
 .form-inline .form-group{
-    height: 90px;
+    /*height: 90px;*/
 }
 .form-inline .form-control{
     margin-bottom: 0px;
@@ -559,4 +559,23 @@ input[type="file"] {
 }
 .login-logo img{
     margin: 0 auto;
+}
+.box-body{
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    border-color: #ddd;
+    margin: 15px 15px;
+}
+.box-body .panel-heading{
+    color: #fff;
+    background-color: #29a2a6;
+    margin-bottom: 25px;
+    font-size: 17px;
+    padding: 5px 15px;
+    font-weight: 600;
+    border-radius: 0px;
 }
