@@ -23,6 +23,9 @@ $this->params['breadcrumbs'][] = 'Update';
             <?=
             $this->render('_form', [
                 'model' => $model,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'model_form' => $model_form,
             ])
             ?>
         </div>

@@ -8,6 +8,7 @@ use common\models\Step1Search;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * Step1Controller implements the CRUD actions for Step1 model.
@@ -34,12 +35,43 @@ class Step1Controller extends Controller {
      */
     public function actionIndex() {
         $model = $this->findModel(1);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $retainer_contract_agreement_ = $model->retainer_contract_agreement;
+        $dhp_agreement_ = $model->dhp_agreement;
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
+            $retainer_contract_agreement = UploadedFile::getInstance($model, 'retainer_contract_agreement');
+            $dhp_agreement = UploadedFile::getInstance($model, 'dhp_agreement');
+            if (!empty($retainer_contract_agreement)) {
+                $model->retainer_contract_agreement = $retainer_contract_agreement->name;
+            } else {
+                $model->retainer_contract_agreement = $retainer_contract_agreement_;
+            }
+            if (!empty($dhp_agreement)) {
+                $model->dhp_agreement = $dhp_agreement->name;
+            } else {
+                $model->dhp_agreement = $dhp_agreement_;
+            }
+            if ($model->validate() && $model->save()) {
+                $this->Upload($model, $retainer_contract_agreement, $dhp_agreement);
+            }
             Yii::$app->session->setFlash('success', "Step 1 Save Successfully");
         } return $this->render('update', [
                     'model' => $model,
         ]);
+    }
+
+    /*
+     * Upload Documents
+     */
+
+    public function Upload($model, $retainer_contract_agreement, $dhp_agreement) {
+        $path = Yii::$app->basePath . '/../uploads/step1/';
+        if (!empty($retainer_contract_agreement)) {
+            $retainer_contract_agreement->saveAs($path . $model->retainer_contract_agreement);
+        }
+        if (!empty($dhp_agreement)) {
+            $dhp_agreement->saveAs($path . $model->dhp_agreement);
+        }
+        return TRUE;
     }
 
     /**
@@ -79,7 +111,7 @@ class Step1Controller extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

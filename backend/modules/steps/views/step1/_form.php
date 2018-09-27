@@ -45,7 +45,21 @@ use kartik\date\DatePicker;
     </div>
     <div class="row">
         <div class='col-md-12 col-sm-12 col-xs-12 left_padd form-sub_head-div'> 
-            <span class="form-sub_head">STEP America Retainer Contract Agreement</span><a href="" class="file-link"></a>
+            <span class="form-sub_head">STEP America Retainer Contract Agreement</span>
+            <?php
+            if ($model->retainer_contract_agreement != '') {
+                $dirPath = Yii::getAlias(Yii::$app->params['uploadPath']) . '/../uploads/step1/' . $model->retainer_contract_agreement;
+                if (file_exists($dirPath)) {
+                    ?>
+                    <a href="<?= Yii::$app->homeUrl ?>../uploads/step1/<?= $model->retainer_contract_agreement ?>" class="file-link"><?= $model->retainer_contract_agreement ?></a>
+                    <?php
+                } else {
+                    echo '';
+                }
+            } else {
+                echo '';
+            }
+            ?>
         </div>
     </div>
     <div class="row">
@@ -88,7 +102,21 @@ use kartik\date\DatePicker;
     </div>
     <div class="row">
         <div class='col-md-12 col-sm-12 col-xs-12 left_padd form-sub_head-div'> 
-            <span class="form-sub_head">DHP Retainer Contract Agreement</span><a href="" class="file-link"></a>
+            <span class="form-sub_head">DHP Retainer Contract Agreement</span>
+            <?php
+            if ($model->dhp_agreement != '') {
+                $dirPath = Yii::getAlias(Yii::$app->params['uploadPath']) . '/../uploads/step1/' . $model->dhp_agreement;
+                if (file_exists($dirPath)) {
+                    ?>
+                    <a href="<?= Yii::$app->homeUrl ?>../uploads/step1/<?= $model->dhp_agreement ?>" class="file-link"><?= $model->dhp_agreement ?></a>
+                    <?php
+                } else {
+                    echo '';
+                }
+            } else {
+                echo '';
+            }
+            ?>
         </div>
     </div>
     <div class="row">
@@ -129,7 +157,7 @@ use kartik\date\DatePicker;
 
 
     <div class="form-group action-btn-right">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
 

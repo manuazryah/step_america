@@ -18,8 +18,8 @@ class Step5Search extends Step5
     public function rules()
     {
         return [
-            [['id', 'page_title', 'status', 'CB', 'UB'], 'integer'],
-            [['description', 'DOC', 'DOU'], 'safe'],
+            [['id', 'status', 'CB', 'UB'], 'integer'],
+            [['page_title', 'description', 'DOC', 'DOU'], 'safe'],
         ];
     }
 
@@ -60,7 +60,6 @@ class Step5Search extends Step5
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'page_title' => $this->page_title,
             'status' => $this->status,
             'CB' => $this->CB,
             'UB' => $this->UB,
@@ -68,7 +67,8 @@ class Step5Search extends Step5
             'DOU' => $this->DOU,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'page_title', $this->page_title])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

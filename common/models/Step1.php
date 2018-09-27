@@ -26,36 +26,34 @@ use Yii;
  * @property string $DOC
  * @property string $DOU
  */
-class Step1 extends \yii\db\ActiveRecord
-{
+class Step1 extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'step1';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['description'], 'string'],
             [['drafted_on', 'contract_agreement_drafted_on', 'contract_agreement_modified_on', 'questionaire_drafted_on', 'DOC', 'DOU'], 'safe'],
             [['status', 'CB', 'UB'], 'integer'],
             [['page_title'], 'string', 'max' => 250],
-            [['drafted_by', 'contract_agreement_drafted_by', 'contract_agreement_modified_by', 'questionaire_drafted_by'], 'string', 'max' => 200],
             [['retainer_contract_agreement', 'dhp_agreement'], 'string', 'max' => 100],
+            [['description', 'page_title', 'drafted_by', 'contract_agreement_drafted_by', 'contract_agreement_modified_by', 'questionaire_drafted_by', 'drafted_on', 'contract_agreement_drafted_on', 'contract_agreement_modified_on', 'questionaire_drafted_on'], 'required'],
+            [['retainer_contract_agreement', 'dhp_agreement'], 'file', 'extensions' => 'jpg, png, jpeg, pdf, txt, doc, docx'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'page_title' => 'Page Title',
@@ -77,4 +75,5 @@ class Step1 extends \yii\db\ActiveRecord
             'DOU' => 'Dou',
         ];
     }
+
 }

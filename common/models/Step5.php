@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "step5".
  *
  * @property int $id
- * @property int $page_title
+ * @property string $page_title
  * @property string $description
  * @property int $status
  * @property int $CB
@@ -16,33 +16,32 @@ use Yii;
  * @property string $DOC
  * @property string $DOU
  */
-class Step5 extends \yii\db\ActiveRecord
-{
+class Step5 extends \yii\db\ActiveRecord {
+
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'step5';
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['page_title', 'status', 'CB', 'UB'], 'integer'],
             [['description'], 'string'],
+            [['status', 'CB', 'UB'], 'integer'],
             [['DOC', 'DOU'], 'safe'],
+            [['page_title'], 'string', 'max' => 255],
+            [['description', 'page_title'], 'required'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'page_title' => 'Page Title',
@@ -54,4 +53,5 @@ class Step5 extends \yii\db\ActiveRecord
             'DOU' => 'Dou',
         ];
     }
+
 }

@@ -8,6 +8,8 @@ use common\models\Step5Search;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Step5Form;
+use common\models\Step5FormSearch;
 
 /**
  * Step5Controller implements the CRUD actions for Step5 model.
@@ -34,11 +36,20 @@ class Step5Controller extends Controller {
      */
     public function actionIndex() {
         $model = $this->findModel(1);
-
+        $searchModel = new Step5FormSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model_form = new Step5Form();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', "Step 5 Save Successfully");
-        } return $this->render('update', [
+        }
+        if ($model_form->load(Yii::$app->request->post()) && $model_form->save()) {
+            Yii::$app->session->setFlash('success', "New Form Save Successfully");
+        }
+        return $this->render('update', [
                     'model' => $model,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'model_form' => $model_form,
         ]);
     }
 

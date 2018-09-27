@@ -14,23 +14,22 @@ use Yii;
  * @property int $project
  * @property string $doc
  */
-class Step5Form extends \yii\db\ActiveRecord
-{
+class Step5Form extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'step5_form';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['date'], 'safe'],
+            [['date', 'project', 'title', 'author', 'doc'], 'required'],
             [['project'], 'integer'],
             [['title', 'author', 'doc'], 'string', 'max' => 200],
         ];
@@ -39,15 +38,15 @@ class Step5Form extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'title' => 'Title',
             'author' => 'Author',
             'date' => 'Date',
             'project' => 'Project',
-            'doc' => 'Doc',
+            'doc' => 'Upload Doc',
         ];
     }
+
 }

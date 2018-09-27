@@ -51,7 +51,7 @@ $controler = Yii::$app->controller->id;
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="<?= Yii::$app->homeUrl; ?>img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Alexander Pierce</span>
+                                    <span class="hidden-xs"><?= Yii::$app->user->identity->user_name ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -59,8 +59,7 @@ $controler = Yii::$app->controller->id;
                                         <img src="<?= Yii::$app->homeUrl; ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                         <p>
-                                            Alexander Pierce - Web Developer
-                                            <small>Member since Nov. 2012</small>
+                                            <?= Yii::$app->user->identity->user_name ?>
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->

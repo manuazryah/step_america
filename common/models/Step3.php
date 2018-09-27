@@ -16,21 +16,19 @@ use Yii;
  * @property string $DOC
  * @property string $DOU
  */
-class Step3 extends \yii\db\ActiveRecord
-{
+class Step3 extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'step3';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['description'], 'string'],
             [['status', 'CB', 'UB'], 'integer'],
@@ -42,11 +40,11 @@ class Step3 extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'page_title' => 'Page Title',
+            [['description', 'page_title'], 'required'],
             'description' => 'Description',
             'status' => 'Status',
             'CB' => 'Cb',
@@ -55,4 +53,5 @@ class Step3 extends \yii\db\ActiveRecord
             'DOU' => 'Dou',
         ];
     }
+
 }
