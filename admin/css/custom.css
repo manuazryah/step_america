@@ -572,10 +572,24 @@ input[type="file"] {
 }
 .box-body .panel-heading{
     color: #fff;
-    background-color: #29a2a6;
+    background-color: #214264;
     margin-bottom: 25px;
     font-size: 17px;
     padding: 5px 15px;
     font-weight: 600;
     border-radius: 0px;
+}
+.form-sub_head-div{
+    margin: 10px 0px;
+}
+.form-sub_head{
+    color: #256d7f;
+    font-size: 22px;
+    font-weight: bold;
+}
+.file-link{
+    margin-left: 15px;
+    color: #23527c;
+    text-decoration: underline;
+    font-size: 17px;
 }
