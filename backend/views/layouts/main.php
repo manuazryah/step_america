@@ -15,7 +15,7 @@ $controler = Yii::$app->controller->id;
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="<?= Yii::$app->homeUrl; ?>img/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="<?= Yii::$app->homeUrl; ?>img/fav.png" type="image/x-icon">
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <script src="<?= Yii::$app->homeUrl; ?>js/jquery.min.js"></script>
@@ -32,7 +32,7 @@ $controler = Yii::$app->controller->id;
                 <!-- Logo -->
                 <a href="<?= yii::$app->homeUrl; ?>" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><img class="img-responsive" src="<?= yii::$app->homeUrl; ?>img/logo.png" alt="" /></span>
+                    <span class="logo-mini"><img class="img-responsive" src="<?= yii::$app->homeUrl; ?>img/fav.png" alt="" style="width: 51px;margin: 2px auto;margin-left: 13px;"/></span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-lg"><img class="img-responsive" src="<?= yii::$app->homeUrl; ?>img/logo.png" alt="" /></span>
                 </a>

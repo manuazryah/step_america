@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = 'Update';
         <div class="row">
             <div class="col-md-12">
                 <?= Html::a('<span> Manage Admin Users</span>', ['index'], ['class' => 'btn btn-block manage-btn', 'style' => 'float:left;']) ?>
-                <?= Html::a('<span> Change Password</span>', ['change-password'], ['class' => 'btn btn-block btn-danger', 'style' => 'float:left;margin-left:10px;margin-top: 0px;']) ?>
+                <?= Html::a('<span> Change Password</span>', ['change-password', 'id' => Yii::$app->EncryptDecrypt->Encrypt('encrypt', $model->id)], ['class' => 'btn btn-block btn-danger', 'style' => 'float:left;margin-left:10px;margin-top: 0px;']) ?>
             </div>
         </div>
         <div class="admin-users-update">

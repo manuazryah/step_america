@@ -30,6 +30,7 @@ class Step3 extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
+            [['description', 'page_title'], 'required'],
             [['description'], 'string'],
             [['status', 'CB', 'UB'], 'integer'],
             [['DOC', 'DOU'], 'safe'],
