@@ -28,55 +28,53 @@ use Yii;
  * @property string $DOC
  * @property string $DOU
  */
-class Step7 extends \yii\db\ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'step7';
-    }
+class Step7 extends \yii\db\ActiveRecord {
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['description'], 'string'],
-            [['status', 'CB', 'UB'], 'integer'],
-            [['DOC', 'DOU'], 'safe'],
-            [['page_title', 'escrow_agent', 'llc', 'administrative_agent', 'bank_name', 'bank_address', 'bank_institution', 'bank_branch', 'bank_account', 'swift_id', 'contact_name', 'contact', 'ABA'], 'string', 'max' => 255],
-        ];
-    }
+        /**
+         * @inheritdoc
+         */
+        public static function tableName() {
+                return 'step7';
+        }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'page_title' => 'Page Title',
-            'description' => 'Description',
-            'escrow_agent' => 'Escrow Agent',
-            'llc' => 'Llc',
-            'administrative_agent' => 'Administrative Agent',
-            'bank_name' => 'Bank Name',
-            'bank_address' => 'Bank Address',
-            'bank_institution' => 'Bank Institution',
-            'bank_branch' => 'Bank Branch',
-            'bank_account' => 'Bank Account',
-            'swift_id' => 'Swift ID',
-            'contact_name' => 'Contact Name',
-            'contact' => 'Contact',
-            'ABA' => 'Aba',
-            'status' => 'Status',
-            'CB' => 'Cb',
-            'UB' => 'Ub',
-            'DOC' => 'Doc',
-            'DOU' => 'Dou',
-        ];
-    }
+        /**
+         * @inheritdoc
+         */
+        public function rules() {
+                return [
+                        [['description'], 'string'],
+                        [['status', 'CB', 'UB'], 'integer'],
+                        [['DOC', 'DOU'], 'safe'],
+                        [['page_title', 'escrow_agent', 'llc', 'administrative_agent', 'bank_name', 'bank_address', 'bank_institution', 'bank_branch', 'bank_account', 'swift_id', 'contact_name', 'contact', 'ABA'], 'string', 'max' => 255],
+                ];
+        }
+
+        /**
+         * @inheritdoc
+         */
+        public function attributeLabels() {
+                return [
+                    'id' => 'ID',
+                    'page_title' => 'Page Title',
+                    'description' => 'Description',
+                    'escrow_agent' => 'Escrow Agent',
+                    'llc' => 'LLC',
+                    'administrative_agent' => 'Administrative Agent',
+                    'bank_name' => 'Bank Name',
+                    'bank_address' => 'Bank Address',
+                    'bank_institution' => 'Bank Institution',
+                    'bank_branch' => 'Bank Branch',
+                    'bank_account' => 'Bank Account',
+                    'swift_id' => 'Swift ID',
+                    'contact_name' => 'Contact Name',
+                    'contact' => 'Contact',
+                    'ABA' => 'ABA',
+                    'status' => 'Status',
+                    'CB' => 'Cb',
+                    'UB' => 'Ub',
+                    'DOC' => 'Doc',
+                    'DOU' => 'Dou',
+                ];
+        }
+
 }
