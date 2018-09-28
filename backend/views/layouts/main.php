@@ -157,6 +157,9 @@ $controler = Yii::$app->controller->id;
 
                                 </ul>
                             </li>
+                            <li class="<?= $controler == 'users' ? 'active' : '' ?>">
+                                <?= Html::a('<i class="fa fa-users"></i> <span>Users</span>', ['/user/users/index'], ['class' => '']) ?>
+                            </li>
                             <?php
                         }
                         ?>

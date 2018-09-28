@@ -3,28 +3,28 @@
 namespace common\models;
 
 use Yii;
-use yii\web\IdentityInterface;
+use yii\base\NotSupportedException;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
- * This is the model class for table "admin_users".
+ * This is the model class for table "users".
  *
- * @property integer $id
- * @property integer $post_id
- * @property string $employee_code
+ * @property int $id
  * @property string $user_name
  * @property string $password
  * @property string $name
  * @property string $email
- * @property string $phone_number
- * @property integer $CB
- * @property integer $UB
+ * @property string $phone
+ * @property string $address
+ * @property int $status
+ * @property int $CB
+ * @property int $UB
  * @property string $DOC
  * @property string $DOU
- *
- * @property AdminPosts $post
  */
-class AdminUsers extends ActiveRecord implements IdentityInterface {
+class Users extends ActiveRecord implements IdentityInterface {
 
     private $_user;
     public $rememberMe = true;
@@ -32,29 +32,31 @@ class AdminUsers extends ActiveRecord implements IdentityInterface {
     public $updated_at;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName() {
-        return 'admin_users';
+        return 'users';
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules() {
         return [
-            [['post_id', 'user_name', 'password', 'name', 'email', 'phone_number'], 'required', 'on' => 'create'],
-            [['post_id', 'name', 'email', 'phone_number'], 'required', 'on' => 'update'],
+            [['address', 'user_name', 'password', 'name', 'email', 'phone'], 'required', 'on' => 'create'],
+            [['address', 'name', 'email', 'phone'], 'required', 'on' => 'update'],
             [['user_name'], 'unique', 'message' => 'Username must be unique.', 'on' => 'create'],
             [['user_name'], 'unique', 'message' => 'Username must be unique.', 'on' => 'update'],
-            [['email'], 'email'],
-            [['post_id', 'status', 'CB', 'UB'], 'integer'],
+            [['address'], 'string'],
+            [['status', 'CB', 'UB', 'current_step'], 'integer'],
             [['DOC', 'DOU'], 'safe'],
             [['user_name'], 'string', 'max' => 30],
             [['password'], 'string', 'max' => 300],
             [['name', 'email'], 'string', 'max' => 100],
-            [['phone_number'], 'integer'],
-            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => AdminPosts::className(), 'targetAttribute' => ['post_id' => 'id']],
+            [['phone'], 'string', 'max' => 15],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['email', 'unique', 'targetClass' => '\common\models\Users', 'message' => 'This email address has already been taken.'],
             [['user_name', 'password'], 'required', 'on' => 'login'],
             [['password'], 'validatePassword', 'on' => 'login'],
         ];
@@ -72,18 +74,18 @@ class AdminUsers extends ActiveRecord implements IdentityInterface {
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'post_id' => 'Post Name',
-            'employee_code' => 'Employee Code',
             'user_name' => 'User Name',
             'password' => 'Password',
             'name' => 'Name',
             'email' => 'Email',
-            'phone_number' => 'Phone Number',
+            'phone' => 'Phone',
+            'address' => 'Address',
+            'status' => 'Status',
             'CB' => 'Cb',
             'UB' => 'Ub',
             'DOC' => 'Doc',
@@ -154,13 +156,6 @@ class AdminUsers extends ActiveRecord implements IdentityInterface {
      */
     public function validateAuthKey($authKey) {
         return $this->getAuthKey() === $authKey;
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPost() {
-        return $this->hasOne(AdminPosts::className(), ['id' => 'post_id']);
     }
 
 }

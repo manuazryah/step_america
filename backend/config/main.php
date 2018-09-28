@@ -31,6 +31,9 @@ return [
         'steps' => [
             'class' => 'backend\modules\steps\Module',
         ],
+        'user' => [
+            'class' => 'backend\modules\user\Module',
+        ],
     ],
     'components' => [
         'request' => [

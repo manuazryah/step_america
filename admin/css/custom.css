@@ -81,7 +81,7 @@
     background: rgba(255, 255, 255, 0.1);
 }
 .skin-blue .main-header .logo:hover {
-    background-color: #232d33;
+    background-color: #ffffff;
 }
 .skin-blue .main-header .navbar {
     background-color: #232d33;
@@ -598,4 +598,9 @@ input[type="file"] {
     color: #dd4b39;
     position: absolute;
     bottom: -15px;
+}
+.show-pass{
+    position: absolute;
+    top: 25px;
+    right: 25px;
 }

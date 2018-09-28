@@ -118,3 +118,21 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+.site-login img{
+    margin: 0 auto;
+}
+.site-login{
+    width: 450px;
+    margin: 0 auto;
+    border: 1px solid #d8d3d3;
+    padding: 25px 30px;
+    margin-top: 60px;
+}
+#login-form{
+    margin: 30px 0px;
+}
+.login-box-msg {
+    font-weight: 700;
+    font-size: 14px;
+    margin: 15px 0px;
+}
