@@ -147,15 +147,6 @@ a.desc:after {
         padding: 20px 0;
         margin-top: 25px;
 }
-/*.download{
-        background: #2dadaf none repeat scroll 0 0;
-        border-radius: 10px;
-        display: inline-block;
-        height: 40px;
-        padding: 11px 0;
-        text-align: center;
-        width: 250px;
-        float: left;
-        margin-left: 18px;
-        margin-bottom: 30px;
-}*/
+.panel-heading h4{
+        font-size: 16px;
+}
