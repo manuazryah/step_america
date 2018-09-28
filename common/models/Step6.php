@@ -17,44 +17,43 @@ use Yii;
  * @property string $DOC
  * @property string $DOU
  */
-class Step6 extends \yii\db\ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'step6';
-    }
+class Step6 extends \yii\db\ActiveRecord {
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['description'], 'string'],
-            [['status', 'CB', 'UB'], 'integer'],
-            [['DOC', 'DOU'], 'safe'],
-            [['page_title', 'project_title'], 'string', 'max' => 255],
-        ];
-    }
+        /**
+         * @inheritdoc
+         */
+        public static function tableName() {
+                return 'step6';
+        }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'page_title' => 'Page Title',
-            'description' => 'Description',
-            'project_title' => 'Project Title',
-            'status' => 'Status',
-            'CB' => 'Cb',
-            'UB' => 'Ub',
-            'DOC' => 'Doc',
-            'DOU' => 'Dou',
-        ];
-    }
+        /**
+         * @inheritdoc
+         */
+        public function rules() {
+                return [
+                        [['description'], 'string'],
+                        [['status', 'CB', 'UB'], 'integer'],
+                        [['DOC', 'DOU'], 'safe'],
+                        [['page_title', 'project_title'], 'string', 'max' => 255],
+                        [['description', 'page_title'], 'required'],
+                ];
+        }
+
+        /**
+         * @inheritdoc
+         */
+        public function attributeLabels() {
+                return [
+                    'id' => 'ID',
+                    'page_title' => 'Page Title',
+                    'description' => 'Description',
+                    'project_title' => 'Project Title',
+                    'status' => 'Status',
+                    'CB' => 'Cb',
+                    'UB' => 'Ub',
+                    'DOC' => 'Doc',
+                    'DOU' => 'Dou',
+                ];
+        }
+
 }

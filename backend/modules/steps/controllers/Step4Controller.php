@@ -60,6 +60,7 @@ class Step4Controller extends Controller {
                                 $this->Upload($projects, $image);
                         }
                         Yii::$app->session->setFlash('success', "Project Saved Successfully");
+                        $projects = new Projects();
                 }
                 return $this->render('update', [
                             'model' => $model,
@@ -99,14 +100,16 @@ class Step4Controller extends Controller {
 
         public function actionDel($id) {
                 $model = Projects::findOne($id);
-                if ($model->delete()) {
-                        $directory = Yii::$app->basePath . '/../uploads/step4/' . $model->id;
-//                        foreach (glob("{$directory}/*") as $file) {
-//                                if (!is_dir($file)) {
-//                                        unlink($file);
-//                                }
-//                        }
-//                        FileHelper::removeDirectory($directory);
+                $file = Yii::$app->basePath . '/../uploads/step4/' . $model->id . '.' . $model->image;
+                $project = \common\models\Step5Form::find()->where(['project' => $model->id])->exists();
+                if (!$project) {
+                        if ($model->delete()) {
+                                if (file_exists($file))
+                                        unlink($file);
+                                Yii::$app->session->setFlash('success', "Deleted Successfully");
+                        }
+                } else {
+                        Yii::$app->session->setFlash('error', "Sorry ! You cannot delete this project");
                 }
                 return $this->redirect(['index']);
         }
@@ -164,7 +167,9 @@ class Step4Controller extends Controller {
          * @return mixed
          */
         public function actionDelete($id) {
+
                 $this->findModel($id)->delete();
+
 
                 return $this->redirect(['index']);
         }
