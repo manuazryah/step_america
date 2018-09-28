@@ -42,7 +42,7 @@ use yii\helpers\Url;
 
                 </div>
                 <?php if (isset($projects->image)) { ?>
-                        <img src="<?= Yii::$app->homeUrl ?>../uploads/step4/<?= $projects->id ?>.<?= $projects->image; ?>?<?= rand() ?>" width="300" height="110" style="margin-left:15px"/>
+                        <img src="<?= Yii::$app->homeUrl ?>../uploads/step4/<?= $projects->id ?>.<?= $projects->image; ?>?<?= rand() ?>" width="300" style="margin-left:15px"/>
 
                         <?php
                 } elseif (!empty($model->img)) {
