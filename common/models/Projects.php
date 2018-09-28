@@ -17,44 +17,45 @@ use Yii;
  * @property string $DOC
  * @property string $DOU
  */
-class Projects extends \yii\db\ActiveRecord {
+class Projects extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'projects';
+    }
 
-        /**
-         * @inheritdoc
-         */
-        public static function tableName() {
-                return 'projects';
-        }
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['microsite_page'], 'string'],
+            [['status', 'CB', 'UB'], 'integer'],
+            [['DOC', 'DOU'], 'safe'],
+            [['project_title'], 'string', 'max' => 255],
+            [['image'], 'string', 'max' => 100],
+        ];
+    }
 
-        /**
-         * @inheritdoc
-         */
-        public function rules() {
-                return [
-                        [['microsite_page'], 'string'],
-                        [['status', 'CB', 'UB'], 'integer'],
-                        [['DOC', 'DOU'], 'safe'],
-                        [['project_title'], 'string', 'max' => 255],
-                        [['image'], 'string', 'max' => 100],
-                        [['project_title', 'microsite_page', 'image'], 'required']
-                ];
-        }
-
-        /**
-         * @inheritdoc
-         */
-        public function attributeLabels() {
-                return [
-                    'id' => 'ID',
-                    'project_title' => 'Project Title',
-                    'image' => 'Image',
-                    'microsite_page' => 'Microsite Page',
-                    'status' => 'Status',
-                    'CB' => 'Cb',
-                    'UB' => 'Ub',
-                    'DOC' => 'Doc',
-                    'DOU' => 'Dou',
-                ];
-        }
-
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'project_title' => 'Project Title',
+            'image' => 'Image',
+            'microsite_page' => 'Microsite Page',
+            'status' => 'Status',
+            'CB' => 'Cb',
+            'UB' => 'Ub',
+            'DOC' => 'Doc',
+            'DOU' => 'Dou',
+        ];
+    }
 }

@@ -12,24 +12,21 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <!-- Default box -->
 <div class="box">
-        <div class="box-header with-border">
-                <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+    <div class="box-header with-border">
+        <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+    </div>
+    <div class="box-body">
+        <div class="panel-heading">
+            Edit Page Content
         </div>
-        <div class="box-body">
-                <div class="panel-heading">
-                        Edit Page Content
-                </div>
-                <div class="step4-update">
-                        <?=
-                        $this->render('_form', [
-                            'model' => $model,
-                            'projects' => $projects,
-                            'searchModel' => $searchModel,
-                            'dataProvider' => $dataProvider,
-                        ])
-                        ?>
-                </div>
+        <div class="step4-update">
+            <?=
+            $this->render('_form', [
+                'model' => $model,
+            ])
+            ?>
         </div>
-        <!-- /.box-body -->
+    </div>
+    <!-- /.box-body -->
 </div>
 <!-- /.box -->

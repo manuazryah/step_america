@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\Step5Form;
 use common\models\Step5FormSearch;
+use yii\web\UploadedFile;
 
 /**
  * Step5Controller implements the CRUD actions for Step5 model.
@@ -39,10 +40,15 @@ class Step5Controller extends Controller {
         $searchModel = new Step5FormSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $model_form = new Step5Form();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->save()) {
             Yii::$app->session->setFlash('success', "Step 5 Save Successfully");
         }
-        if ($model_form->load(Yii::$app->request->post()) && $model_form->save()) {
+        if ($model_form->load(Yii::$app->request->post())) {
+            $doc = UploadedFile::getInstance($model_form, 'doc');
+            $model_form->doc = $doc->name;
+            if ($model_form->validate() && $model_form->save()) {
+                $this->Upload($model_form, $doc);
+            }
             Yii::$app->session->setFlash('success', "New Form Save Successfully");
         }
         return $this->render('update', [
@@ -51,6 +57,26 @@ class Step5Controller extends Controller {
                     'dataProvider' => $dataProvider,
                     'model_form' => $model_form,
         ]);
+    }
+
+    /*
+     * Upload Documents
+     */
+
+    public function Upload($model, $doc) {
+        $dir = Yii::$app->basePath . '/../uploads/step5/' . $model->id;
+        if (!is_dir($dir)) {
+            mkdir($dir);
+        }
+        $path = $dir . '/';
+        if (!empty($doc)) {
+            $file = $path . $model->doc;
+            if (file_exists($file)) {
+                unlink($file);
+            }
+            $doc->saveAs($path . $model->doc);
+        }
+        return TRUE;
     }
 
     /**
@@ -106,8 +132,15 @@ class Step5Controller extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
-
+        $model = Step5Form::findOne($id);
+        $path = Yii::$app->basePath . '/../uploads/step5/' . $model->id . '/';
+        $file = $path . $model->doc;
+        if ($model->delete()) {
+            if (file_exists($file)) {
+                unlink($file);
+                rmdir($path);
+            }
+        }
         return $this->redirect(['index']);
     }
 

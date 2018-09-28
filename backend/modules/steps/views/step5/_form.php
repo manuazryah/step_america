@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
+use yii\helpers\ArrayHelper;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Step5 */
@@ -42,18 +45,33 @@ use yii\widgets\ActiveForm;
                 <?= $form1->field($model_form, 'author')->textInput(['maxlength' => true]) ?>
 
             </div>
-            <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>    
-                <?= $form1->field($model_form, 'date')->textInput() ?>
+            <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>   
+                <?php
+                if ($model_form->date == '') {
+                    $model_form->date = date('Y-m-d');
+                }
+                ?>
+                <?=
+                $form1->field($model_form, 'date')->widget(DatePicker::classname(), [
+                    'type' => DatePicker::TYPE_INPUT,
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd',
+                    ]
+                ]);
+                ?>
 
             </div>
-            <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>    
-                <?= $form1->field($model_form, 'project')->textInput() ?>
+            <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>  
+                <?php $projects = ArrayHelper::map(common\models\Projects::findAll(['status' => 1]), 'id', 'project_title'); ?>
+                <?= $form1->field($model_form, 'project')->dropDownList($projects, ['prompt' => '-Choose a Project-']) ?>
 
             </div>
-            <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>    
-                <?= $form1->field($model_form, 'doc')->textInput(['maxlength' => true]) ?>
+            <div class='col-md-4 col-sm-6 col-xs-12 left_padd'> 
+                <?= $form1->field($model_form, 'doc')->fileInput()->label('Upload Doc') ?>
 
-            </div>    </div>
+            </div>   
+        </div>
 
         <div class="form-group action-btn-right">
             <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -61,6 +79,43 @@ use yii\widgets\ActiveForm;
 
 
         <?php ActiveForm::end(); ?>
+    </div>
+    <div>
+        <?=
+        GridView::widget([
+            'dataProvider' => $dataProvider,
+//            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+//                            'id',
+                'title',
+                'author',
+                'date',
+                [
+                    'attribute' => 'project',
+                    'value' => function($data) {
+                        return common\models\Projects::findOne($data->project)->project_title;
+                    },
+                    'filter' => ArrayHelper::map(common\models\Projects::find()->asArray()->all(), 'id', 'project_title'),
+                ],
+                [
+                    'attribute' => 'doc',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                        if (isset($data->doc)) {
+                            $img = '<a target="_blank" href="' . Yii::$app->homeUrl . '../uploads/step5/' . $data->id . '/' . $data->doc . '"/>' . $data->doc . '</a>';
+                            return $img;
+                        } else {
+                            return '';
+                        }
+                    },
+                ],
+                ['class' => 'yii\grid\ActionColumn',
+                    'template' => '{delete}',
+                ],
+            ],
+        ]);
+        ?>
     </div>
 </div>
 <script>

@@ -18,40 +18,40 @@ use Yii;
  */
 class Step3 extends \yii\db\ActiveRecord {
 
-        /**
-         * @inheritdoc
-         */
-        public static function tableName() {
-                return 'step3';
-        }
+    /**
+     * @inheritdoc
+     */
+    public static function tableName() {
+        return 'step3';
+    }
 
-        /**
-         * @inheritdoc
-         */
-        public function rules() {
-                return [
-                        [['description'], 'string'],
-                        [['status', 'CB', 'UB'], 'integer'],
-                        [['DOC', 'DOU'], 'safe'],
-                        [['page_title'], 'string', 'max' => 255],
-                        [['description', 'page_title'], 'required'],
-                ];
-        }
+    /**
+     * @inheritdoc
+     */
+    public function rules() {
+        return [
+            [['description'], 'string'],
+            [['status', 'CB', 'UB'], 'integer'],
+            [['DOC', 'DOU'], 'safe'],
+            [['page_title'], 'string', 'max' => 255],
+        ];
+    }
 
-        /**
-         * @inheritdoc
-         */
-        public function attributeLabels() {
-                return [
-                    'id' => 'ID',
-                    'page_title' => 'Page Title',
-                    'description' => 'Description',
-                    'status' => 'Status',
-                    'CB' => 'Cb',
-                    'UB' => 'Ub',
-                    'DOC' => 'Doc',
-                    'DOU' => 'Dou',
-                ];
-        }
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels() {
+        return [
+            'id' => 'ID',
+            'page_title' => 'Page Title',
+            [['description', 'page_title'], 'required'],
+            'description' => 'Description',
+            'status' => 'Status',
+            'CB' => 'Cb',
+            'UB' => 'Ub',
+            'DOC' => 'Doc',
+            'DOU' => 'Dou',
+        ];
+    }
 
 }
