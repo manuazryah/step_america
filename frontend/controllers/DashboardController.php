@@ -2,11 +2,13 @@
 
 namespace frontend\controllers;
 
-class DashboardController extends \yii\web\Controller
-{
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
+use common\models\Step1;
+
+class DashboardController extends \yii\web\Controller {
+
+        public function actionIndex() {
+                $step1 = Step1::findOne(1);
+                return $this->render('index', ['step1' => $step1]);
+        }
 
 }
