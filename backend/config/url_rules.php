@@ -1,7 +1,7 @@
 <?php
 
 return [
-    '' => 'site/home',
+    'home' => 'site/home',
     'admin-post' => 'admin/admin-posts/index',
     'create-admin-post' => 'admin/admin-posts/create',
     'update-admin-post/<id>' => 'admin/admin-posts/update',

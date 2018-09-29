@@ -94,6 +94,7 @@ class SiteController extends Controller {
             return $this->render('index', [
             ]);
         } else {
+//            return $this->redirect(['index']);
             throw new \yii\web\HttpException(2000, 'Session Expired.');
         }
     }
