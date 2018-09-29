@@ -22,6 +22,7 @@ return [
     'users' => 'user/users/index',
     'create-user' => 'user/users/create',
     'update-user/<id>' => 'user/users/update',
+    'user-view/<id>' => 'user/users/view',
     'change-password/<id>' => 'user/users/change-password',
     'forgot-password' => 'site/forgot',
     'country-codes' => 'product/country-code/index',

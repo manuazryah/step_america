@@ -8,6 +8,7 @@ use common\models\UsersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * UsersController implements the CRUD actions for Users model.
@@ -48,9 +49,48 @@ class UsersController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
+        $step2_model = \common\models\Step2AccountDetails::find()->where(['user_id' => $id])->one();
+        if (empty($step2_model)) {
+            $step2_model = new \common\models\Step2AccountDetails();
+        } else {
+            $invoice_file_ = $step2_model->invoice_file;
+        }
+        if ($step2_model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($step2_model)) {
+            $invoice_file = UploadedFile::getInstance($step2_model, 'invoice_file');
+            if (!empty($invoice_file)) {
+                $step2_model->invoice_file = $invoice_file->name;
+            } else {
+                $step2_model->invoice_file = $invoice_file_;
+            }
+            if ($step2_model->validate() && $step2_model->save()) {
+                $this->Upload($step2_model, $invoice_file);
+            }
+            Yii::$app->session->setFlash('success', "Account Details Save Successfully");
+        }
         return $this->render('view', [
                     'model' => $this->findModel($id),
+                    'step2_model' => $step2_model,
         ]);
+    }
+
+    /*
+     * Upload Documents
+     */
+
+    public function Upload($model, $invoice_file) {
+        $dir = Yii::$app->basePath . '/../uploads/step2/invoice/' . $model->id;
+        if (!is_dir($dir)) {
+            mkdir($dir);
+        }
+        $path = $dir . '/';
+        if (!empty($invoice_file)) {
+            $file = $path . $model->invoice_file;
+            if (file_exists($file)) {
+                unlink($file);
+            }
+            $invoice_file->saveAs($path . $model->invoice_file);
+        }
+        return TRUE;
     }
 
     /**

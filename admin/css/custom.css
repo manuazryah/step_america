@@ -623,3 +623,124 @@ input[type="file"] {
 .main-header .sidebar-toggle {
     font-size: 20px;
 }
+.user-view-tbl{
+    width: 50%;
+    font-size: 15px;
+}
+/*********** TAB CSS START **************/
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+.tabs {
+    /*max-width: 640px;*/
+    /*margin: 0 auto;*/
+    padding: 20px 10px;
+}
+#tab-button {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#tab-button li {
+    display: table-cell;
+    width: 20%;
+}
+#tab-button li a {
+    display: block;
+    padding: .5em;
+    background: #eee;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+}
+#tab-button li:not(:first-child) a {
+    border-left: none;
+}
+#tab-button li a:hover,
+#tab-button .is-active a {
+    border-bottom-color: transparent;
+    background: #fff;
+}
+.tab-contents {
+    padding: .5em 2em 1em;
+    border: 1px solid #ddd;
+}
+
+
+
+.tab-button-outer {
+    display: none;
+}
+.tab-contents {
+    margin-top: 20px;
+}
+@media screen and (min-width: 768px) {
+    .tab-button-outer {
+        position: relative;
+        z-index: 2;
+        display: block;
+    }
+    .tab-select-outer {
+        display: none;
+    }
+    .tab-contents {
+        position: relative;
+        top: -1px;
+        margin-top: 0;
+    }
+}
+.tab-head{
+    border: 1px solid #ddd;
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+/*********** TAB CSS END **************/
+#accordion{
+    padding: 25px 0px;
+}
+#accordion .panel-default {
+    border-color: #ddd;
+}
+#accordion .panel-default>.panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    margin-bottom: 0px;
+    padding: 10px 15px;
+}
+#step7 .panel-default {
+    border-color: #ddd;
+}
+#step7 .panel-default>.panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    margin-bottom: 0px;
+    padding: 10px 15px;
+}
+.pad-25-0{
+    padding: 25px 0px;
+}
+.step6_pannel {
+    margin: 10px 15px 10px;
+}
+.step6_pannel th{
+    text-align: left;
+    height: 30px;
+    text-transform: capitalize;
+}
+.form-sub-head{
+    font-weight: 600;
+    margin-bottom: 18px;
+    font-size: 20px;
+}
