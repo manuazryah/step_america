@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'email:email',
                     'current_step',
                     ['class' => 'yii\grid\ActionColumn',
-//                        'template' => '{update} {delete}',
+                        'template' => '{view}',
                     ],
                 ],
             ]);
