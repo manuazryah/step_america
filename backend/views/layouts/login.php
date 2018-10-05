@@ -23,7 +23,7 @@ AppAssetLogin::register($this);
         </script>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition login-page">
+    <body class="hold-transition login-page" style="background: url(<?= Yii::$app->homeUrl; ?>img/login-page-bg.jpg)">
         <?php $this->beginBody() ?>
         <div class="login-box">
             <!-- /.login-logo -->

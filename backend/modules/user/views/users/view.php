@@ -11,11 +11,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- Default box -->
+<h3 class="box-title"><?= Html::encode($this->title) ?></h3>
 <div class="box">
     <div class="users-view">
-        <div class="box-header with-border">
-            <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-        </div>
         <div class="box-body">
             <?= Html::a('<span> Manage Users</span>', ['index'], ['class' => 'btn btn-warning mrg-bot-15']) ?>
             <?= Html::a('Change Password', ['change-password', 'id' => Yii::$app->EncryptDecrypt->Encrypt('encrypt', $model->id)], ['class' => 'btn btn-danger mrg-bot-15']) ?>
@@ -32,7 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- /.box-body -->
             <div class=" clearfix"></div>
             <div class="tabs">
-                <div class="tab-head">Basic Tabs</div>
                 <div class="tab-button-outer">
                     <ul id="tab-button">
                         <li><a href="#tab01">Step 1</a></li>

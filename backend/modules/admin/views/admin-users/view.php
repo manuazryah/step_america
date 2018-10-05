@@ -11,11 +11,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Admin Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- Default box -->
+<h3 class="box-title"><?= Html::encode($this->title) ?></h3>
 <div class="box">
     <div class="admin-users-view">
-        <div class="box-header with-border">
-            <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-        </div>
         <div class="box-body">
             <?= Html::a('<span> Manage Admin Users</span>', ['index'], ['class' => 'btn btn-warning mrg-bot-15']) ?>
             <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary mrg-bot-15']) ?>

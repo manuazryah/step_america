@@ -94,7 +94,13 @@ use yii\widgets\ActiveForm;
         </div>
         <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>  
             <?= $form->field($step2_model, 'invoice_file')->fileInput() ?>
-
+            <?php
+            if (!empty($step2_model->invoice_file)) {
+                ?>
+                <a target="_blank" href="<?= Yii::$app->homeUrl ?>../uploads/step2/invoice/<?= $model->id ?>/<?= $step2_model->invoice_file; ?>"><?= $step2_model->invoice_file ?></a>
+                <?php
+            }
+            ?>
         </div>  
     </div>
     <?php

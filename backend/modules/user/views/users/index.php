@@ -11,11 +11,9 @@ $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- Default box -->
+<h3 class="box-title"><?= Html::encode($this->title) ?></h3>
 <div class="box table-responsive">
     <div class="users-index">
-        <div class="box-header with-border">
-            <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-        </div>
         <div class="box-body table-responsive">
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -30,7 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'user_name',
                     'email:email',
                     'current_step',
-                    ['class' => 'yii\grid\ActionColumn',
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'header' => 'Action',
                         'template' => '{view}',
                     ],
                 ],

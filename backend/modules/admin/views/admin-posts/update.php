@@ -11,10 +11,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' 
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <!-- Default box -->
+<h3 class="box-title"><?= Html::encode($this->title) ?></h3>
 <div class="box">
-    <div class="box-header with-border">
-        <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-    </div>
     <div class="box-body">
         <?= Html::a('<span> Manage Admin Posts</span>', ['index'], ['class' => 'btn btn-block manage-btn']) ?>
         <div class="admin-posts-update">

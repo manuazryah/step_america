@@ -11,10 +11,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <!-- Default box -->
+<h3 class="box-title"><?= Html::encode($this->title) ?></h3>
 <div class="box">
-    <div class="box-header with-border">
-        <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-    </div>
     <div class="box-body">
         <div class="row">
             <div class="col-md-12">

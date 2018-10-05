@@ -22,6 +22,7 @@ $controler = Yii::$app->controller->id;
         <script type="text/javascript">
             var homeUrl = '<?= Yii::$app->homeUrl; ?>';
         </script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <?php $this->head() ?>
     </head>
     <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -93,7 +94,6 @@ $controler = Yii::$app->controller->id;
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                     <ul class="sidebar-menu" data-widget="tree">
-                        <li class="header">MAIN NAVIGATION</li>
                         <?php
                         if (Yii::$app->user->identity->post_id == 1 || Yii::$app->session['post']['admin'] == 1) {
                             ?>

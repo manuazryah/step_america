@@ -11,11 +11,9 @@ $this->title = 'Admin Posts';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- Default box -->
+<h3 class="box-title"><?= Html::encode($this->title) ?></h3>
 <div class="box table-responsive">
     <div class="admin-posts-index">
-        <div class="box-header with-border">
-            <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-        </div>
         <div class="box-body">
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -25,10 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
+                    ['class' => 'yii\grid\SerialColumn'],
 //                            'id',
                     'post_name',
-                        [
+                    [
                         'attribute' => 'admin',
                         'format' => 'raw',
                         'filter' => [1 => 'Yes', 0 => 'No'],
@@ -36,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->admin == 1 ? 'Yes' : 'No';
                         },
                     ],
-                        [
+                    [
                         'attribute' => 'masters',
                         'format' => 'raw',
                         'filter' => [1 => 'Yes', 0 => 'No'],
@@ -48,7 +46,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'UB',
                     // 'DOC',
                     // 'DOU',
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'header' => 'Action',
+                        'template' => '{view}{update}{delete}',
+                    ],
                 ],
             ]);
             ?>
