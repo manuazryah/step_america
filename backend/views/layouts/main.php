@@ -23,6 +23,14 @@ $controler = Yii::$app->controller->id;
             var homeUrl = '<?= Yii::$app->homeUrl; ?>';
         </script>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <script>
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+            }
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+        </script>
         <?php $this->head() ?>
     </head>
     <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -81,6 +89,9 @@ $controler = Yii::$app->controller->id;
                                         </div>
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-comments"></i></i></a>
                             </li>
                         </ul>
                     </div>
@@ -181,10 +192,116 @@ $controler = Yii::$app->controller->id;
                 <strong>Copyright &copy; 2018-2019 <a href="http://azryah.com/">epitome.ae</a>.</strong> All rights
                 reserved.
             </footer>
+            <div class="chat-popup" id="myForm">
+
+            </div>
+            <aside class="control-sidebar control-sidebar-dark">
+                <?php
+                $online_chats = common\models\Chat::find()->where(['status' => 1])->all();
+                $chat_arr = [];
+                if (!empty($online_chats)) {
+                    foreach ($online_chats as $online_chat) {
+                        if (!empty($online_chat)) {
+                            $chat_arr[] = $online_chat->user_id;
+                        }
+                    }
+                }
+                $users = \common\models\Users::find()->where(['id' => $chat_arr])->all();
+                ?>
+                <ul class="control-sidebar-menu">
+                    <?php
+                    if (!empty($users)) {
+                        foreach ($users as $user_val) {
+                            if (!empty($user_val)) {
+                                ?>
+                                <li>
+                                    <a>
+                                        <i class="menu-icon fa fa-user bg-red"></i>
+
+                                        <div class="menu-info">
+                                            <h4 class="control-sidebar-subheading"><button class="open-button open-chat" data-val="<?= $user_val->id ?>"><?= $user_val->name ?></button> <i class="fa fa-circle text-success online-status"></i></h4>
+                                        </div>
+                                    </a>
+                                </li>
+                                <?php
+                            }
+                        }
+                    }
+                    ?>
+                </ul>
+            </aside>
+            <!-- /.control-sidebar -->
             <div class="control-sidebar-bg"></div>
         </div>
+        <script>
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+            }
 
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+            function Listchat() {
+                $.ajax({
+                    type: 'POST',
+                    url: '<?= Yii::$app->homeUrl ?>site/list-messages',
+                    data: {},
+                    success: function (data) {
+                        $(".direct-chat-messages").html(data);
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                $(document).on('click', '.open-chat', function (e) {
+                    var user = $(this).attr('data-val');
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?= Yii::$app->homeUrl ?>site/list-messages',
+                        data: {user_id: user},
+                        success: function (data) {
+                            document.getElementById("myForm").style.display = "block";
+                            $("#myForm").html(data);
+                        }
+                    });
+                });
+                $(document).on('submit', '#user-chat', function (e) {
+
+                    e.preventDefault();
+                    var data = $(this).serialize();
+                    var msg_data = $('#chat-message').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?= Yii::$app->homeUrl ?>site/user-chat',
+                        data: data,
+                        success: function (data) {
+                            $('#user-chat')[0].reset();
+                            var msg = '<div class="direct-chat-msg right">\n\
+                                                                        <div class="direct-chat-info clearfix">\n\
+                                                                              <span class="direct-chat-name pull-right">Alexander Pierce</span>\n\
+                                                                              <span class="direct-chat-timestamp pull-left">23 Jan 2:00 pm</span>\n\
+                                                                        </div>\n\
+                                                                        <img class="direct-chat-img" src="<?= Yii::$app->homeUrl; ?>img/dummy-user.png" alt="Message User Image">\n\
+                                                                        <div class="direct-chat-text">\n\
+                                                                          ' + msg_data + '\n\
+                                                                      </div>\n\
+                                                                </div>';
+                            $(".direct-chat-messages").append(msg);
+                        }
+                    });
+
+                });
+//                window.setInterval(function () {  /// call your function here
+//                    Listchat();
+//                }, 5000);
+
+
+            });
+
+        </script>
         <?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>
+

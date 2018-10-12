@@ -23,7 +23,7 @@ class SiteController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'index', 'home', 'forgot', 'new-password', 'exception'],
+                        'actions' => ['login', 'error', 'index', 'home', 'forgot', 'new-password', 'exception', 'list-messages', 'user-chat'],
                         'allow' => true,
                     ],
                     [
@@ -130,6 +130,30 @@ class SiteController extends Controller {
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionListMessages() {
+        $user_id = $_POST['user_id'];
+        $user = \common\models\Users::find()->where(['id' => $user_id])->one();
+        $messages = \common\models\Chat::find()->where(['user_id' => $user_id])->all();
+
+        $list = $this->renderPartial('list_messages', [
+            'model' => $messages,
+            'user' => $user,
+        ]);
+        return $list;
+    }
+
+    public function actionUserChat() {
+        $model = new \common\models\Chat();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if (isset(Yii::$app->user->identity->id)) {
+                $model->date = date('Y-m-d h:i:s');
+                $model->status = 1;
+                $model->message_status = 2;
+                $model->save();
+            }
+        }
     }
 
 }

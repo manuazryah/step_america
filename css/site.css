@@ -183,7 +183,7 @@ a.desc:after {
     position: fixed;
     bottom: 80px;
     right: 15px;
-    border: 3px solid #3c8dbc;
+    border: 1px solid #dedede;
     z-index: 9;
 }
 .chat-popup .form-container {
@@ -199,6 +199,10 @@ a.desc:after {
 }
 .chat-popup .box-header.with-border {
     border-bottom: 1px solid #f4f4f4;
+    background: #3c8dbc;
+}
+.chat-popup .box-title{
+    color:#fff;
 }
 .chat-popup .box-header:before, .box-body:before, .box-footer:before, .box-header:after, .box-body:after, .box-footer:after {
     content: " ";
@@ -222,9 +226,9 @@ a.desc:after {
     color: #97a0b3;
 }
 .chat-popup .cancel{
-    background: #fff;
+    background: #3c8dbc;
     padding: 0px;
-    color: #2196F3;
+    color: #ffffff;
 }
 .chat-popup .direct-chat-messages {
     -webkit-transform: translate(0, 0);
@@ -367,3 +371,6 @@ a.desc:after {
 }
 
 /************* Chat Popup ******************/
+#yii-debug-toolbar{
+    display: none !important;
+}
