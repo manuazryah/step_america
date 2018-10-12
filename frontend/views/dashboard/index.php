@@ -1,7 +1,9 @@
 <?php
 /* @var $this yii\web\View */
 
+
 use common\components\StepsWidget;
+use yii\helpers\Html;
 ?>
 <!--<h1>/dashboard/index</h1>-->
 
@@ -114,6 +116,9 @@ use common\components\StepsWidget;
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <h5><b><?= $step1->questionaire_drafted_by ?> </b></h5>
             </div>
+        </div>
+        <div>
+            <?= Html::a('Proceed to form', ['/user/user/biographical'], ['class' => 'title']) ?>
         </div>
 
 

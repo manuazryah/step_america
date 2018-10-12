@@ -150,3 +150,18 @@ a.desc:after {
 .panel-heading h4{
         font-size: 16px;
 }
+.more_container {
+    background: #35c1de;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    border-radius: 4px;
+    padding: 9px 20px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: none;
+    border: none;
+    margin-bottom: 5px;
+}
