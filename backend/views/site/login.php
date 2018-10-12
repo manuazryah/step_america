@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'inputTemplate' => "{input}<span class='glyphicon glyphicon-user form-control-feedback'></span>"
             ];
             ?>
-            <?= $form->field($model, 'user_name', $fieldOptions2)->label('Password')->textInput() ?>
+            <?= $form->field($model, 'user_name', $fieldOptions2)->label('User Name')->textInput() ?>
             <?php // $form->field($model, 'user_name')->textInput(['autofocus' => true]) ?>
         </div>
         <div class="col-md-12">

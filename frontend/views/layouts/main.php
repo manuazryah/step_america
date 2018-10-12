@@ -22,6 +22,7 @@ AppAsset::register($this);
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
+
     </head>
     <body>
         <?php $this->beginBody() ?>
@@ -66,7 +67,71 @@ AppAsset::register($this);
                 <p class="pull-right">Powered by epitome</p>
             </div>
         </footer>
+        <button class="open-button" onclick="openForm()"><img class="img-responsive" src="<?= Yii::$app->homeUrl; ?>img/upbutton.jpg" alt="Chat Button"></button>
 
+        <div class="chat-popup" id="myForm">
+            <form action="<?= Yii::$app->homeUrl ?>site/admin-chat"  method="get" class="form-container">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Direct Chat</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn cancel" onclick="closeForm()"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="direct-chat-messages">
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                        <div class="direct-chat-info clearfix">
+                            <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                            <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                        </div>
+                        <!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="<?= Yii::$app->homeUrl; ?>img/dummy-user.png" alt="Message User Image"><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                            Is this template really for free? That's unbelievable!
+                        </div>
+                        <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+
+                    <!-- Message to the right -->
+                    <div class="direct-chat-msg right">
+                        <div class="direct-chat-info clearfix">
+                            <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                            <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+                        </div>
+                        <!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="<?= Yii::$app->homeUrl; ?>img/dummy-user.png" alt="Message User Image"><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                            You better believe it!
+                        </div>
+                        <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+                </div>
+
+                <div class="box-footer">
+                    <form action="#" method="post">
+                        <div class="input-group">
+                            <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary btn-flat">Send</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+            }
+
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+        </script>
         <?php $this->endBody() ?>
     </body>
 </html>
