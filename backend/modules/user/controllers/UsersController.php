@@ -9,6 +9,10 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use common\models\UserBiographicalInfo;
+use common\models\UserFamilyInfo;
+use common\models\UserChildrensInfo;
+use common\models\UserConatctInfo;
 
 /**
  * UsersController implements the CRUD actions for Users model.
@@ -50,6 +54,10 @@ class UsersController extends Controller {
      */
     public function actionView($id) {
         $step2_model = \common\models\Step2AccountDetails::find()->where(['user_id' => $id])->one();
+         $biography = UserBiographicalInfo::find()->where(['user_id' => $id])->one();
+         $family = UserFamilyInfo::find()->where(['user_id' => $id])->one();
+         $childrens = UserChildrensInfo::find()->where(['user_id' => $id])->all();
+         $contact = UserConatctInfo::find()->where(['user_id' => $id])->one();
         if (empty($step2_model)) {
             $step2_model = new \common\models\Step2AccountDetails();
         } else {
@@ -70,6 +78,10 @@ class UsersController extends Controller {
         return $this->render('view', [
                     'model' => $this->findModel($id),
                     'step2_model' => $step2_model,
+                    'biography' => $biography,
+                    'family' => $family,
+                    'childrens' => $childrens,
+                    'contact' => $contact,
         ]);
     }
 

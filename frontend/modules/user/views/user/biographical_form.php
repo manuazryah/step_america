@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use common\models\Country;
+
 //use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
@@ -21,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-body">
                 <?= common\components\UserTabWidget::widget(['step' => 1]) ?>
                 <?php $form = ActiveForm::begin(); ?>
-                
+
 
                 <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
@@ -30,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
 
                 <?= $form->field($model, 'other_name')->textInput(['maxlength' => true]) ?>
-               
+
                 <?= $form->field($model, 'gender')->dropDownList(['1' => 'Male', '2' => 'Female']) ?>
 
 
@@ -39,11 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'state_of_birth')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'country_of_birth')->textInput() ?>
+                <?= $form->field($model, 'country_of_birth')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
-                <?= $form->field($model, 'country_of_citizenship')->textInput() ?>
+                <?= $form->field($model, 'country_of_citizenship')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
-                <?= $form->field($model, 'other_country_citizenship')->textInput() ?>
+                <?= $form->field($model, 'other_country_citizenship')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
                 <?= $form->field($model, 'date_of_last_entry')->textInput() ?>
 
@@ -59,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'passport_number')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'issuance_country')->textInput() ?>
+                <?= $form->field($model, 'issuance_country')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
                 <?= $form->field($model, 'issuance_date')->textInput() ?>
 
@@ -74,10 +76,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'visa_number')->textInput() ?>
 
                 <?= $form->field($model, 'visa_issuance_date')->textInput() ?>
+                
+                <?= $form->field($model, 'visa_issuance_country')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
-                <?= $form->field($model, 'visa_issuance_country')->textInput() ?>
-
-                <?= $form->field($model, 'issued_any_visa')->textInput() ?>
+                <?= $form->field($model, 'issued_any_visa')->dropDownList(['1' => 'Yes', '2' => 'No']) ?>
 
                 <?= $form->field($model, 'explain_visa_details')->textarea(['rows' => 6]) ?>
 

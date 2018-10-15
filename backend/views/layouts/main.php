@@ -171,6 +171,23 @@ $controler = Yii::$app->controller->id;
                             <li class="<?= $controler == 'users' ? 'active' : '' ?>">
                                 <?= Html::a('<i class="fa fa-users"></i> <span>Users</span>', ['/user/users/index'], ['class' => '']) ?>
                             </li>
+                            <li class="treeview <?= $controler == 'agents' || $controler == 'claimant-party' || $controler == 'location' || $controler == 'size' || $controler == 'mode' || $controler == 'term-type' || $controler == 'currency' || $controler == 'country' || $controler == 'item-master'|| $controler == 'hs-master'|| $controler == 'settings' ? 'active' : '' ?>">
+                                <a href="">
+                                    <i class="fa fa-database"></i>
+                                    <span>Masters</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i> Country', ['/masters/country/index'], ['class' => 'title']) ?>
+                                    </li>
+                                    
+
+                                </ul>
+                            </li>
                             <?php
                         }
                         ?>

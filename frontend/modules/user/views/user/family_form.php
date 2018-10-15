@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use common\models\Country;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Header */
@@ -36,8 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'spouse_1_dob')->textInput() ?>
 
                 <?= $form->field($model, 'spouse_1_state')->textInput(['maxlength' => true]) ?>
-
-                <?= $form->field($model, 'spouse_1_country')->textInput() ?>
+                
+                <?= $form->field($model, 'spouse_1_country')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
                 <?= $form->field($model, 'spouse_2_first_name')->textInput(['maxlength' => true]) ?>
 
@@ -49,13 +50,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'spouse_2_state')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'spouse_2_country')->textInput() ?>
+                <?= $form->field($model, 'spouse_2_country')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
                 <?= $form->field($model, 'marriage_date')->textInput() ?>
 
                 <?= $form->field($model, 'state_of_marriage')->textInput() ?>
-
-                <?= $form->field($model, 'country_of_marriage')->textInput() ?>
+                
+                <?= $form->field($model, 'country_of_marriage')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
                 <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
 
@@ -69,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'state_of_birth')->textInput() ?>
 
-                <?= $form->field($model, 'country_of_birth')->textInput() ?>
+                <?= $form->field($model, 'country_of_birth')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
                 <?= $form->field($model, 'passport_number')->textInput(['maxlength' => true]) ?>
 
@@ -81,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'spouse_accompany')->textInput() ?>
 
-                <?= $form->field($model, 'country_of_citizenship')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'country_of_citizenship')->dropDownList(ArrayHelper::map(Country::find()->where(['status' => '1'])->all(), 'id', 'name'), ['prompt' => 'select']) ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Save as Draft', ['class' => 'btn btn-success']) ?>

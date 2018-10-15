@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+//use yii\helpers\ArrayHelper;
+use common\models\Country;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Header */
@@ -9,6 +11,7 @@ use yii\widgets\ActiveForm;
 $this->title = 'Childrens details';
 //$this->params['breadcrumbs'][] = ['label' => 'Headers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$countries = Country::find()->where(['status' => 1])->all();
 ?>
 
 <div class="row">
@@ -61,7 +64,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <div class="col-md-4 col-sm-6 col-xs-12 left_padd">
                                                 <div class="form-group field-userchildrensinfo-country_of_birth">
                                                     <label class="control-label" for="userchildrensinfo-country_of_birth">Country Of Birth</label>
-                                                    <input type="text" id="userchildrensinfo-country_of_birth" class="form-control" name="UserChildrensInfo[country_of_birth][<?= $i ?>]">
+                                                    <select id="userchildrensinfo-country_of_birth" class="form-control" name="UserChildrensInfo[country_of_birth][<?= $i ?>]" >
+                                                        <option value="">Select</option>
+                                                        <?php
+                                                        if ($countries) {
+                                                            foreach ($countries as $country) {
+                                                                ?>
+                                                                <option value="<?= $country->id ?>"><?= $country->name ?></option>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                    <!--<input type="text" id="userchildrensinfo-country_of_birth" class="form-control" name="UserChildrensInfo[country_of_birth][<?= $i ?>]">-->
 
                                                     <div class="help-block"></div>
                                                 </div>                                        </div>
@@ -104,7 +119,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <div class="col-md-4 col-sm-6 col-xs-12 left_padd">
                                                 <div class="form-group field-userchildrensinfo-country_of_citizenship">
                                                     <label class="control-label" for="userchildrensinfo-country_of_citizenship">Country Of Citizenship</label>
-                                                    <input type="text" id="userchildrensinfo-country_of_citizenship" class="form-control" name="UserChildrensInfo[country_of_citizenship][<?= $i ?>]">
+                                                    <select id="userchildrensinfo-country_of_citizenship" class="form-control" name="UserChildrensInfo[country_of_citizenship][<?= $i ?>]" >
+                                                        <option value="">Select</option>
+                                                        <?php
+                                                        if ($countries) {
+                                                            foreach ($countries as $country) {
+                                                                ?>
+                                                                <option value="<?= $country->id ?>"><?= $country->name ?></option>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                    <!--<input type="text" id="userchildrensinfo-country_of_citizenship" class="form-control" name="UserChildrensInfo[country_of_citizenship][<?= $i ?>]">-->
 
                                                     <div class="help-block"></div>
                                                 </div>                                        </div>
@@ -171,7 +198,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?php ActiveForm::end(); ?>
                 <?php } else { ?>
-                    <?php $form = ActiveForm::begin(['action'=>'/step_america/user/user/childrens-update']); ?>
+                    <?php $form = ActiveForm::begin(['action' => '/step_america/user/user/childrens-update']); ?>
                     <?php
                     for ($i = 1; $i <= 5; $i++) {
                         ?>
@@ -214,7 +241,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <div class="col-md-4 col-sm-6 col-xs-12 left_padd">
                                                 <div class="form-group field-userchildrensinfo-country_of_birth">
                                                     <label class="control-label" for="userchildrensinfo-country_of_birth">Country Of Birth</label>
-                                                    <input type="text" id="userchildrensinfo-country_of_birth" class="form-control" name="UserChildrensInfo[country_of_birth][<?= $i ?>]" value="<?= !empty($children_model[$i - 1]) ? $children_model[$i - 1]->country_of_birth : '' ?>">
+                                                    <select id="userchildrensinfo-country_of_birth" class="form-control" name="UserChildrensInfo[country_of_birth][<?= $i ?>]" >
+                                                        <option value="">Select</option>
+                                                        <?php
+                                                        if ($countries) {
+                                                            foreach ($countries as $country) {
+                                                                $selected = $country->id == $children_model[$i - 1]->country_of_birth ? 'selected="selected"' : '';
+                                                                ?>
+                                                                <option <?= $selected ?> value="<?= $country->id ?>"><?= $country->name ?></option>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
 
                                                     <div class="help-block"></div>
                                                 </div>                                        </div>
@@ -257,7 +296,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <div class="col-md-4 col-sm-6 col-xs-12 left_padd">
                                                 <div class="form-group field-userchildrensinfo-country_of_citizenship">
                                                     <label class="control-label" for="userchildrensinfo-country_of_citizenship">Country Of Citizenship</label>
-                                                    <input type="text" id="userchildrensinfo-country_of_citizenship" class="form-control" name="UserChildrensInfo[country_of_citizenship][<?= $i ?>]" value="<?= !empty($children_model[$i - 1]) ? $children_model[$i - 1]->country_of_citizenship : '' ?>">
+                                                    <select id="userchildrensinfo-country_of_citizenship" class="form-control" name="UserChildrensInfo[country_of_citizenship][<?= $i ?>]" >
+                                                        <option value="">Select</option>
+                                                        <?php
+                                                        if ($countries) {
+                                                            foreach ($countries as $country) {
+                                                                $selected = $country->id == $children_model[$i - 1]->country_of_citizenship ? 'selected="selected"' : '';
+                                                                ?>
+                                                                <option <?= $selected ?> value="<?= $country->id ?>"><?= $country->name ?></option>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
 
                                                     <div class="help-block"></div>
                                                 </div>                                        </div>
