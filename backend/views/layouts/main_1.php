@@ -237,7 +237,7 @@ $controler = Yii::$app->controller->id;
 
                                                                                 <div class="menu-info">
                                                                                         <!--<h4 class="control-sidebar-subheading"><button class="open-button open-chat" data-val="<?= $user_val->id ?>"><?= $user_val->name ?></button> <i class="fa fa-circle text-success online-status"></i></h4>-->
-                                                                                        <h4 class="control-sidebar-subheading"><button class="open-button" onclick="register_popup('<?= $user_val->name ?>', '<?= $user_val->name ?>', '<?= $user_val->id ?>')"><?= $user_val->name ?></button> <i class="fa fa-circle text-success online-status"></i></h4>
+                                                                                        <h4 class="control-sidebar-subheading"><a  href="javascript:register_popup('<?= $user_val->name ?>', '<?= $user_val->name ?>','<?= $user_val->id ?>');"><button class="open-button"><?= $user_val->name ?></button></a> <i class="fa fa-circle text-success online-status"></i></h4>
 
                                                                                 </div>
                                                                         </a>
@@ -295,20 +295,18 @@ $controler = Yii::$app->controller->id;
                                                 url: '<?= Yii::$app->homeUrl ?>site/user-chat',
                                                 data: data,
                                                 success: function (data) {
-
-                                                        var chat_res = $.parseJSON(data);
+                                                        $('#user-chat')[0].reset();
                                                         var msg = '<div class="direct-chat-msg right">\n\
                                                                                 <div class="direct-chat-info clearfix">\n\
-                                                                                      <span class="direct-chat-name pull-right">Admin</span>\n\
+                                                                                      <span class="direct-chat-name pull-right">Alexander Pierce</span>\n\
                                                                                       <span class="direct-chat-timestamp pull-left">23 Jan 2:00 pm</span>\n\
                                                                                 </div>\n\
                                                                                 <img class="direct-chat-img" src="<?= Yii::$app->homeUrl; ?>img/dummy-user.png" alt="Message User Image">\n\
                                                                                 <div class="direct-chat-text">\n\
-                                                                                  ' + chat_res.result['chat_msg'] + '\n\
+                                                                                  ' + msg_data + '\n\
                                                                               </div>\n\
                                                                         </div>';
-                                                        $('.chat_message_' + chat_res.result['chat_user_id']).val('');
-                                                        $("#direct-chat-messages-" + chat_res.result['chat_user_id']).append(msg);
+                                                        $(".direct-chat-messages").append(msg);
                                                 }
                                         });
 
@@ -329,7 +327,118 @@ $controler = Yii::$app->controller->id;
 
 
 
+<style>
+        @media only screen and (max-width : 540px)
+        {
+                .chat-sidebar
+                {
+                        display: none !important;
+                }
 
+                .chat-popup
+                {
+                        display: none !important;
+                }
+        }
+
+        body
+        {
+                background-color: #e9eaed;
+        }
+
+        .chat-sidebar
+        {
+                width: 200px;
+                position: fixed;
+                height: 100%;
+                right: 0px;
+                top: 0px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border: 1px solid rgba(29, 49, 91, .3);
+        }
+
+        .sidebar-name
+        {
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-bottom: 4px;
+                font-size: 12px;
+        }
+
+        .sidebar-name span
+        {
+                padding-left: 5px;
+        }
+
+        .sidebar-name a
+        {
+                display: block;
+                height: 100%;
+                text-decoration: none;
+                color: inherit;
+        }
+
+        .sidebar-name:hover
+        {
+                background-color:#e1e2e5;
+        }
+
+        .sidebar-name img
+        {
+                width: 32px;
+                height: 32px;
+                vertical-align:middle;
+        }
+
+        .popup-box
+        {
+                display: none;
+                position: fixed;
+                bottom: 0px;
+                right: 220px;
+                height: 285px;
+                background-color: rgb(237, 239, 244);
+                width: 300px;
+                border: 1px solid rgba(29, 49, 91, .3);
+        }
+
+        .popup-box .popup-head
+        {
+                background-color: #6d84b4;
+                padding: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 14px;
+                clear: both;
+        }
+
+        .popup-box .popup-head .popup-head-left
+        {
+                float: left;
+        }
+
+        .popup-box .popup-head .popup-head-right
+        {
+                float: right;
+                opacity: 0.5;
+        }
+
+        .popup-box .popup-head .popup-head-right a
+        {
+                text-decoration: none;
+                color: inherit;
+        }
+
+        .popup-box .popup-messages
+        {
+                height: 100%;
+                overflow-y: scroll;
+        }
+
+
+
+</style>
 
 <script>
         //this function can remove a array element.
@@ -402,14 +511,20 @@ $controler = Yii::$app->controller->id;
                         }
                 }
 
+
                 $.ajax({
                         type: 'POST',
                         url: '<?= Yii::$app->homeUrl ?>site/list-messages',
                         data: {user_id: user},
                         success: function (data) {
-                                var element = ' <div class="popup-box chat-popup chat-popup" id="' + name + '">' + data + '\n\
-                                                   </div>\n\
-                                              </div>';
+                                var element1 = '<div class="popup-box chat-popup direct-chat-msg right" id="' + id + '">';
+                                element = element + '<direct-chat-info clearfix">';
+                                element = element + '<span class="direct-chat-name pull-right">' + name + '</div>';
+                                element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\'' + id + '\');">&#10005;</a></div>';
+                                element = element + '<div style="clear: both"></div></div><div class="popup-messages"><div class="direct-chat-text">' + data + '</div></div></div>';
+
+
+                                var element = '<div class="popup-box chat-popup direct-chat-msg right" id="' + id + '"></div>';
                                 document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;
                                 popups.unshift(id);
                                 calculate_popups();
@@ -418,6 +533,16 @@ $controler = Yii::$app->controller->id;
 
                 });
 
+//                var msg = '<div class="direct-chat-msg right">\n\
+//                                                                                <div class="direct-chat-info clearfix">\n\
+//                                                                                      <span class="direct-chat-name pull-right">Alexander Pierce</span>\n\
+//                                                                                      <span class="direct-chat-timestamp pull-left">23 Jan 2:00 pm</span>\n\
+//                                                                                </div>\n\
+//                                                                                <img class="direct-chat-img" src="<?= Yii::$app->homeUrl; ?>img/dummy-user.png" alt="Message User Image">\n\
+//                                                                                <div class="direct-chat-text">\n\
+//                                                                                  ' + msg_data + '\n\
+//                                                                              </div>\n\
+//                                                                        </div>';
 
 
         }
