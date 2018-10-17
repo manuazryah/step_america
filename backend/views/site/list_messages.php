@@ -4,7 +4,7 @@
                 <h3 class="box-title"><?= $user->name ?></h3>
 
                 <div class="box-tools pull-right">
-                        <button type="button" class="btn cancel" onclick="close_popup('<?= $user->name ?>');"><i class="fa fa-times"></i></button>
+                        <button type="button" class="btn cancel" onclick="close_popup('<?= $user->id ?>');"><i class="fa fa-times"></i></button>
                 </div>
         </div>
         <div class="direct-chat-messages" id="direct-chat-messages-<?= $user->id ?>">

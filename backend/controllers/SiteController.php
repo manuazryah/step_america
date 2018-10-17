@@ -23,7 +23,7 @@ class SiteController extends Controller {
                         'class' => AccessControl::className(),
                         'rules' => [
                                 [
-                                'actions' => ['login', 'error', 'index', 'home', 'forgot', 'new-password', 'exception', 'list-messages', 'user-chat'],
+                                'actions' => ['login', 'error', 'index', 'home', 'forgot', 'new-password', 'exception', 'list-messages', 'user-chat', 'list-all-messages'],
                                 'allow' => true,
                             ],
                                 [
@@ -136,6 +136,12 @@ class SiteController extends Controller {
                 $user_id = $_POST['user_id'];
                 $user = \common\models\Users::find()->where(['id' => $user_id])->one();
                 $messages = \common\models\Chat::find()->where(['user_id' => $user_id])->all();
+                foreach ($messages as $msg) {
+                        if ($msg->message_status == 1) {
+                                $msg->status = 2; /* message marked as read */
+                                $msg->save();
+                        }
+                }
 
                 $list = $this->renderPartial('list_messages', [
                     'model' => $messages,
@@ -157,6 +163,15 @@ class SiteController extends Controller {
                                 echo json_encode($data);
                         }
                 }
+        }
+
+        public function actionListAllMessages() {
+                $chats_open = $_POST['user_chats'];
+
+                $list_messages = $this->renderPartial('list_all_messages', [
+                    'chats' => $chats_open,
+                ]);
+                return $list_messages;
         }
 
 }

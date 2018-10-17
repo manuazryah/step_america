@@ -238,9 +238,18 @@ class SiteController extends Controller {
 
         public function actionListMessages() {
                 $messages = \common\models\Chat::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
-
                 $list = $this->renderPartial('list_messages', ['model' => $messages]);
                 return $list;
+        }
+
+        public function actionMarkRead() {
+                $messages = \common\models\Chat::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
+                foreach ($messages as $msg) {
+                        if ($msg->message_status == 2) {
+                                $msg->status = 2; /* message marked as read */
+                                $msg->save();
+                        }
+                }
         }
 
 }

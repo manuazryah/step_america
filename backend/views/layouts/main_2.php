@@ -230,16 +230,14 @@ $controler = Yii::$app->controller->id;
                                         if (!empty($users)) {
                                                 foreach ($users as $user_val) {
                                                         if (!empty($user_val)) {
-                                                                $message_count = common\models\Chat::find()->where(['status' => 1, 'user_id' => $user_val->id, 'message_status' => 1])->count();
                                                                 ?>
                                                                 <li>
                                                                         <a>
                                                                                 <i class="menu-icon fa fa-user bg-red"></i>
                                                                                 <div class="menu-info">
-                                                                                        <h4 class="control-sidebar-subheading"><button class="open-button" onclick="register_popup('<?= $user_val->id ?>', '<?= $user_val->name ?>', '<?= $user_val->id ?>')"><?= $user_val->name ?>
-                                                                                                        <?php if ($message_count > 0) { ?><span class="msg-count" id="msg-count-<?= $user_val->id ?>"><?= $message_count ?></span><?php } ?>
-                                                                                                        <i class="fa fa-circle text-success online-status"></i>
-                                                                                        </h4>
+                                                                                        <!--<h4 class="control-sidebar-subheading"><button class="open-button open-chat" data-val="<?= $user_val->id ?>"><?= $user_val->name ?></button> <i class="fa fa-circle text-success online-status"></i></h4>-->
+                                                                                        <h4 class="control-sidebar-subheading"><button class="open-button" onclick="register_popup('<?= $user_val->name ?>', '<?= $user_val->name ?>', '<?= $user_val->id ?>')"><?= $user_val->name ?></button> <i class="fa fa-circle text-success online-status"></i></h4>
+
                                                                                 </div>
                                                                         </a>
                                                                 </li>
@@ -342,7 +340,6 @@ $controler = Yii::$app->controller->id;
 
         //this variable represents the total number of popups can be displayed according to the viewport width
         var total_popups = 0;
-        var user_chats = [];
 
         //arrays of popups ids
         var popups = [];
@@ -350,12 +347,6 @@ $controler = Yii::$app->controller->id;
         //this is used to close a popup
         function close_popup(id)
         {
-                alert();
-                for (var i = 0; i < user_chats.length; i++)
-                        if (user_chats[i] === id) {
-                                user_chats.splice(i, 1);
-                                break;
-                        }
                 for (var iii = 0; iii < popups.length; iii++)
                 {
                         if (id == popups[iii])
@@ -369,7 +360,6 @@ $controler = Yii::$app->controller->id;
                                 return;
                         }
                 }
-
         }
 
         //displays the popups. Displays based on the maximum number of popups that can be displayed on the current viewport width
@@ -397,7 +387,7 @@ $controler = Yii::$app->controller->id;
         }
 
         //creates markup for a new popup. Adds the id to popups array.
-        function register_popup(id, name)
+        function register_popup(id, name, user)
         {
                 for (var iii = 0; iii < popups.length; iii++)
                 {
@@ -405,33 +395,29 @@ $controler = Yii::$app->controller->id;
                         if (id == popups[iii])
                         {
                                 Array.remove(popups, iii);
-
                                 popups.unshift(id);
-
                                 calculate_popups();
-
-
                                 return;
                         }
                 }
+
                 $.ajax({
                         type: 'POST',
                         url: '<?= Yii::$app->homeUrl ?>site/list-messages',
-                        data: {user_id: id},
+                        data: {user_id: user},
                         success: function (data) {
-                                var element = '<div class="popup-box chat-popup chat-popup" id="' + id + '">' + data + '\n\
+                                var element = ' <div class="popup-box chat-popup chat-popup" id="' + name + '">' + data + '\n\
                                                    </div>\n\
                                               </div>';
-                                $('#msg-count-' + id).remove();
-                                user_chats.push(id);
                                 document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;
                                 popups.unshift(id);
                                 calculate_popups();
-
                         }
 
 
                 });
+
+
 
         }
 
@@ -456,29 +442,6 @@ $controler = Yii::$app->controller->id;
         //recalculate when window is loaded and also when window is resized.
         window.addEventListener("resize", calculate_popups);
         window.addEventListener("load", calculate_popups);
-
-
-        function Listchat() {
-                $.ajax({
-                        type: 'POST',
-                        url: '<?= Yii::$app->homeUrl ?>site/list-all-messages',
-                        data: {user_chats: user_chats},
-                        success: function (data) {
-                                var chat_res = $.parseJSON(data);
-
-                                $.each(chat_res, function (index, value) {
-//                                        alert(index + ": " + value);
-                                        $("#direct-chat-messages-" + index).html(value);
-                                });
-                        }
-                });
-        }
-
-        $(document).ready(function () {
-                window.setInterval(function () {  /// call your function here
-                        Listchat();
-                }, 5000);
-        });
 
 </script>
 
