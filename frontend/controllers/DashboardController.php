@@ -17,56 +17,61 @@ use common\models\Projects;
 
 class DashboardController extends \yii\web\Controller {
 
-        public function actionIndex() {
-                $step1 = Step1::findOne(1);
-                return $this->render('index', ['step1' => $step1]);
-        }
+    public function actionIndex() {
+        $step1 = Step1::findOne(1);
+        return $this->render('index', ['step1' => $step1]);
+    }
 
-        public function actionStep2() {
-                $step2 = Step2::findOne(1);
-                return $this->render('step2', ['step2' => $step2]);
-        }
+    public function actionHome() {
+        $step1 = Step1::findOne(1);
+        return $this->render('dashboard', ['step1' => $step1]);
+    }
 
-        public function actionStep3() {
-                $step3 = Step3::findOne(1);
-                return $this->render('step3', ['step3' => $step3]);
-        }
+    public function actionStep2() {
+        $step2 = Step2::findOne(1);
+        return $this->render('step2', ['step2' => $step2]);
+    }
 
-        public function actionStep4() {
-                $step4 = Step4::findOne(1);
-                $projects = Projects::find()->all();
-                return $this->render('step4', ['step4' => $step4, 'projects' => $projects]);
-        }
+    public function actionStep3() {
+        $step3 = Step3::findOne(1);
+        return $this->render('step3', ['step3' => $step3]);
+    }
 
-        public function actionStep5() {
-                $step5 = Step5::findOne(1);
-                return $this->render('step5', ['step5' => $step5]);
-        }
+    public function actionStep4() {
+        $step4 = Step4::findOne(1);
+        $projects = Projects::find()->all();
+        return $this->render('step4', ['step4' => $step4, 'projects' => $projects]);
+    }
 
-        public function actionStep6() {
-                $step6 = Step6::findOne(1);
-                $project_signing = Step6Form::find()->where(['status' => 1])->all();
-                return $this->render('step6', ['step6' => $step6, 'project_signing' => $project_signing]);
-        }
+    public function actionStep5() {
+        $step5 = Step5::findOne(1);
+        return $this->render('step5', ['step5' => $step5]);
+    }
 
-        public function actionStep7() {
-                $step7 = Step7::findOne(1);
-                return $this->render('step7', ['step7' => $step7]);
-        }
+    public function actionStep6() {
+        $step6 = Step6::findOne(1);
+        $project_signing = Step6Form::find()->where(['status' => 1])->all();
+        return $this->render('step6', ['step6' => $step6, 'project_signing' => $project_signing]);
+    }
 
-        public function actionStep8() {
-                $step8 = Step8::findOne(1);
-                return $this->render('step8', ['step8' => $step8]);
-        }
+    public function actionStep7() {
+        $step7 = Step7::findOne(1);
+        return $this->render('step7', ['step7' => $step7]);
+    }
 
-        public function actionStep9() {
-                $step9 = Step9::findOne(1);
-                return $this->render('step9', ['step9' => $step9]);
-        }
+    public function actionStep8() {
+        $step8 = Step8::findOne(1);
+        return $this->render('step8', ['step8' => $step8]);
+    }
 
-        public function actionStep10() {
-                $step10 = Step10::findOne(1);
-                return $this->render('step10', ['step10' => $step10]);
-        }
+    public function actionStep9() {
+        $step9 = Step9::findOne(1);
+        return $this->render('step9', ['step9' => $step9]);
+    }
+
+    public function actionStep10() {
+        $step10 = Step10::findOne(1);
+        return $this->render('step10', ['step10' => $step10]);
+    }
 
 }

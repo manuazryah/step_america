@@ -7,28 +7,25 @@ use yii\web\AssetBundle;
 /**
  * Main frontend application asset bundle.
  */
-class AppAsset extends AssetBundle
-{
+class AppAsset extends AssetBundle {
+
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css',
-        'css/ionicons.min.css',
-        'css/AdminLTE.min.css',
-        'css/_all-skins.min.css',
+        'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+        'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
+        'css/site.css',
+        'css/responsive.css',
     ];
     public $js = [
-//        'js/bootstrap.min.js',
-//        'js/jquery.slimscroll.min.js',
-//        'js/Chart.js',
-//        'js/fastclick.js',
-//        'js/adminlte.min.js',
-//        'js/demo.js',
+        'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
+        'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
 }

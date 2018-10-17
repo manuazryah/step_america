@@ -1,5 +1,4 @@
 <?php
-
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
@@ -11,29 +10,36 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to login:</p>
-
     <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
-                </div>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
+        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+        <div class="col-md-12">
+            <?php
+            $fieldOptions2 = [
+                'options' => ['class' => 'form-group has-feedback'],
+                'inputTemplate' => "{input}<span class='glyphicon glyphicon-user form-control-feedback'></span>"
+            ];
+            ?>
+            <?= $form->field($model, 'user_name', $fieldOptions2)->label('User Name')->textInput() ?>
+            <?php // $form->field($model, 'user_name')->textInput(['autofocus' => true]) ?>
         </div>
+        <div class="col-md-12">
+            <?php
+            $fieldOptions3 = [
+                'options' => ['class' => 'form-group has-feedback'],
+                'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
+            ];
+            ?>
+            <?= $form->field($model, 'password', $fieldOptions3)->label('Password')->passwordInput() ?>
+            <?php // $form->field($model, 'password')->passwordInput() ?>
+        </div>
+        <div class="col-md-12">
+            <?= $form->field($model, 'rememberMe')->checkbox() ?>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+            </div>
+        </div>
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
