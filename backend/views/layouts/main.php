@@ -350,7 +350,7 @@ $controler = Yii::$app->controller->id;
         //this is used to close a popup
         function close_popup(id)
         {
-                alert();
+
                 for (var i = 0; i < user_chats.length; i++)
                         if (user_chats[i] === id) {
                                 user_chats.splice(i, 1);

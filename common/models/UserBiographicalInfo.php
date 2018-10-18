@@ -45,67 +45,67 @@ use Yii;
  */
 class UserBiographicalInfo extends \yii\db\ActiveRecord {
 
-    /**
-     * @inheritdoc
-     */
-    public static function tableName() {
-        return 'user_biographical_info';
-    }
+        /**
+         * @inheritdoc
+         */
+        public static function tableName() {
+                return 'user_biographical_info';
+        }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules() {
-        return [
-            [['first_name'], 'required'],
-            [['user_id', 'gender', 'country_of_birth', 'country_of_citizenship', 'other_country_citizenship', 'immigration_status', 'issuance_country', 'permanent_resident', 'family_members', 'visa_number', 'visa_issuance_country', 'issued_any_visa', 'status', 'CB', 'UB'], 'integer'],
-            [['dob', 'date_of_last_entry', 'immigration_expiration_date', 'issuance_date', 'expiration_date', 'visa_issuance_date', 'DOC', 'DOU'], 'safe'],
-            [['explain_visa_details'], 'string'],
-            [['first_name', 'middle_name', 'last_name', 'other_name', 'state_of_birth', 'form_number', 'social_security_number', 'alien_reg_number', 'passport_number', 'expiration_on_form'], 'string', 'max' => 255],
-        ];
-    }
+        /**
+         * @inheritdoc
+         */
+        public function rules() {
+                return [
+                        [['first_name'], 'required'],
+                        [['user_id', 'gender', 'country_of_birth', 'country_of_citizenship', 'other_country_citizenship', 'immigration_status', 'issuance_country', 'permanent_resident', 'family_members', 'visa_number', 'visa_issuance_country', 'issued_any_visa', 'status', 'CB', 'UB'], 'integer'],
+                        [['dob', 'date_of_last_entry', 'immigration_expiration_date', 'issuance_date', 'expiration_date', 'visa_issuance_date', 'DOC', 'DOU'], 'safe'],
+                        [['explain_visa_details'], 'string'],
+                        [['first_name', 'middle_name', 'last_name', 'other_name', 'state_of_birth', 'form_number', 'social_security_number', 'alien_reg_number', 'passport_number', 'expiration_on_form'], 'string', 'max' => 255],
+                ];
+        }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels() {
-        return [
-            'id' => 'ID',
-            'user_id' => 'User ID',
-            'first_name' => 'First Name',
-            'middle_name' => 'Middle Name',
-            'last_name' => 'Last Name',
-            'other_name' => 'Other Name',
-            'gender' => 'Gender',
-            'dob' => 'Dob',
-            'state_of_birth' => 'State Of Birth',
-            'country_of_birth' => 'Country Of Birth',
-            'country_of_citizenship' => 'Country Of Citizenship',
-            'other_country_citizenship' => 'Other Country Citizenship',
-            'date_of_last_entry' => 'Date Of Last Entry',
-            'form_number' => 'Form Number',
-            'social_security_number' => 'Social Security Number',
-            'alien_reg_number' => 'Alien Reg Number',
-            'immigration_status' => 'Immigration Status',
-            'immigration_expiration_date' => 'Immigration Expiration Date',
-            'passport_number' => 'Passport Number',
-            'issuance_country' => 'Issuance Country',
-            'issuance_date' => 'Issuance Date',
-            'expiration_date' => 'Expiration Date',
-            'permanent_resident' => 'Permanent Resident',
-            'family_members' => 'Family Members',
-            'expiration_on_form' => 'Expiration On Form',
-            'visa_number' => 'Visa Number',
-            'visa_issuance_date' => 'Visa Issuance Date',
-            'visa_issuance_country' => 'Visa Issuance Country',
-            'issued_any_visa' => 'Issued Any Visa',
-            'explain_visa_details' => 'Explain Visa Details',
-            'status' => 'Status',
-            'CB' => 'Cb',
-            'UB' => 'Ub',
-            'DOC' => 'Doc',
-            'DOU' => 'Dou',
-        ];
-    }
+        /**
+         * @inheritdoc
+         */
+        public function attributeLabels() {
+                return [
+                    'id' => 'ID',
+                    'user_id' => 'User ID',
+                    'first_name' => 'First Name',
+                    'middle_name' => 'Middle Name',
+                    'last_name' => 'Last Name',
+                    'other_name' => 'Other Names used if any (Maiden Name and Names from Previous Marriages)',
+                    'gender' => 'Gender',
+                    'dob' => 'Date of Birth',
+                    'state_of_birth' => 'State Of Birth',
+                    'country_of_birth' => 'Country Of Birth',
+                    'country_of_citizenship' => 'Country Of Citizenship',
+                    'other_country_citizenship' => 'If Dual Citizenship, provide other Country of Citizenship',
+                    'date_of_last_entry' => 'If in U.S. provide Date of Last Entry into U.S.',
+                    'form_number' => 'If in U.S. (provide Form I-94 Number (Arrival/Departure Record))',
+                    'social_security_number' => 'U.S. Social Security Number',
+                    'alien_reg_number' => 'U.S. Alien Registration Number (”A#”) (if none, write N/A)',
+                    'immigration_status' => 'Current Immigration Status',
+                    'immigration_expiration_date' => 'Current Status Expiration Date',
+                    'passport_number' => 'Passport Number',
+                    'issuance_country' => 'Passport Issuance Country',
+                    'issuance_date' => 'Passport Issuance Date',
+                    'expiration_date' => 'Passport Expiration Date',
+                    'permanent_resident' => 'Please identify if you are: (Permanent Resident)',
+                    'family_members' => 'Have you or your accompanying family members ever applied for U.S. Permanent Resident (Green Card)?',
+                    'expiration_on_form' => 'Expiration of Status as shown on Form I-94 or Form I-688',
+                    'visa_number' => 'Visa Number (8 Digits)',
+                    'visa_issuance_date' => 'Visa Issuance Date',
+                    'visa_issuance_country' => 'Visa Issuance (City, Country)',
+                    'issued_any_visa' => 'Have you ever been in J-1 or J-2 Status or have been issued a J-1 or J-2 Visa?',
+                    'explain_visa_details' => 'If yes, please explain:',
+                    'status' => 'Status',
+                    'CB' => 'Cb',
+                    'UB' => 'Ub',
+                    'DOC' => 'Doc',
+                    'DOU' => 'Dou',
+                ];
+        }
 
 }
