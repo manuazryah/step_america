@@ -290,6 +290,7 @@ header{
     text-align: center;
     color: #fff;
     font-weight: 500;
+    padding-top: 16px;
 }
 /******************** Footer Content End     **************************************/
 
@@ -664,7 +665,7 @@ header{
     width: 100%;
 }
 .project-signin{
-        padding: 15px 0px;
+    padding: 15px 0px;
 }
 .project-doc {
     background: #ebefef none repeat scroll 0 0;
@@ -897,7 +898,7 @@ input[type="radio"]:checked + label:after {
     padding: 0px;
 }
 .panel-default {
-     border-color: none; 
+    border-color: none; 
 }
 .card{
     border: none;
@@ -906,16 +907,26 @@ input[type="radio"]:checked + label:after {
     font-size: 13px;
     font-weight: 600;
     border-radius: 0px 0px 0 0;
+    color: #30a44c;
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    color: #555;
+    color: #f3f3f3;
     cursor: default;
-    background-color: #e6e6e6;
-     border: none; 
+    background-color: #29a3a9;
+    border: none;
 }
 .nav-tabs > li {
     float: left;
     margin-bottom: -2px;
+}
+.nav-tabs > li > a:hover {
+    border-color: #29a3a9 #29a3a9 #1a475a;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #29a3a9;
+    color: #fff;
 }
 
 /************* Dashboard End ******************/
