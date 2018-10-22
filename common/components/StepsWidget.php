@@ -23,6 +23,7 @@ use yii\web\NotFoundHttpException;
 class StepsWidget extends Widget {
 
         public $id;
+        public $step;
 
         public function init() {
                 parent::init();
@@ -32,6 +33,8 @@ class StepsWidget extends Widget {
         }
 
         public function run() {
+
+
                 $step1 = \common\models\Step1::findOne(1)->page_title;
                 $step2 = \common\models\Step2::findOne(1)->page_title;
                 $step3 = \common\models\Step3::findOne(1)->page_title;
@@ -54,6 +57,7 @@ class StepsWidget extends Widget {
                             'step8' => $step8,
                             'step9' => $step9,
                             'step10' => $step10,
+                            'step' => $this->step,
                 ]);
         }
 

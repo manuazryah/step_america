@@ -9,6 +9,11 @@ if (!empty($chats)) {
                 if (!empty($user_details)) {
                         $user_chat_message = '';
                         foreach ($messages as $message) {
+
+                                if ($message->message_status == 1) {
+                                        $message->status = 2; /* message marked as read */
+                                        $message->save();
+                                }
                                 $div_class = '';
                                 if ($message->message_status == 2) {
                                         $div_class = 'right';

@@ -135,35 +135,68 @@ $controler = Yii::$app->controller->id;
                                                                         </span>
                                                                 </a>
                                                                 <ul class="treeview-menu">
+                                                                        <?php
+                                                                        $step1 = \common\models\Step1::findOne(1)->page_title;
+                                                                        $step2 = \common\models\Step2::findOne(1)->page_title;
+                                                                        $step3 = \common\models\Step3::findOne(1)->page_title;
+                                                                        $step4 = \common\models\Step4::findOne(1)->page_title;
+                                                                        $step5 = \common\models\Step5::findOne(1)->page_title;
+                                                                        $step6 = \common\models\Step6::findOne(1)->page_title;
+                                                                        $step7 = \common\models\Step7::findOne(1)->page_title;
+                                                                        $step8 = \common\models\Step8::findOne(1)->page_title;
+                                                                        $step9 = \common\models\Step9::findOne(1)->page_title;
+                                                                        $step10 = \common\models\Step10::findOne(1)->page_title;
+                                                                        if (!isset($step1))
+                                                                                $step1 = 'Step 1';
+                                                                        if (!isset($step2))
+                                                                                $step2 = 'Step 2';
+                                                                        if (!isset($step3))
+                                                                                $step3 = 'Step 3';
+                                                                        if (!isset($step4))
+                                                                                $step4 = 'Step 4';
+                                                                        if (!isset($step5))
+                                                                                $step5 = 'Step 5';
+                                                                        if (!isset($step6))
+                                                                                $step6 = 'Step 6';
+                                                                        if (!isset($step7))
+                                                                                $step7 = 'Step 7';
+                                                                        if (!isset($step8))
+                                                                                $step8 = 'Step 8';
+                                                                        if (!isset($step9))
+                                                                                $step9 = 'Step 9';
+                                                                        if (!isset($step10))
+                                                                                $step10 = 'Step 10';
+                                                                        ?>
+
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 1', ['/steps/step1/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step1, 30, "<br />\n"), ['/steps/step1/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 2', ['/steps/step2/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step2, 30, "<br />\n"), ['/steps/step2/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 3', ['/steps/step3/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step3, 30, "<br />\n"), ['/steps/step3/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 4', ['/steps/step4/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step4, 30, "<br />\n"), ['/steps/step4/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 5', ['/steps/step5/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step5, 30, "<br />\n"), ['/steps/step5/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 6', ['/steps/step6/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step6, 30, "<br />\n"), ['/steps/step6/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 7', ['/steps/step7/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step7, 30, "<br />\n"), ['/steps/step7/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 8', ['/steps/step8/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step8, 30, "<br />\n"), ['/steps/step8/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 9', ['/steps/step9/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step9, 30, "<br />\n"), ['/steps/step9/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Step 10', ['/steps/step10/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step10, 30, "<br />\n"), ['/steps/step10/index'], ['class' => 'title']) ?>
                                                                         </li>
 
                                                                 </ul>
