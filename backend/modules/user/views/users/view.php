@@ -92,31 +92,31 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <table>
                                         <tbody><tr>
                                                 <th>First Name</th>
-                                                <td><?= $biography->first_name ?></td>
+                                                <td><?= isset($biography->first_name) ? $biography->first_name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Last Name</th>
-                                                <td><?= $biography->last_name ?></td>
+                                                <td><?= isset($biography->last_name) ? $biography->last_name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Middle Name</th>
-                                                <td><?= $biography->middle_name ?></td>
+                                                <td><?= isset($biography->middle_name) ? $biography->middle_name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Other Name</th>
-                                                <td><?= $biography->other_name ?></td>
+                                                <td><?= isset($biography->other_name) ? $biography->other_name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Date of birth</th>
-                                                <td><?= $biography->dob ?></td>
+                                                <td><?= isset($biography->dob) ? $biography->dob : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Country of birth</th>
-                                                <td><?= Country::findOne($biography->country_of_birth)->name ?></td>
+                                                <td><?= isset($biography->country_of_birth) ? Country::findOne($biography->country_of_birth)->name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Country of Citizenship</th>
-                                                <td><?= Country::findOne($biography->country_of_citizenship)->name ?></td>
+                                                <td><?= isset($biography->country_of_citizenship) ? Country::findOne($biography->country_of_citizenship)->name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Dual Citizenship</th>
@@ -129,38 +129,38 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             <tr>
                                                 <th>U.S. Social Security Number</th>
-                                                <td><?= $biography->social_security_number ?></td>
+                                                <td><?= isset($biography->social_security_number) ? $biography->social_security_number : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>U.S. Alien Registration Number (”A#”)</th>
-                                                <td><?= $biography->alien_reg_number ?></td>
+                                                <td><?= isset($biography->alien_reg_number) ? $biography->alien_reg_number : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Current Immigration Status</th>
-                                                <td><?= $biography->immigration_status ?></td>
+                                                <td><?= isset($biography->immigration_status) ? $biography->immigration_status : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Current Status Expiration Date</th>
-                                                <td><?= $biography->immigration_expiration_date ?></td>
+                                                <td><?= isset($biography->immigration_expiration_date) ? $biography->immigration_expiration_date : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Passport Number</th>
-                                                <td><?= $biography->passport_number ?></td>
+                                                <td><?= isset($biography->passport_number) ? $biography->passport_number : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Passport Issuance Country</th>
-                                                <td><?= Country::findOne($biography->issuance_country)->name ?></td>
+                                                <td><?= isset($biography->issuance_country) ? Country::findOne($biography->issuance_country)->name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Passport Issuance Date</th>
-                                                <td><?= $biography->issuance_date ?></td>
+                                                <td><?= isset($biography->issuance_date) ? $biography->issuance_date : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Passport Expiration Date</th>
-                                                <td><?= $biography->expiration_date ?></td>
+                                                <td><?= isset($biography->expiration_date) ? $biography->expiration_date : '' ?></td>
                                             </tr>
                                             <tr><th>Permanent Resident</th>
-                                                <td><?= $biography->permanent_resident ?></td>
+                                                <td><?= isset($biography->permanent_resident) ? $biography->permanent_resident : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Green Card</th>
@@ -168,19 +168,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                             </tr>
                                             <tr>
                                                 <th>Expiration of Status as shown on Form I-94 or Form I-688</th>
-                                                <td><?= $biography->expiration_on_form ?></td>
+                                                <td><?= isset($biography->expiration_on_form) ? $biography->expiration_on_form : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>visa no</th>
-                                                <td><?= $biography->visa_number ?></td>
+                                                <td><?= isset($biography->visa_number) ? $biography->visa_number : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Visa Issuance Date</th>
-                                                <td><?= $biography->visa_issuance_date ?></td>
+                                                <td><?= isset($biography->visa_issuance_date) ? $biography->visa_issuance_date : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>visa_issurance_place</th>
-                                                <td><?= Country::findOne($biography->visa_issuance_country)->name ?></td>
+                                                <td><?= isset($biography->visa_issuance_country) ? Country::findOne($biography->visa_issuance_country)->name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Have you ever been in J-1 or J-2 Status or have been issued a J-1 or J-2 Visa?</th>
@@ -222,14 +222,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <th>Marital Status</th>
                                                 <?php
                                                 $status = "";
-                                                if ($family->marital_status == 1) {
-                                                    $status = "Unmarried";
-                                                }
-                                                if ($family->marital_status == 2) {
-                                                    $status = "Married";
-                                                }
-                                                if ($family->marital_status == 3) {
-                                                    $status = "Widower";
+                                                if (isset($family->marital_status)) {
+                                                    if ($family->marital_status == 1) {
+                                                        $status = "Unmarried";
+                                                    }
+                                                    if ($family->marital_status == 2) {
+                                                        $status = "Married";
+                                                    }
+                                                    if ($family->marital_status == 3) {
+                                                        $status = "Widower";
+                                                    }
                                                 }
                                                 ?>
                                                 <td><?= $status ?></td>
@@ -237,68 +239,68 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             <tr>
                                                 <th>Number of marriages, including present marriage </th>
-                                                <td><?= $family->no_of_marriages ?></td>
+                                                <td><?= isset($family->no_of_marriages) ? $family->no_of_marriages : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 1 last name </th>
-                                                <td><?= $family->spouse_1_last_name ?></td>
+                                                <td><?= isset($family->spouse_1_last_name) ? $family->spouse_1_last_name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 1 middle name </th>
-                                                <td><?= $family->spouse_1_middle_name ?></td>
+                                                <td><?= isset($family->spouse_1_middle_name) ? $family->spouse_1_middle_name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 1 first name </th>
-                                                <td><?= $family->spouse_1_first_name ?></td>
+                                                <td><?= isset($family->spouse_1_first_name) ? $family->spouse_1_first_name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 1 dob </th>
-                                                <td><?= $family->spouse_1_dob ?></td>
+                                                <td><?= isset($family->spouse_1_dob) ? $family->spouse_1_dob : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 1 Country of Birth </th>
-                                                <td><?= Country::findOne($family->spouse_1_country)->name ?></td>
+                                                <td><?= isset($family->spouse_1_country) ? Country::findOne($family->spouse_1_country)->name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 1 State/ Province of Birth </th>
-                                                <td><?= $family->spouse_1_state ?></td>
+                                                <td><?= isset($family->spouse_1_state) ? $family->spouse_1_state : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 2 last name </th>
-                                                <td><?= $family->spouse_2_first_name ?></td>
+                                                <td><?= isset($family->spouse_2_first_name) ? $family->spouse_2_first_name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 2 middle name </th>
-                                                <td><?= $family->spouse_2_middle_name ?></td>
+                                                <td><?= isset($family->spouse_2_middle_name) ? $family->spouse_2_middle_name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 2 first name </th>
-                                                <td><?= $family->spouse_2_first_name ?></td>
+                                                <td><?= isset($family->spouse_2_first_name) ? $family->spouse_2_first_name : '' ?></td>
                                             </tr>
                                             <tr><th>Former Spouse 2 dob </th>
-                                                <td><?= $family->spouse_2_dob ?></td>
+                                                <td><?= isset($family->spouse_2_dob) ? $family->spouse_2_dob : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 2 Country of Birth </th>
-                                                <td><?= Country::findOne($family->spouse_2_country)->name ?></td>
+                                                <td><?= isset($family->spouse_2_country) ? Country::findOne($family->spouse_2_country)->name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Former Spouse 2 State/ Province of Birth </th>
-                                                <td><?= $family->spouse_2_state ?></td>
+                                                <td><?= isset($family->spouse_2_state) ? $family->spouse_2_state : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Current Spouse's Information last name </th>
-                                                <td><?= $family->last_name ?></td>
+                                                <td><?= isset($family->last_name) ? $family->last_name : '' ?></td>
                                             </tr>
 
 
                                             <tr>
                                                 <th>Current Spouse's Information Marriage Date </th>
-                                                <td><?= $family->marriage_date ?></td>
+                                                <td><?= isset($family->marriage_date) ? $family->marriage_date : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th> State/Provision of Marriage </th>
-                                                <td><?= $family->state_of_marriage ?></td>
+                                                <td><?= isset($family->state_of_marriage) ? $family->state_of_marriage : '' ?></td>
                                             </tr>
 
 
@@ -331,23 +333,23 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     ?>
                                                     <tr>
                                                         <th>Child <?= $i + 1 ?> last name</th>
-                                                        <td><?= $childrens[$i]->last_name ?></td>
+                                                        <td><?= isset($childrens[$i]->last_name) ? $childrens[$i]->last_name : '' ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Child <?= $i + 1 ?> middle name</th>
-                                                        <td><?= $childrens[$i]->middle_name ?></td>
+                                                        <td><?= isset($childrens[$i]->middle_name) ? $childrens[$i]->middle_name : '' ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Child <?= $i + 1 ?> first name</th>
-                                                        <td><?= $childrens[$i]->first_name ?></td>
+                                                        <td><?= isset($childrens[$i]->first_name) ? $childrens[$i]->first_name : '' ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Child <?= $i + 1 ?> dob</th>
-                                                        <td><?= $childrens[$i]->date_of_birth ?></td>
+                                                        <td><?= isset($childrens[$i]->date_of_birth) ? $childrens[$i]->date_of_birth : '' ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Child <?= $i + 1 ?> country of birth</th>
-                                                        <td><?= Country::findOne($childrens[$i]->country_of_birth)->name ?></td>
+                                                        <td><?= isset($childrens[$i]->country_of_birth) ? Country::findOne($childrens[$i]->country_of_birth)->name : '' ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Child <?= $i + 1 ?> State/ Province of Birth</th>
@@ -355,34 +357,38 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     </tr>
                                                     <tr>
                                                         <th>Child <?= $i + 1 ?>  Passport Issuance Date</th>
-                                                        <td><?= $childrens[$i]->passport_issuance_date ?></td>
+                                                        <td><?= isset($childrens[$i]->passport_issuance_date) ? $childrens[$i]->passport_issuance_date : '' ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Child <?= $i + 1 ?>  is your Child 1 currently in the U.S.?</th>
                                                         <?php
                                                         $current_status = "";
-                                                        if ($childrens[$i]->currently_status == 1) {
-                                                            $current_status = 'Yes';
-                                                        }
-                                                        if ($childrens[$i]->currently_status == 2) {
-                                                            $current_status = 'No';
+                                                        if (isset($childrens[$i]->currently_status)) {
+                                                            if ($childrens[$i]->currently_status == 1) {
+                                                                $current_status = 'Yes';
+                                                            }
+                                                            if ($childrens[$i]->currently_status == 2) {
+                                                                $current_status = 'No';
+                                                            }
                                                         }
                                                         ?>
                                                         <td><?= $current_status ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th> Child <?= $i + 1 ?>  Country of Citizenship</th>
-                                                        <td><?= Country::findOne($childrens[$i]->country_of_citizenship)->name ?></td>
+                                                        <td><?= isset($childrens[$i]->country_of_citizenship) ? Country::findOne($childrens[$i]->country_of_citizenship)->name : '' ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Was Child <?= $i + 1 ?> adopted?</th>
                                                         <?php
                                                         $adopted_status = "";
-                                                        if ($childrens[$i]->adopted_status == 1) {
-                                                            $adopted_status = 'Yes';
-                                                        }
-                                                        if ($childrens[$i]->adopted_status == 2) {
-                                                            $adopted_status = 'No';
+                                                        if (isset($childrens[$i]->adopted_status)) {
+                                                            if ($childrens[$i]->adopted_status == 1) {
+                                                                $adopted_status = 'Yes';
+                                                            }
+                                                            if ($childrens[$i]->adopted_status == 2) {
+                                                                $adopted_status = 'No';
+                                                            }
                                                         }
                                                         ?>
                                                         <td><?= $adopted_status ?></td>
@@ -407,23 +413,23 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <tbody>
                                             <tr>
                                                 <th>Street Number and Namee</th>
-                                                <td><?= $contact->street_number ?></td>
+                                                <td><?= isset($contact->street_number) ? $contact->street_number : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>appt_no</th>
-                                                <td><?= $contact->appt_number ?></td>
+                                                <td><?= isset($contact->appt_number) ? $contact->appt_number : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>City</th>
-                                                <td><?= $contact->city ?></td>
+                                                <td><?= isset($contact->city) ? $contact->city : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>State / Province</th>
-                                                <td><?= $contact->state ?></td>
+                                                <td><?= isset($contact->state) ? $contact->state : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Country</th>
-                                                <td><?= Country::findOne($contact->country)->name ?></td>
+                                                <td><?= isset($contact->country) ? Country::findOne($contact->country)->name : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Zip Code</th>
@@ -432,54 +438,58 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             <tr>
                                                 <th>Daytime Contact Number</th>
-                                                <td><?= $contact->daytime_contact_no ?></td>
+                                                <td><?= isset($contact->daytime_contact_no) ? $contact->daytime_contact_no : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Mobile Contact Number</th>
-                                                <td><?= $contact->mobile_number ?></td>
+                                                <td><?= isset($contact->mobile_number) ? $contact->mobile_number : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Email</th>
-                                                <td><?= $contact->email ?></td>
+                                                <td><?= isset($contact->email) ? $contact->email : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Email 2</th>
-                                                <td><?= $contact->email_1 ?></td>
+                                                <td><?= isset($contact->email_1) ? $contact->email_1 : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Foreign address if you provided a U.S. address above</th>
-                                                <td><?= $contact->foreign_address ?></td>
+                                                <td><?= isset($contact->foreign_address) ? $contact->foreign_address : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Foreign address in your native alphabet</th>
-                                                <td><?= $contact->foreign_address_native ?></td>
+                                                <td><?= isset($contact->foreign_address_native) ? $contact->foreign_address_native : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Are you now or have you ever been in deportation proceedings in the United States or otherwise violated a U.S. Immigration Law?</th>
                                                 <?php
                                                 $deportation_status = "";
-                                                if ($contact->deportation_proceedings == 1) {
-                                                    $deportation_status = 'Yes';
-                                                }
-                                                if ($contact->deportation_proceedings == 2) {
-                                                    $deportation_status = 'No';
+                                                if (isset($contact->deportation_proceedings)) {
+                                                    if ($contact->deportation_proceedings == 1) {
+                                                        $deportation_status = 'Yes';
+                                                    }
+                                                    if ($contact->deportation_proceedings == 2) {
+                                                        $deportation_status = 'No';
+                                                    }
                                                 }
                                                 ?>
                                                 <td><?= $deportation_status ?></td>
                                             </tr>
                                             <tr>
                                                 <th>If yes, please explain:</th>
-                                                <td><?= $contact->deportation_proceedings == 1 ? $contact->explain_details : '' ?></td>
+                                                <td><?= isset($contact->deportation_proceedings) && $contact->deportation_proceedings == 1 && isset($contact->explain_details) ? $contact->explain_details : '' ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Have you ever worked in the U.S. without permission?</th>
                                                 <?php
                                                 $worked_status = "";
-                                                if ($contact->worked_in_us == 1) {
-                                                    $worked_status = 'Yes';
-                                                }
-                                                if ($contact->worked_in_us == 2) {
-                                                    $worked_status = 'No';
+                                                if (isset($contact->worked_in_us)) {
+                                                    if ($contact->worked_in_us == 1) {
+                                                        $worked_status = 'Yes';
+                                                    }
+                                                    if ($contact->worked_in_us == 2) {
+                                                        $worked_status = 'No';
+                                                    }
                                                 }
                                                 ?>
                                                 <td><?= $worked_status ?></td>
@@ -487,7 +497,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <tr>
                                                 <th>If yes, please explain
                                                 </th>
-                                                <td><?= $contact->worked_in_us == 1 ? $contact->worked_explain_details : '' ?></td>
+                                                <td><?= isset($contact->worked_in_us) && $contact->worked_in_us == 1 && isset($contact->worked_explain_details)? $contact->worked_explain_details : '' ?></td>
                                             </tr>
                                         </tbody>
                                     </table>

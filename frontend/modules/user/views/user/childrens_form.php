@@ -276,7 +276,7 @@ $countries = Country::find()->where(['status' => 1])->all();
                                                 <?php
                                                 if ($countries) {
                                                     foreach ($countries as $country) {
-                                                        $selected = $country->id == $children_model[$i - 1]->country_of_birth ? 'selected="selected"' : '';
+                                                        $selected = (isset($children_model[$i - 1]->country_of_birth) && $country->id == $children_model[$i - 1]->country_of_birth) ? 'selected="selected"' : '';
                                                         ?>
                                                         <option <?= $selected ?> value="<?= $country->id ?>"><?= $country->name ?></option>
                                                         <?php
@@ -343,7 +343,7 @@ $countries = Country::find()->where(['status' => 1])->all();
                                                 <?php
                                                 if ($countries) {
                                                     foreach ($countries as $country) {
-                                                        $selected = $country->id == $children_model[$i - 1]->country_of_citizenship ? 'selected="selected"' : '';
+                                                        $selected = (isset($children_model[$i - 1]->country_of_citizenship) && $country->id == $children_model[$i - 1]->country_of_citizenship) ? 'selected="selected"' : '';
                                                         ?>
                                                         <option <?= $selected ?> value="<?= $country->id ?>"><?= $country->name ?></option>
                                                         <?php
