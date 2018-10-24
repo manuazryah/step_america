@@ -52,38 +52,44 @@ class UsersController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id) {
-        $step2_model = \common\models\Step2AccountDetails::find()->where(['user_id' => $id])->one();
-         $biography = UserBiographicalInfo::find()->where(['user_id' => $id])->one();
-         $family = UserFamilyInfo::find()->where(['user_id' => $id])->one();
-         $childrens = UserChildrensInfo::find()->where(['user_id' => $id])->all();
-         $contact = UserConatctInfo::find()->where(['user_id' => $id])->one();
-        if (empty($step2_model)) {
-            $step2_model = new \common\models\Step2AccountDetails();
-        } else {
-            $invoice_file_ = $step2_model->invoice_file;
+    public function actionUpdate($id) {
+                $step2_model = \common\models\Step2AccountDetails::find()->where(['user_id' => $id])->one();
+                $biography = UserBiographicalInfo::find()->where(['user_id' => $id])->one();
+                $family = UserFamilyInfo::find()->where(['user_id' => $id])->one();
+                $childrens = UserChildrensInfo::find()->where(['user_id' => $id])->all();
+                $contact = UserConatctInfo::find()->where(['user_id' => $id])->one();
+                $user_steps_status = \common\models\UserSteps::find()->where(['user_id' => $id])->one();
+                $uploads_category = \common\models\Step3Category::find()->where(['status' => 1])->all();
+
+                if (empty($step2_model)) {
+                        $step2_model = new \common\models\Step2AccountDetails();
+                } else {
+                        $invoice_file_ = $step2_model->invoice_file;
+                }
+                if ($step2_model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($step2_model)) {
+                        $invoice_file = UploadedFile::getInstance($step2_model, 'invoice_file');
+                        if (!empty($invoice_file)) {
+                                $step2_model->invoice_file = $invoice_file->name;
+                        } else {
+                                $step2_model->invoice_file = $invoice_file_;
+                        }
+                        if ($step2_model->validate() && $step2_model->save()) {
+                                $this->Upload($step2_model, $invoice_file);
+                        }
+                        Yii::$app->session->setFlash('success', "Account Details Save Successfully");
+                }
+                return $this->render('view', [
+                            'model' => $this->findModel($id),
+                            'step2_model' => $step2_model,
+                            'biography' => $biography,
+                            'family' => $family,
+                            'childrens' => $childrens,
+                            'contact' => $contact,
+                            'user_steps_status' => $user_steps_status,
+                            'id' => $id,
+                            'uploads_category' => $uploads_category,
+                ]);
         }
-        if ($step2_model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($step2_model)) {
-            $invoice_file = UploadedFile::getInstance($step2_model, 'invoice_file');
-            if (!empty($invoice_file)) {
-                $step2_model->invoice_file = $invoice_file->name;
-            } else {
-                $step2_model->invoice_file = $invoice_file_;
-            }
-            if ($step2_model->validate() && $step2_model->save()) {
-                $this->Upload($step2_model, $invoice_file);
-            }
-            Yii::$app->session->setFlash('success', "Account Details Save Successfully");
-        }
-        return $this->render('view', [
-                    'model' => $this->findModel($id),
-                    'step2_model' => $step2_model,
-                    'biography' => $biography,
-                    'family' => $family,
-                    'childrens' => $childrens,
-                    'contact' => $contact,
-        ]);
-    }
 
     /*
      * Upload Documents
@@ -133,7 +139,7 @@ class UsersController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id) {
+    public function actionUpdate1($id) {
         $model = $this->findModel($id);
         $model->setScenario('update');
         if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->validate() && $model->save()) {
@@ -188,5 +194,48 @@ class UsersController extends Controller {
                     'user' => $user,
         ]);
     }
+    
+    public function actionStep1Status() {
+                $model = \common\models\UserSteps::find()->where(['user_id' => $_POST['user']])->one();
+                if (empty($model)) {
+                        $model = new \common\models\UserSteps();
+                }
+                $model->retainer_contract_approve = $_POST['step1_retainer'];
+                $model->dhp_approve = $_POST['step1_dhp'];
+                $model->save();
+        }
+
+        public function actionApproveStatus() {
+                $model = \common\models\UserSteps::find()->where(['user_id' => $_POST['user']])->one();
+                if (empty($model)) {
+                        $model = new \common\models\UserSteps();
+                }
+                $model->step_1_completed = 1;
+                $model->step_1_complete_date = date('Y-m-d');
+                if ($model->save())
+                        $approved = 1;
+                return $approved;
+        }
+        
+        public function actionStep3UploadStatus() {
+                if (\Yii::$app->request->isAjax) {
+                        $model = \common\models\Step3Uploads::findOne($_POST['id']);
+                        $model->status = $_POST['status'];
+                        $model->save();
+                        return $model->status;
+                }
+        }
+
+        public function actionStep3ApproveStatus() {
+                $model = \common\models\UserSteps::find()->where(['user_id' => $_POST['user']])->one();
+                if (empty($model)) {
+                        $model = new \common\models\UserSteps();
+                }
+                $model->step_3_completed = 1;
+                $model->step_3_complete_date = date('Y-m-d');
+                if ($model->save())
+                        $approved = 1;
+                return $approved;
+        }
 
 }

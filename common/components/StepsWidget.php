@@ -33,8 +33,6 @@ class StepsWidget extends Widget {
         }
 
         public function run() {
-
-
                 $step1 = \common\models\Step1::findOne(1)->page_title;
                 $step2 = \common\models\Step2::findOne(1)->page_title;
                 $step3 = \common\models\Step3::findOne(1)->page_title;

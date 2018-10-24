@@ -135,7 +135,8 @@ $controler = Yii::$app->controller->id;
                                                                         </span>
                                                                 </a>
                                                                 <ul class="treeview-menu">
-                                                                        <?php
+                                                                    
+                                                                    <?php
                                                                         $step1 = \common\models\Step1::findOne(1)->page_title;
                                                                         $step2 = \common\models\Step2::findOne(1)->page_title;
                                                                         $step3 = \common\models\Step3::findOne(1)->page_title;
@@ -167,7 +168,8 @@ $controler = Yii::$app->controller->id;
                                                                         if (!isset($step10))
                                                                                 $step10 = 'Step 10';
                                                                         ?>
-
+                                                                    
+                                                                    
                                                                         <li>
                                                                                 <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step1, 30, "<br />\n"), ['/steps/step1/index'], ['class' => 'title']) ?>
                                                                         </li>
@@ -216,6 +218,14 @@ $controler = Yii::$app->controller->id;
 
                                                                         <li>
                                                                                 <?= Html::a('<i class="fa fa-angle-double-right"></i> Country', ['/masters/country/index'], ['class' => 'title']) ?>
+                                                                        </li>
+                                                                        
+                                                                         <li>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Upload Category', ['/masters/step3-category/index'], ['class' => 'title']) ?>
+                                                                        </li>
+                                                                        
+                                                                         <li>
+                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Upload Subcategory', ['/masters/step3-subcategory/index'], ['class' => 'title']) ?>
                                                                         </li>
 
 

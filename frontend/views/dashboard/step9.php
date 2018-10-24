@@ -14,7 +14,7 @@ use yii\helpers\Html;
 <div class="row">
     <div class="col-md-4 pad-right-0">
         <div class="check-list-box">
-            <?= StepsWidget::widget() ?>
+            <?= StepsWidget::widget(['step' => 9]) ?>
         </div>
     </div>
     <div class="col-md-8 pad-left-0">

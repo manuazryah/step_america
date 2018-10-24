@@ -94,19 +94,19 @@ AppAsset::register($this);
                                 <li class="dropdown user user-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="<?= yii::$app->homeUrl; ?>img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                        <span class="hidden-xs user-title">testing</span>
+                                        <span class="hidden-xs user-title"><?=Yii::$app->user->identity->user_name;?>  </span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <!-- User image -->
                                         <li class="user-header">
                                             <img src="<?= yii::$app->homeUrl; ?>img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                             <p>
-                                                testing                                                                                </p>
+                                                <?=Yii::$app->user->identity->user_name;?>                                                                                </p>
                                         </li>
                                         <!-- Menu Footer-->
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                                <a href="<?= Yii::$app->homeUrl ?>dashboard/profile" class="btn btn-default btn-flat">Profile</a>
                                             </div>
                                             <div class="pull-right">
                                                 <!--<a href="#" class="btn btn-default btn-flat">Sign out</a>-->
