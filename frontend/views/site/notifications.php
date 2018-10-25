@@ -19,7 +19,7 @@ use yii\helpers\Html;
                                 </div>
                         </div>
                         <div class="step-body">
-                                <div class="step-info notification-table table-responsive">
+                                <div class="step-info notification-table table-responsive small-display-view">
                                         <?php if (count($all_notifications) > 0) { ?>
                                                 <table class="table mail-table">
                                                         <tbody>

@@ -18,8 +18,8 @@ use yii\helpers\Html;
                                         <h5 class="step-title">Messages</h5>
                                 </div>
                         </div>
-                        <div class="step-body">
-
+                        <div class="step-body small-display-view">
+                                <label style="font-weight: bold;font-size: 14px;text-decoration: underline">Messages:</label>
                                 <div class="direct-chat-messages1">
                                         <?php foreach ($messages as $message) {
                                                 ?>

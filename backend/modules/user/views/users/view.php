@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                 <div class="panel panel-default">
                                                         <div class="panel-heading">
-                                                                <input type="checkbox" name="approvestep1"  id="approve_step1_retainer" class="approve_step"  <?= isset($user_steps_status->retainer_contract_approve) && $user_steps_status->retainer_contract_approve == 1 ? 'checked' : '' ?>  <?=isset($user_steps_status->step_1_completed) &&  $user_steps_status->step_1_completed == 1 ? 'disabled' : '' ?>  >
+                                                                <input type="checkbox" name="approvestep1"  id="approve_step1_retainer" class="approve_step"  <?= isset($user_steps_status->retainer_contract_approve) && $user_steps_status->retainer_contract_approve == 1 ? 'checked' : '' ?>  <?= isset($user_steps_status->step_1_completed) && $user_steps_status->step_1_completed == 1 ? 'disabled' : '' ?>  >
                                                                 <label>Approve this STEP America Retainer Contract Agreement</label>
                                                         </div>
                                                 </div>
@@ -189,23 +189,23 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                                         <tr>
                                                                                                 <th>Have you ever been in J-1 or J-2 Status or have been issued a J-1 or J-2 Visa?</th>
                                                                                                 <td><?php
-                                                                                                if(isset($biography->issued_any_visa)){
-                                                                                                        if ($biography->issued_any_visa == 1) {
-                                                                                                                echo 'Yes';
-                                                                                                        } elseif ($biography->issued_any_visa == 2) {
-                                                                                                                'No';
+                                                                                                        if (isset($biography->issued_any_visa)) {
+                                                                                                                if ($biography->issued_any_visa == 1) {
+                                                                                                                        echo 'Yes';
+                                                                                                                } elseif ($biography->issued_any_visa == 2) {
+                                                                                                                        'No';
+                                                                                                                }
                                                                                                         }
-                                                                                                }
                                                                                                         ?></td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                                 <th>If yes, please explain:</th>
                                                                                                 <td><?php
-                                                                                                 if(isset($biography->issued_any_visa)){
-                                                                                                        if ($biography->issued_any_visa == 1) {
-                                                                                                                echo $biography->explain_visa_details;
+                                                                                                        if (isset($biography->issued_any_visa)) {
+                                                                                                                if ($biography->issued_any_visa == 1) {
+                                                                                                                        echo $biography->explain_visa_details;
+                                                                                                                }
                                                                                                         }
-                                                                                                 }
                                                                                                         ?></td>
                                                                                         </tr>
                                                                                         <tr>
@@ -617,15 +617,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                         </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                        <tr class="last-name">
-                                                                                <td>19</td>
-                                                                                <td>Ritz Carlton</td>
-                                                                        </tr>
+                                                                        <?php
+                                                                        $p = 0;
+                                                                        foreach ($projects as $project) {
+                                                                                $p++;
+                                                                                ?>
+                                                                                <tr class="last-name">
+                                                                                        <td><?= $p ?></td>
+                                                                                        <td><?= $project->project_title ?></td>
+                                                                                </tr>
 
-                                                                        <tr class="last-name">
-                                                                                <td>20</td>
-                                                                                <td>Fresh Direct Phase II</td>
-                                                                        </tr>
+                                                                        <?php } ?>
 
                                                                 </tbody>
                                                         </table>
@@ -646,7 +648,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                         <th>Project Name</th>
                                                                         <th>Document</th>
                                                                         <th>Date</th>
-
                                                                 </tr>
                                                         </thead>
                                                         <tbody>

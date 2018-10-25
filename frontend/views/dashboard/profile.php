@@ -19,11 +19,14 @@ use yii\helpers\Html;
 
                                 </div>
                         </div>
-                        <div class="step-body">
+                        <div class="step-body small-profile-display-view">
 
                                 <div class="step-info">
                                         <div class="step-info-box profile_info">
                                                 <table class="table table-responsive">
+                                                        <tr>
+                                                                <th colspan="3" style="text-decoration: underline;font-size: 14px;">My Profile</th>
+                                                        </tr>
                                                         <tr>
                                                                 <td>Name </td>
                                                                 <td>:</td>

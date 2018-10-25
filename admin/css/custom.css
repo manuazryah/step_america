@@ -268,7 +268,7 @@ label.upload-cv input[type="file"] {
         border: 1px solid #bbb9b9;
 }
 .table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
-        border: 1px solid #dee2e7;
+        border: 1px solid #9192926b;
 }
 .control-label{
         color: #4c4b4b;

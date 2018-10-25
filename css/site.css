@@ -6,6 +6,7 @@ body {
         background: #ecf0f5;
         padding: 0;
         margin: 0;
+        font-size: 12px;
 }
 #wrapper{
         padding: 50px 0;
@@ -998,4 +999,18 @@ input[type="radio"]:checked + label:after {
         background: #3c8dbc;
         border-color: #3c8dbc;
         color: #fff;
+}
+.select-project{
+        margin-left: 10px;
+        background-color: #19485b;
+        border-color: #19485b;
+}
+.small-display-view{
+        width: 50%;
+        margin: 0 auto;
+        border: 1px solid #6d696929;
+}
+.small-profile-display-view{
+        width: 50%;
+        margin: 0 auto;
 }
