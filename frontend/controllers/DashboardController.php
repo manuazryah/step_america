@@ -47,12 +47,12 @@ class DashboardController extends \yii\web\Controller {
 
         public function actionStep3($id = null) {
                 $step3 = Step3::findOne(1);
+                $step3_uploads_count = \common\models\Step3Uploads::find()->where(['user_id' => \Yii::$app->user->identity->id])->count();
                 $user_step_details = \common\models\UserSteps::find()->where(['user_id' => \Yii::$app->user->identity->id])->one();
                 if (empty($id))
                         $model = new \common\models\Step3Uploads();
                 else
                         $model = \common\models\Step3Uploads::findOne($id);
-
                 $searchModel = new \common\models\Step3UploadsSearch();
                 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
                 $dataProvider->query->andWhere(['user_id' => \Yii::$app->user->identity->id]);
@@ -60,17 +60,53 @@ class DashboardController extends \yii\web\Controller {
                         $model->user_id = \Yii::$app->user->identity->id;
                         $image = UploadedFile::getInstance($model, 'file');
                         $model->file_name = $image->name;
+                        $model->status = 1;
                         $this->SetExtension($model, $id);
                         if ($model->validate() && $model->save()) {
                                 $this->Upload($model, $image);
                         }
                         return $this->redirect('step3');
                 }
+
                 if ($_POST['questionnaire_submit']) {
-
+                        $this->Step3Questionnaire($_POST);
+                        return $this->render('step3', ['step3' => $step3, 'model' => $model, 'searchModel' => $searchModel, 'dataProvider' => $dataProvider, 'user_step_details' => $user_step_details, 'id' => $id]);
                 }
+                if ($step3_uploads_count > 0) {
+                        return $this->render('step3', ['step3' => $step3, 'model' => $model, 'searchModel' => $searchModel, 'dataProvider' => $dataProvider, 'user_step_details' => $user_step_details, 'id' => $id]);
+                } else {
+                        return $this->render('step3_questionaire', ['step3' => $step3]);
+                }
+        }
 
-                return $this->render('step3_questionaire', ['step3' => $step3, 'model' => $model, 'searchModel' => $searchModel, 'dataProvider' => $dataProvider, 'user_step_details' => $user_step_details]);
+        /*
+         * Choose upload category steps and add an entry for each subcategory to step uploads table
+         */
+
+        public function Step3Questionnaire($POST) {
+
+                $uploads = ['1', '2', '8'];
+                if (isset($POST['employee_type']) && $POST['employee_type'] != '')
+                        array_push($uploads, $_POST['employee_type']);
+                if (isset($POST['loan']) && $POST['loan'] != '')
+                        array_push($uploads, $POST['loan']);
+                if (isset($POST['sale_of_property']) && $POST['sale_of_property'] != '')
+                        array_push($uploads, $POST['sale_of_property']);
+                if (isset($POST['gufts']) && $POST['gufts'] != '')
+                        array_push($uploads, $POST['gufts']);
+
+                foreach ($uploads as $upload) {
+
+                        $upload_subcategory = \common\models\Step3Subcategory::find()->where(['category' => $upload, 'status' => 1])->all();
+                        foreach ($upload_subcategory as $upload_sub_category) {
+                                $step3_uploads = new \common\models\Step3Uploads();
+                                $step3_uploads->user_id = \Yii::$app->user->identity->id;
+                                $step3_uploads->category = $upload;
+                                $step3_uploads->subcategory = $upload_sub_category->id;
+                                $step3_uploads->save();
+                        }
+                }
+                return TRUE;
         }
 
         /* This function is to set image extension */

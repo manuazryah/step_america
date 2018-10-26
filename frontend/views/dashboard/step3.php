@@ -27,7 +27,7 @@ use yii\grid\GridView;
                                         <h5 class="step-title">Step 3: <?= $step3->page_title ?></h5>
                                         <ul>
                                                 <li><i class="fa fa-check"></i> Complete</li>
-                                                <?php if(isset($user_step_details->step_3_complete_date) && $user_step_details->step_3_complete_date!=''){ ?><li>Date: <?= date('M d , Y', strtotime($user_step_details->step_3_complete_date)) ?></li><?php } ?>
+                                                <?php if (isset($user_step_details->step_3_complete_date) && $user_step_details->step_3_complete_date != '') { ?><li>Date: <?= date('M d , Y', strtotime($user_step_details->step_3_complete_date)) ?></li><?php } ?>
                                         </ul>
                                 </div>
                         </div>
@@ -37,45 +37,54 @@ use yii\grid\GridView;
                                 </div>
 
                                 <div class="step-projects">
-                                        <?php $form = ActiveForm::begin(['id' => 'step3-form']); ?>
-                                        <div class="row">
-                                                <div class='col-md-4 col-sm-6 col-xs-12'>    <?= $form->field($model, 'category')->dropDownList(ArrayHelper::map(common\models\Step3Category::find()->where(['status' => 1])->all(), 'id', 'category'), ['prompt' => '--Select--', 'class' => 'form-control category-change']) ?>
-
-                                                </div> <div class='col-md-4 col-sm-6 col-xs-12'>
-                                                        <?php
-                                                        if (!$model->isNewRecord) {
-                                                                $subcategory = common\models\Step3Subcategory::find()->where(['category' => $model->category, 'status' => '1'])->all();
-                                                        } else {
-                                                                $subcategory = [];
-                                                        }
-                                                        echo $form->field($model, 'subcategory')->dropDownList(ArrayHelper::map($subcategory, 'id', 'subcategory'), ['prompt' => '--Select--', 'class' => 'form-control']);
-                                                        ?>
-
-
-                                                </div> <div class='col-md-4 col-sm-6 col-xs-12'>    <?= $form->field($model, 'file')->fileInput() ?>
-                                                        <?php if (isset($model->file)) { ?>
-                                                                <img src="<?= Yii::$app->homeUrl ?>uploads/step3/<?= $model->id ?>.<?= $model->file; ?>?<?= rand() ?>" width="100" height="100" style="margin-left:15px"/>
-
+                                        <?php if (isset($id) && $id != '') { ?>
+                                                <?php $form = ActiveForm::begin(['id' => 'step3-form']); ?>
+                                                <div class="row">
+                                                        <div class='col-md-4 col-sm-6 col-xs-12'>
                                                                 <?php
-                                                        } elseif (!empty($model->img)) {
-                                                                echo "";
-                                                        }
-                                                        ?>
-                                                </div>
-                                        </div>
-                                        <div class="row">
-                                                <div class='col-md-12 col-sm-12 col-xs-12'>    <?= $form->field($model, 'user_comment')->textarea()->label('Comment') ?>
+                                                                $category = common\models\Step3Uploads::find()->where(['user_id' => Yii::$app->user->identity->id])->select('category')->distinct()->all();
+                                                                $category_arr = array();
+                                                                foreach ($category as $category_val) {
+                                                                        $category_arr [] = $category_val->category . ',';
+                                                                }
+                                                                ?>
+                                                                <?= $form->field($model, 'category')->dropDownList(ArrayHelper::map(common\models\Step3Category::find()->where(['status' => 1,])->andWhere(['IN', 'id', $category_arr])->all(), 'id', 'category'), ['prompt' => '--Select--', 'class' => 'form-control category-change']) ?>
 
-                                                </div>
-                                        </div>
+                                                        </div> <div class='col-md-4 col-sm-6 col-xs-12'>
+                                                                <?php
+                                                                if (!$model->isNewRecord) {
+                                                                        $subcategory = common\models\Step3Subcategory::find()->where(['category' => $model->category, 'status' => '1'])->all();
+                                                                } else {
+                                                                        $subcategory = [];
+                                                                }
+                                                                echo $form->field($model, 'subcategory')->dropDownList(ArrayHelper::map($subcategory, 'id', 'subcategory'), ['prompt' => '--Select--', 'class' => 'form-control']);
+                                                                ?>
 
-                                        <div class="row">
-                                                <div class='col-md-4 col-sm-6 col-xs-12'>
-                                                        <?= Html::submitButton('Upload', ['class' => 'btn btn-success']) ?>
-                                                </div>
-                                        </div>
-                                        <?php ActiveForm::end(); ?>
 
+                                                        </div> <div class='col-md-4 col-sm-6 col-xs-12'>    <?= $form->field($model, 'file')->fileInput() ?>
+                                                                <?php if (isset($model->file)) { ?>
+                                                                        <img src="<?= Yii::$app->homeUrl ?>uploads/step3/<?= $model->id ?>.<?= $model->file; ?>?<?= rand() ?>" width="100" height="100" style="margin-left:15px"/>
+
+                                                                        <?php
+                                                                } elseif (!empty($model->file)) {
+                                                                        echo "";
+                                                                }
+                                                                ?>
+                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                        <div class='col-md-12 col-sm-12 col-xs-12'>    <?= $form->field($model, 'user_comment')->textarea()->label('Comment') ?>
+
+                                                        </div>
+                                                </div>
+
+                                                <div class="row">
+                                                        <div class='col-md-4 col-sm-6 col-xs-12'>
+                                                                <?= Html::submitButton('Upload', ['class' => 'btn btn-success']) ?>
+                                                        </div>
+                                                </div>
+                                                <?php ActiveForm::end(); ?>
+                                        <?php } ?>
                                         <div class="row step3-uploaded-label">
                                                 <div class="col-sm-12 col-xs-12">
                                                         <div class="sa-inp-gp">
@@ -146,9 +155,9 @@ use yii\grid\GridView;
                                                                             if (isset($model->status)) {
 
                                                                                     if ($model->status == 0) {
-                                                                                            return '<span id="status_0">Uploaded</span>';
+                                                                                            return '<span id="status_1">Not Uploaded</span>';
                                                                                     } else if ($model->status == 1) {
-                                                                                            return '<span id="status_1">Pending</span>';
+                                                                                            return '<span id="status_0">Uploaded</span>';
                                                                                     } else if ($model->status == 2) {
                                                                                             return '<span id="status_2">Approved</span>';
                                                                                     } else if ($model->status == 3) {
@@ -176,6 +185,7 @@ use yii\grid\GridView;
                                                             ],
                                                         ]);
                                                         ?>
+                                                        <input type="submit" name="uploads_completed_user" class="btn btn-primary"
                                                 </div>
                                         </div>
 

@@ -33,7 +33,7 @@ class Step3Uploads extends \yii\db\ActiveRecord {
          */
         public function rules() {
                 return [
-                        [['category', 'subcategory', 'file'], 'required'],
+                        [['category', 'subcategory'], 'required'],
                         [['category', 'subcategory', 'status', 'CB', 'UB'], 'integer'],
                         [['user_comment', 'admin_comment'], 'string'],
                         [['DOC', 'DOU', 'file_name'], 'safe'],

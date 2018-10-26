@@ -42,25 +42,25 @@ use yii\grid\GridView;
                                                 <div class="col-sm-12 col-xs-12">
                                                         <div class="sa-inp-gp">
                                                                 <label style="visibility: hidden;display: block;">Employee</label>
-                                                                <input type="radio" id="radio1" name="employee_type" checked/>
+                                                                <input type="radio" id="radio1" name="employee_type" value="3"/>
                                                                 <label for="radio1">Salaried Employee</label>
 
-                                                                <input type="radio" id="radio2" name="employee_type" />
+                                                                <input type="radio" id="radio2" name="employee_type" value="4"/>
                                                                 <label for="radio2">Self Employee</label>
 
                                                         </div>
                                                 </div>
 
                                                 <div class="col-sm-12 col-xs-12">
-                                                        <input type="checkbox" name="loan"> Taking a secured loan
+                                                        <input type="checkbox" name="loan" value="5"> Taking a secured loan
                                                 </div>
 
                                                 <div class="col-sm-12 col-xs-12">
-                                                        <input type="checkbox" name="sale_of_property"> Sale of property
+                                                        <input type="checkbox" name="sale_of_property" value="6"> Sale of property
                                                 </div>
 
                                                 <div class="col-sm-12 col-xs-12">
-                                                        <input type="checkbox" name="gufts"> Gifts
+                                                        <input type="checkbox" name="gufts" value="7"> Gifts
                                                 </div>
 
                                                 <div class="col-sm-12 col-xs-12">
