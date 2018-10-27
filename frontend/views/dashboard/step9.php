@@ -32,6 +32,33 @@ use yii\helpers\Html;
                 <div class="step-description">
                     <?= $step9->description ?>
                 </div>
+
+                <div class="six-portal no-pad-btm">
+                    <h5>Initial Legal Wire Payment Instuctions</h5>
+                    <h5>A: Debit Account Holder:</h5>
+                    <p>Provide the following from your financial institution</p>
+                    <form name="transfer_of_capital" id="transfer_of_capital">
+                        <input type="hidden" name="user_id" value="1">
+                        <div class="form-group portal-form">
+                            <label for="inputEmail" class="portal-text">Full Name:</label>
+                            fdfd
+                        </div>
+                        <div class="form-group portal-form">
+                            <label for="inputPassword" class="portal-text">Bank Name:</label>
+                            Bank Name
+                        </div>
+                        <div class="form-group portal-form">
+                            <label for="inputPassword" class="portal-text">Bank Institution#:</label>
+                            251
+                        </div>
+                        <div class="form-group portal-form">
+                            <label for="inputPassword" class="portal-text">Transit#:</label>
+                            012
+                        </div>
+
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>

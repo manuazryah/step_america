@@ -33,6 +33,8 @@ use yii\helpers\Html;
                     <?= $step8->description ?>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>

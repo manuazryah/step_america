@@ -32,6 +32,32 @@ use yii\helpers\Html;
                 <div class="step-description">
                     <?= $step5->description ?>
                 </div>
+
+                <div class="step-projects">
+
+                    <h4 class="project-title">About <?= $project->project_title ?> Development Project</h4>
+                    <img src="<?= Yii::$app->homeUrl ?>uploads/step4/<?= $project->id ?>.<?= $project->image ?>">
+                    <a class="btn btn-primary select-project" href="#">MICROSITE</a>
+                </div>
+
+                <div class="project-signin">
+                    <?php foreach ($project_documents as $documents) { ?>
+                        <div class="project-doc">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="skyrise">
+                                    <h5><strong><?= $documents->title ?></strong></h5>
+                                    <p><?= $documents->author ?><br>
+                                        Prepared on: <?= date('F d,Y', strtotime($documents->date)) ?></p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="view-my viewedoviewedo">
+                                    <a class="btn viewed" target="_blank" href="<?= Yii::$app->homeUrl ?>uploads/step5/<?= $documents->id ?>/<?= $documents->doc ?>">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
             </div>
         </div>
     </div>

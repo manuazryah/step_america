@@ -40,14 +40,14 @@ use yii\helpers\Html;
                                     <h5><strong><?= $project_sign->title ?></strong></h5>
                                     <p><?= $project_sign->author ?><br>
                                         Prepared on: <?= date('F d,Y', strtotime($project_sign->date)) ?></p>
-                                    <?php if (isset($project_sign->upload_doc)) { ?>
-                                        <a href="<?= Yii::$app->homeUrl ?>uploads/step6/<?= $project_sign->id ?>/<?= $project_sign->upload_doc ?>" target="_blank"><?= $project_sign->upload_doc ?></a>
-                                    <?php } ?>
+                                    <?php // if (isset($project_sign->upload_doc)) { ?>
+                                        <!--<a href="<?= Yii::$app->homeUrl ?>uploads/step6/<?= $project_sign->id ?>/<?= $project_sign->upload_doc ?>" target="_blank"><?= $project_sign->upload_doc ?></a>-->
+                                    <?php // } ?>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-12">
                                 <div class="view-my viewedoviewedo">
-                                    <a class="btn viewed">Viewed</a>
+                                    <a target="_blank" href="<?= Yii::$app->homeUrl ?>uploads/step6/<?= $project_sign->id ?>/<?= $project_sign->upload_doc ?>" class="btn viewed">Viewed</a>
                                 </div>
                             </div>
                         </div>

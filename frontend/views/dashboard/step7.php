@@ -3,6 +3,7 @@
 
 use common\components\StepsWidget;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 ?>
 <!--<h1>/dashboard/index</h1>-->
 
@@ -135,36 +136,56 @@ use yii\helpers\Html;
                 </div>
                 <div class="six-portal">
                     <h5>C. WIRING DEPOSIT DETAILS:</h5>
+                    <?php $form = ActiveForm::begin(); ?>
+
+                    <div class="form-group portal-form">
+                        <?=
+                        $form->field($user_steps, 'deposited_on', [
+                            'template' => "{label}\n{input}\n{hint}\n{error}",
+                            'labelOptions' => ['class' => 'portal-text']
+                        ])->textInput(['maxlength' => true])
+                        ?>
+
+                    </div>
+                    <div class="form-group portal-form">
+                        <?=
+                        $form->field($user_steps, 'deposited_amount', [
+                            'template' => "{label}\n{input}\n{hint}\n{error}",
+                            'labelOptions' => ['class' => 'portal-text']
+                        ])->textInput(['maxlength' => true])
+                        ?>
+
+                    </div>
+
+
                     <div class="form-group portal-form">
 
-                        <label class="portal-text">Deposited on:</label><br>
-                        <input type="text" name="deposited_on" class="form-control" id="deposited_on" value="">
+                        <?=
+                        $form->field($user_steps, 'currency', [
+                            'template' => "<div class='col-md-6 col-sm-6 col-xs-12 no-padding-left'>{label}\n{input}</div>\n{hint}\n{error}",
+                            'labelOptions' => ['class' => 'portal-text']
+                        ])->textInput(['maxlength' => true])
+                        ?>
+
+                        <?=
+                        $form->field($user_steps, 'confirmation_ref_id', [
+                            'template' => "<div class='col-md-6 col-sm-6 col-xs-12 no-padding-left'>{label}\n{input}</div>\n{hint}\n{error}",
+                            'labelOptions' => ['class' => 'portal-text']
+                        ])->textInput(['maxlength' => true])
+                        ?>
                         <br>
 
 
                     </div>
-                    <div class="form-group portal-form">
 
-                        <label class="portal-text">Deposited Amount:</label><br>
-                        <input type="text" name="deposited_amount" class="form-control" id="deposited_amount" value="">
-                        <br>
-
-                    </div>
 
 
                     <div class="form-group portal-form">
                         <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left">
-                            <label class="portal-text">Currency:</label><br>
-                            <input type="text" name="currency" class="form-control" id="currency" value="">
-                            <br>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 no-padding-right">
-
-                            <label for="inputPassword" class="portal-text">Confirmation Ref ID</label><br>
-                            <input type="text" name="confirmation_ref" class="form-control" id="confirmation_ref" value="">
-                            <br>
+                            <input type="submit" name="questionnaire_submit" class="btn btn-primary" style="margin-top: 10px">
                         </div>
                     </div>
+                    <?php ActiveForm::end(); ?>
                 </div>
             </div>
         </div>
