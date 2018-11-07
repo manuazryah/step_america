@@ -47,24 +47,23 @@ use yii\grid\GridView;
 
                                                                 <input type="radio" id="radio2" name="employee_type" value="4"/>
                                                                 <label for="radio2">Self Employee</label>
-
                                                         </div>
                                                 </div>
 
                                                 <div class="col-sm-12 col-xs-12">
-                                                        <input type="checkbox" name="loan" value="5"> Taking a secured loan
+                                                    <input type="checkbox" name="loan" value="5" class="step3-question"> Taking a secured loan
                                                 </div>
 
                                                 <div class="col-sm-12 col-xs-12">
-                                                        <input type="checkbox" name="sale_of_property" value="6"> Sale of property
+                                                        <input type="checkbox" name="sale_of_property" value="6" class="step3-question"> Sale of property
                                                 </div>
 
                                                 <div class="col-sm-12 col-xs-12">
-                                                        <input type="checkbox" name="gufts" value="7"> Gifts
+                                                        <input type="checkbox" name="gifts" value="7" class="step3-question"> Gifts
                                                 </div>
 
                                                 <div class="col-sm-12 col-xs-12">
-                                                        <input type="submit" name="questionnaire_submit" class="btn btn-primary">
+                                                        <input type="submit" name="questionnaire_submit" class="btn btn-primary step3-question">
                                                 </div>
                                         </div>
                                         <?php ActiveForm::end(); ?>

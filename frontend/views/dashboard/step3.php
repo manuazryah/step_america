@@ -26,7 +26,7 @@ use yii\grid\GridView;
                                 <div class="step-heading">
                                         <h5 class="step-title">Step 3: <?= $step3->page_title ?></h5>
                                         <ul>
-                                                <li><i class="fa fa-check"></i> Complete</li>
+                                                <?php if (isset($user_step_details->step_3_completed) && $user_step_details->step_3_completed == 1) { ?><li><i class="fa fa-check"></i> Complete</li><?php } ?>
                                                 <?php if (isset($user_step_details->step_3_complete_date) && $user_step_details->step_3_complete_date != '') { ?><li>Date: <?= date('M d , Y', strtotime($user_step_details->step_3_complete_date)) ?></li><?php } ?>
                                         </ul>
                                 </div>

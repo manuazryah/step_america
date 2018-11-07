@@ -23,7 +23,7 @@ use yii\helpers\Html;
                                 <div class="step-heading">
                                         <h5 class="step-title">Step 1: <?= $step1->page_title ?></h5>
                                         <ul>
-                                                <li><i class="fa fa-check"></i> Complete</li>
+                                                <?php if (isset($user_step_details->step_1_completed) && $user_step_details->step_1_completed == 1) { ?><li><i class="fa fa-check"></i> Complete</li><?php } ?>
                                                 <?php if (isset($user_step_details->step_1_complete_date) && $user_step_details->step_1_complete_date != '') { ?><li>Date: <?= date('M d , Y', strtotime($user_step_details->step_1_complete_date)) ?></li><?php } ?>
                                         </ul>
                                 </div>

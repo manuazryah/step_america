@@ -34,32 +34,32 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="tabs">
                 <div class="tab-button-outer">
                     <ul id="tab-button">
-                        <li><a href="#tab01">Step 1</a></li>
-                        <li><a href="#tab02">Step 2</a></li>
-                        <li><a href="#tab03">Step 3</a></li>
-                        <li><a href="#tab04">Step 4</a></li>
-                        <li><a href="#tab05">Step 5</a></li>
-                        <li><a href="#tab06">Step 6</a></li>
-                        <li><a href="#tab07">Step 7</a></li>
-                        <li><a href="#tab08">Step 8</a></li>
-                        <li><a href="#tab09">Step 9</a></li>
-                        <li><a href="#tab10">Step 10</a></li>
-                        <li><a href="#tab11">Step 11</a></li>
+                        <li><a href="#tab01" id="step_1">Step 1</a></li>
+                        <li><a href="#tab02" id="step_2">Step 2</a></li>
+                        <li><a href="#tab03" id="step_3">Step 3</a></li>
+                        <li><a href="#tab04" id="step_4">Step 4</a></li>
+                        <li><a href="#tab05" id="step_5">Step 5</a></li>
+                        <li><a href="#tab06" id="step_6">Step 6</a></li>
+                        <li><a href="#tab07" id="step_7">Step 7</a></li>
+                        <li><a href="#tab08" id="step_8">Step 8</a></li>
+                        <li><a href="#tab09" id="step_9">Step 9</a></li>
+                        <li><a href="#tab10" id="step_10">Step 10</a></li>
+                        <li><a href="#tab11" id="step_11">Step 11</a></li>
                     </ul>
                 </div>
                 <div class="tab-select-outer">
                     <select id="tab-select">
-                        <option value="#tab01">Step 1</option>
-                        <option value="#tab02">Step 2</option>
-                        <option value="#tab03">Step 3</option>
-                        <option value="#tab04">Step 4</option>
-                        <option value="#tab05">Step 5</option>
-                        <option value="#tab06">Step 6</option>
-                        <option value="#tab07">Step 7</option>
-                        <option value="#tab08">Step 8</option>
-                        <option value="#tab09">Step 9</option>
-                        <option value="#tab10">Step 10</option>
-                        <option value="#tab11">Step 11</option>
+                        <option value="#tab01" id="opt_1">Step 1</option>
+                        <option value="#tab02" id="opt_2">Step 2</option>
+                        <option value="#tab03" id="opt_3">Step 3</option>
+                        <option value="#tab04" id="opt_4">Step 4</option>
+                        <option value="#tab05" id="opt_5">Step 5</option>
+                        <option value="#tab06" id="opt_6">Step 6</option>
+                        <option value="#tab07" id="opt_7">Step 7</option>
+                        <option value="#tab08" id="opt_8">Step 8</option>
+                        <option value="#tab09" id="opt_9">Step 9</option>
+                        <option value="#tab10" id="opt_10">Step 10</option>
+                        <option value="#tab11" id="opt_11">Step 11</option>
                     </select>
                 </div>
 
@@ -517,7 +517,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php ActiveForm::end(); ?>
                 </div>
 
-
+                <!-----------------------------------------------------Step 02------------------------------------------------>
                 <div id="tab02" class="tab-contents">
                     <div class="tab-pane fade active in pad-25-0" id="step2">
                         <?=
@@ -528,6 +528,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         ?>
                     </div>
                 </div>
+                <!-----------------------------------------------------Step 02 ends------------------------------------------------>   
+
+                <!-----------------------------------------------------Step 03------------------------------------------------>
+
                 <div id="tab03" class="tab-contents">
                     <div class="panel-group" id="accordion">
 
@@ -600,8 +604,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php } ?>
 
                     </div>
-                    <?php if (isset($user_steps_status->step_3_completed) && $user_steps_status->step_3_completed != 1) { ?><input type="submit" class="btn btn-primary approve_all_steps" id="3" value="Approve Step 3"><?php } ?>
+                    <?php if (isset($user_steps_status->step_3_completed) && $user_steps_status->step_3_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep2" value="step3" id="3" > <label> Approve this step</label><?php } ?>
                 </div>
+
+                <!-----------------------------------------------------Step 03 ends------------------------------------------------>
+
+                <!-----------------------------------------------------Step 04----------------------------------------------------->
                 <div id="tab04" class="tab-contents">
                     <div class="tab-pane fade active in pad-25-0" id="step4">
                         <div class="panel-body">
@@ -622,10 +630,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </tbody>
                             </table>
 
-                            <?php if (isset($user_steps_status->step_4_completed) && $user_steps_status->step_4_completed != 1) { ?><input type="submit" class="btn btn-primary approve_all_steps" id="4" value="Approve this step"><?php } ?>
+                            <?php if (isset($user_steps_status->step_4_completed) && $user_steps_status->step_4_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep4" value="step4" id="4" > <label> Approve this step</label><?php } ?>
                         </div>
                     </div>
                 </div>
+
+                <!-----------------------------------------------------Step 04 ends------------------------------------------------->
+
+
+                <!-----------------------------------------------------Step 05------------------------------------------------>
+
                 <div id="tab05" class="tab-contents">
                     <div class="tab-pane fade active in pad-25-0" id="step5">
 
@@ -642,9 +656,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             <tbody>
                             </tbody>
                         </table>
-                        <?php if (isset($user_steps_status->step_5_completed) && $user_steps_status->step_5_completed != 1) { ?><input type="submit" class="btn btn-primary approve_all_steps" id="5" value="Approve this step"><?php } ?>
+                       <?php if (isset($user_steps_status->step_5_completed) && $user_steps_status->step_5_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep5" value="step5" id="5" > <label> Approve this step</label><?php } ?> 
                     </div>
                 </div>
+
+                <!-----------------------------------------------------Step 05 ends------------------------------------------------>
+
+                <!-----------------------------------------------------Step 06------------------------------------------------>
                 <div id="tab06" class="tab-contents">
                     <div class="tab-pane fade active in pad-25-0" id="step6">
                         <div class="panel-body">
@@ -678,11 +696,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tr>
                                 </tbody>
                             </table>
-                            <input type="checkbox" name="approvestep1" value="step5" id="approve_step1">
-                            <label>Approve this step</label>
+                            <?php if (isset($user_steps_status->step_6_completed) && $user_steps_status->step_6_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep6" value="step6" id="6" > <label> Approve this step</label><?php } ?>
                         </div>
                     </div>
                 </div>
+
+                <!-----------------------------------------------------Step 06 ends------------------------------------------------>
+
+                <!-----------------------------------------------------Step 07------------------------------------------------>
                 <div id="tab07" class="tab-contents">
                     <div class="tab-pane fade active in pad-25-0" id="step7">
                         <div class="panel-body">
@@ -713,11 +734,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tbody>
                                 </table>
                             </div>
-                            <input type="checkbox" name="approvestep1" value="step6" id="approve_step1">
-                            <label>Approve this step</label>
+                            <?php if (isset($user_steps_status->step_7_completed) && $user_steps_status->step_7_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep7" value="step7" id="7" > <label> Approve this step</label><?php } ?>
                         </div>
                     </div>
                 </div>
+
+                <!-----------------------------------------------------Step 07 ends------------------------------------------------>
+
+
+                <!-----------------------------------------------------Step 08------------------------------------------------>
                 <div id="tab08" class="tab-contents">
                     <div class="tab-pane active in pad-25-0" id="step8">
                         <div class="panel panel-default">
@@ -733,23 +758,25 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                     <div id="collapseOnea" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                         <div class="panel-body">
-                                            <form id="step7sub_form" method="post" enctype="multipart/form-data" action="http://www.stepamerica.com/portal/index.php/admin/admin/upload_image_scan">
+                                            <?php $form2 = ActiveForm::begin([]); ?>
+                                            <div class="form-group">
+                                                <?= $form2->field($step8_data, 'user_id')->hiddenInput(['value' => $id])->label(FALSE) ?>
 
-                                                <input type="hidden" name="docname" value="bank wire confirmation">
+                                                <?php if (isset($step8_data->bank_wire_confirmation_scan) && $step8_data->bank_wire_confirmation_scan != '') { ?>
+                                                    <a href="<?= Yii::$app->homeUrl ?>../uploads/step8/<?= $id ?>/admin/<?= $step8_data->bank_wire_confirmation_scan ?>" target="_blank" class="links"> <?= $step8_data->bank_wire_confirmation_scan ?></a>
+                                                <?php } ?>
+                                                <?= $form2->field($step8_data, 'bank_wire_confirmation_scan')->fileInput() ?>
+
+                                                <?php if (isset($step8_data->bank_statment_log) && $step8_data->bank_statment_log != '') { ?>
+                                                    <a href="<?= Yii::$app->homeUrl ?>../uploads/step8/<?= $id ?>/admin/<?= $step8_data->bank_statment_log ?>" target="_blank" class="links"> <?= $step8_data->bank_statment_log ?></a>
+                                                <?php } ?>
+                                                <?= $form2->field($step8_data, 'bank_statment_log')->fileInput() ?>
+
                                                 <div class="form-group">
-                                                    <label>Please Select  File for Bank Wire Confirmation Scan</label>
-                                                    <a href="http://localhost/step/upload/59f95aa71fa7d-sample.pdf" target="_blank" class="links"> http://localhost/step/upload/59f95aa71fa7d-sample.pdf</a>
-                                                    <input type="file" name="doc[]" id="step7sub_file" required="required">
-                                                    <a href="http://localhost/step/upload/59f95aa721a79-sample.pdf" target="_blank" class="links"> http://localhost/step/upload/59f95aa721a79-sample.pdf</a>
-
-                                                    <label>Please Select  File Bank Statment Log</label>
-                                                    <input type="file" name="doc[]" id="step7sub_file" required="required">
-                                                    <div class="form-group">
-                                                        <br>
-                                                        <button type="submit" class="btn btn-primary">Save</button>
-                                                    </div>
-
-                                                </div></form>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </div>
+                                            <?php ActiveForm::end(); ?>
                                         </div>
                                     </div><h4></h4>
                                     <div class="panel panel-default">
@@ -797,19 +824,61 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 </div>
 
-                                <input type="checkbox" name="approvestep1" value="step7" id="approve_step1">
+                                <?php if (isset($user_steps_status->step_8_completed) && $user_steps_status->step_8_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep8" value="step8" id="8" > <label> Approve this step</label><?php } ?>
 
 
-                                <label>Approve this step</label>
+
                             </div>
                             <!-- .panel-body -->
                         </div>
                     </div>
                 </div>
+
+                <!-----------------------------------------------------Step 08 ends------------------------------------------------>
+
+                <!-----------------------------------------------------Step 09------------------------------------------------>
                 <div id="tab09" class="tab-contents">
-                    <h2>Tab 9</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quos aliquam consequuntur, esse provident impedit minima porro! Laudantium laboriosam culpa quis fugiat ea, architecto velit ab, deserunt rem quibusdam voluptatum.</p>
+                    <?php $form1 = ActiveForm::begin([]); ?>
+                    <div class="form-group">
+                        <h4>A: Debit Account Holder</h4>
+
+                        <?= $form1->field($step9_data, 'user_id')->hiddenInput(['value' => $id])->label(FALSE) ?>
+                        <?= $form1->field($step9_data, 'bank_name')->textInput() ?>
+                        <?= $form1->field($step9_data, 'bank_institution')->textInput() ?>
+                        <?= $form1->field($step9_data, 'transit')->textInput() ?>
+                        <?= $form1->field($step9_data, 'swift_code')->textInput() ?>
+                        <?= $form1->field($step9_data, 'bank_account')->textInput() ?>
+                        <?= $form1->field($step9_data, 'bank_address')->textInput() ?>
+
+                        <h4>B: Beneficiary Account Holder</h4>
+
+                        <?= $form1->field($step9_data, 'company_name')->textInput() ?>
+                        <?= $form1->field($step9_data, 'beneficiary_bank_name')->textInput() ?>
+                        <?= $form1->field($step9_data, 'beneficiary_bank_institution')->textInput() ?>
+                        <?= $form1->field($step9_data, 'beneficiary_transit')->textInput() ?>
+                        <?= $form1->field($step9_data, 'beneficiary_swift_code')->textInput() ?>
+                        <?= $form1->field($step9_data, 'beneficiary_bank_account')->textInput() ?>
+                        <?= $form1->field($step9_data, 'beneficiary_bank_address')->textInput() ?>
+
+                        <h4>C: Wire Transfer Amount</h4>
+
+                        <?= $form1->field($step9_data, 'invoice')->textInput() ?>
+                        <?= $form1->field($step9_data, 'currency')->textInput() ?>
+                        <?= $form1->field($step9_data, 'exchange_rate')->textInput() ?>
+                        <?= $form1->field($step9_data, 'transfer_amount')->textInput() ?>
+                        <?= $form1->field($step9_data, 'reference_number')->textInput() ?>
+                        <?= $form1->field($step9_data, 'invoice_file')->fileInput() ?>
+
+                        <?= Html::submitButton('Submit', ['class' => 'btn btn-success','style'=>'float:right']) ?>
+                    </div>
+
+                    <?php if (isset($user_steps_status->step_9_completed) && $user_steps_status->step_9_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep9" value="step9" id="9" > <label> Approve this step</label><?php } ?>
+                    <?php ActiveForm::end(); ?>
                 </div>
+
+                <!-----------------------------------------------------Step 09 ends------------------------------------------------>
+
+                <!-----------------------------------------------------Step 10------------------------------------------------>
                 <div id="tab10" class="tab-contents">
                     <div class="tab-pane fade active in" id="step10">
                         <div class="panel-body">
@@ -827,11 +896,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tr>
                                 </tbody>
                             </table>
-                            <input type="checkbox" name="approvestep1" value="step9" id="approve_step1">
-                            <label>Approve this step</label>
+                            <?php if (isset($user_steps_status->step_3_completed) && $user_steps_status->step_3_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep10" value="step3" id="10" > <label> Approve this step</label><?php } ?>
                         </div>
                     </div>
                 </div>
+
+                <!-----------------------------------------------------Step 10 ends------------------------------------------------>
+
+                <!-----------------------------------------------------Step 11------------------------------------------------>      
                 <div id="tab11" class="tab-contents">
                     <div class="tab-pane fade active in" id="step11">
                         <h4></h4>
@@ -848,6 +920,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <label>Approve this step</label>
                     </div>
                 </div>
+
+                <!-----------------------------------------------------Step 11------------------------------------------------>
             </div>
         </div>
         <!-- /.box -->
@@ -876,7 +950,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 $tabSelect.on('change', function () {
                     var target = $(this).val(),
                             targetSelectNum = $(this).prop('selectedIndex');
-
                     $tabButtonItem.removeClass(activeClass);
                     $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
                     $tabContents.hide();
@@ -938,6 +1011,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 if (data == 1) {
                                     $('#approve_step1_retainer').attr('disabled', true);
                                     $('#approve_step1_dhp').attr('disabled', true);
+                                    $('#step_2').trigger('click');
                                     alert('Step 1 approved');
                                 }
                             }
@@ -976,7 +1050,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 $('.approve_all_steps').click(function () {
                     var user = $('#user_id').val();
                     var step = $(this).attr('id');
-
                     $.ajax({
                         type: 'POST',
                         cache: false,
@@ -984,6 +1057,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         url: '<?= Yii::$app->homeUrl ?>user/users/steps-approve-status',
                         success: function (data) {
                             if (data == 1) {
+                                var next = parseInt(step) + 1;
+                                $('#step_' + next).trigger('click');
                                 alert('Step ' + step + ' approved');
                             }
                         }

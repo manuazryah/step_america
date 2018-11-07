@@ -532,7 +532,7 @@ header{
 }
 .step-content{
     background-color: #fff;
-    min-height: 400px;
+    min-height: 650px;
 }
 .step-content .step-title{
     color: #1a485b;
@@ -1015,3 +1015,46 @@ input[type="radio"]:checked + label:after {
     width: 50%;
     margin: 0 auto;
 }
+.step2 .on-myA1{
+    margin-left: 12px;
+}
+.step-8-uploaded{
+    background: #1da1c5;
+    padding: 12px 38px;
+    margin: 12px 39px;
+    color: #fff !important;
+    width: 100%;
+    text-align: center;
+    float: left;
+    max-width: 420px;
+    border-radius: 10px;
+}
+.step-8-uploaded-download{
+    background: #2c6279;
+    padding: 12px 38px;
+    margin: 12px 39px;
+    color: #fff !important;
+    width: 100%;
+    text-align: center;
+    float: left;
+    max-width: 420px;
+    border-radius: 10px;
+}
+.step-8-date{
+    float: left;
+    width: 100%;
+    margin-top: 13px;
+    font-size: 15px;
+}
+.step-8-date .modified-date{
+    text-align: center;
+    width: 100%;
+    float: left;
+    max-width: 420px;
+    color: #1da1c5;
+    padding: 0px;
+}
+.step3-question{
+    margin-left: 17px !important;
+}
+

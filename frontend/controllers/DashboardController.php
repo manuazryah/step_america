@@ -41,8 +41,10 @@ class DashboardController extends \yii\web\Controller {
     }
 
     public function actionStep2() {
+        $step2_data = \common\models\Step2AccountDetails::find()->where(['user_id' => \Yii::$app->user->identity->id])->one();
+        $user_step_details = \common\models\UserSteps::find()->where(['user_id' => \Yii::$app->user->identity->id])->one();
         $step2 = Step2::findOne(1);
-        return $this->render('step2', ['step2' => $step2]);
+        return $this->render('step2', ['step2' => $step2, 'step2_data' => $step2_data, 'user_step_details' => $user_step_details]);
     }
 
     public function actionStep3($id = null) {
@@ -92,8 +94,8 @@ class DashboardController extends \yii\web\Controller {
             array_push($uploads, $POST['loan']);
         if (isset($POST['sale_of_property']) && $POST['sale_of_property'] != '')
             array_push($uploads, $POST['sale_of_property']);
-        if (isset($POST['gufts']) && $POST['gufts'] != '')
-            array_push($uploads, $POST['gufts']);
+        if (isset($POST['gifts']) && $POST['gifts'] != '')
+            array_push($uploads, $POST['gifts']);
 
         foreach ($uploads as $upload) {
 
@@ -169,6 +171,10 @@ class DashboardController extends \yii\web\Controller {
         return $this->render('step6', ['step6' => $step6, 'project_signing' => $project_signing]);
     }
 
+    /*
+     * Step 7
+     */
+
     public function actionStep7() {
         $step7 = Step7::findOne(1);
         $user_steps = \common\models\UserSteps::find()->where(['user_id' => \Yii::$app->user->identity->id])->one();
@@ -184,15 +190,63 @@ class DashboardController extends \yii\web\Controller {
         return $this->render('step7', ['step7' => $step7, 'user_steps' => $user_steps]);
     }
 
+    /*
+     * Step 8
+     */
+
     public function actionStep8() {
+
         $step8 = Step8::findOne(1);
-        return $this->render('step8', ['step8' => $step8]);
+        $user_steps = \common\models\UserSteps::find()->where(['user_id' => \Yii::$app->user->identity->id])->one();
+        $step8_data = \common\models\Step8Data::find()->where(['user_id' => \Yii::$app->user->identity->id])->one();
+        if (empty($step8_data)) {
+            $step8_data = new \common\models\Step8Data();
+        }
+        if (isset($_POST['bank_wire_confirmation_scan'])) {
+            $user_bank_wire_confirmation_scan = UploadedFile::getInstance($step8_data, 'user_bank_wire_confirmation_scan');
+            $this->UploadStep8($step8_data, $user_bank_wire_confirmation_scan, 'user_bank_wire_confirmation_scan');
+        }
+        if (isset($_POST['user_bank_statment_log'])) {
+            $user_bank_statment_log = UploadedFile::getInstance($step8_data, 'user_bank_statment_log');
+            $this->UploadStep8($step8_data, $user_bank_statment_log, 'user_bank_statment_log');
+        }
+        return $this->render('step8', ['step8' => $step8, 'step8_data' => $step8_data, 'user_steps' => $user_steps]);
     }
+
+    /*
+     * Upload files to step 8
+     */
+
+    public function UploadStep8($step8_data, $uploaded_file, $field) {
+        $path = Yii::$app->basePath . '/../uploads/step8/' . Yii::$app->user->identity->id . '/user/';
+        if (!file_exists($path)) {
+            \yii\helpers\FileHelper::createDirectory($path, $mode = 0775, $recursive = true);
+        }
+        if (!empty($uploaded_file)) {
+            $step8_data->$field = $uploaded_file->name;
+            $file = $path . $step8_data->$field;
+            if (file_exists($file)) {
+                unlink($file);
+            }
+            $uploaded_file->saveAs($path . $step8_data->$field);
+        }
+        $step8_data->user_id= \Yii::$app->user->identity->id;
+        $step8_data->save();
+    }
+
+    /*
+     * Step 9
+     */
 
     public function actionStep9() {
         $step9 = Step9::findOne(1);
-        return $this->render('step9', ['step9' => $step9]);
+        $step9_data = \common\models\Step9Data::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
+        return $this->render('step9', ['step9' => $step9, 'step9_data' => $step9_data]);
     }
+
+    /*
+     * Step 10
+     */
 
     public function actionStep10() {
         $step10 = Step10::findOne(1);

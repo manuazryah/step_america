@@ -8,7 +8,6 @@ use yii\widgets\ActiveForm;
 <!--<h1>/dashboard/index</h1>-->
 
 
-
 <div class="page-header">
     <h3>Master Checklist</h3>
 </div>
@@ -24,8 +23,8 @@ use yii\widgets\ActiveForm;
                 <div class="step-heading">
                     <h5 class="step-title">Step 7: <?= $step7->page_title ?></h5>
                     <ul>
-                        <li><i class="fa fa-check"></i> Complete</li>
-                        <li>Date: Feb 22, 2018</li>
+                        <?php if (isset($user_step_details->step_7_completed) && $user_step_details->step_7_completed == 1) { ?><li><i class="fa fa-check"></i> Complete</li><?php } ?>
+                       <?php if (isset($user_step_details->step_7_complete_date) && $user_step_details->step_7_complete_date != '') { ?><li>Date: <?= date('M d , Y', strtotime($user_step_details->step_7_complete_date)) ?></li><?php } ?>
                     </ul>
                 </div>
             </div>
@@ -33,7 +32,7 @@ use yii\widgets\ActiveForm;
                 <div class="step-description">
                     <?= $step7->description ?>
                 </div>
-                <div class="six-portal no-pad-btm">
+                <div class="step-info-box">
                     <h5>A. IN-BOUND DEPOSIT WIRING INFORMATION:</h5>
                     <form name="transfer_of_capital" id="transfer_of_capital">
                         <input type="hidden" name="user_id" value="1">
@@ -57,7 +56,8 @@ use yii\widgets\ActiveForm;
                         </div>
                     </form>
                 </div>
-                <div class="six-portal no-pad-btm">
+                
+                <div class="step-info-box">
                     <h5>B. BENEFICARY BANK ACCOUNT INFORMATION:</h5>
                     <div class="form-group portal-form">
 
@@ -134,7 +134,8 @@ use yii\widgets\ActiveForm;
                         <?= $step7->ABA ?>
                     </div>
                 </div>
-                <div class="six-portal">
+                
+                <div class="step-info-box">
                     <h5>C. WIRING DEPOSIT DETAILS:</h5>
                     <?php $form = ActiveForm::begin(); ?>
 
@@ -156,8 +157,6 @@ use yii\widgets\ActiveForm;
                         ?>
 
                     </div>
-
-
                     <div class="form-group portal-form">
 
                         <?=
@@ -174,17 +173,9 @@ use yii\widgets\ActiveForm;
                         ])->textInput(['maxlength' => true])
                         ?>
                         <br>
-
-
+                           <input type="submit" name="questionnaire_submit" class="btn btn-primary" style="margin-top: 10px">
                     </div>
-
-
-
-                    <div class="form-group portal-form">
-                        <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left">
-                            <input type="submit" name="questionnaire_submit" class="btn btn-primary" style="margin-top: 10px">
-                        </div>
-                    </div>
+                    
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>

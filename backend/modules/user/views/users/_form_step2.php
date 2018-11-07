@@ -109,11 +109,11 @@ use yii\widgets\ActiveForm;
     <?= $form->field($step2_model, 'user_id')->hiddenInput()->label(FALSE) ?>
 
     <div class="form-group action-btn-right">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success','style'=>'float:right']) ?>
     </div>
 
 
     <?php ActiveForm::end(); ?>
-    <input type="checkbox" name="approvestep1" value="step2" id="approve_step1" checked="">
+    <input type="checkbox" class="approve_all_steps" name="approvestep2" value="step2" id="2" >
     <label>Approve this step</label>
 </div>
