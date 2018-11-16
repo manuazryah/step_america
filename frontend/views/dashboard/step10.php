@@ -32,7 +32,49 @@ use yii\helpers\Html;
                 <div class="step-description">
                     <?= $step10->description ?>
                 </div>
+                <div>
+                    <a class="step-8-uploaded-download" href="<?= Yii::$app->homeUrl ?>user/user/biographical">VIEW APPLICATION DRAFT</a>
+                </div>
+                <div class="clearfix"></div>
+                <br>
+                <br>
+                <br>
+                <?php if ($user_steps->acknowledgement != 1) { ?>
+                    <div class="step-10-ack-section">
+                        <label><input type="checkbox" class="step10-acknowledgement" id="step10-acknowledgement"></label> 
+                        <div class="dec-text">Yes. I, <?= Yii::$app->user->identity->name ?> have read final draft of the application to the fullest extent of my understanding of explanations and detailing of my project investments. I, James Smith will hold liability of any misinterpretations pertaining to the result of this filing. </div>
+                        <a class="step-10-ack-btn">I ACKNOWLEDGE</a>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('.step-10-ack-btn').click(function (e) {
+            e.preventDefault();
+            if ($("#step10-acknowledgement").prop('checked') == true) {
+                var flag = 1;
+            } else {
+                var flag = 0;
+            }
+            if (flag == 1) {
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: '<?= Yii::$app->homeUrl ?>dashboard/step10-acknowledgement',
+                    success: function (data) {
+                        alert('Acknowledgement submitted successfully');
+                        location.reload();
+                    }
+                });
+            } else {
+                alert('Please accept the acknowledgement');
+            }
+        });
+    });
+</script>

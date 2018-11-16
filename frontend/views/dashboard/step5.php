@@ -37,7 +37,7 @@ use yii\helpers\Html;
 
                     <h4 class="project-title">About <?= $project->project_title ?> Development Project</h4>
                     <img src="<?= Yii::$app->homeUrl ?>uploads/step4/<?= $project->id ?>.<?= $project->image ?>">
-                    <a class="btn btn-primary select-project" href="#">MICROSITE</a>
+                    <a class="btn btn-primary select-project" href="<?= $project->microsite_page ?>" target="_blank">MICROSITE</a>
                 </div>
 
                 <div class="project-signin">
@@ -50,15 +50,75 @@ use yii\helpers\Html;
                                         Prepared on: <?= date('F d,Y', strtotime($documents->date)) ?></p>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="col-md-3 col-sm-3 col-xs-12 ">
                                 <div class="view-my viewedoviewedo">
-                                    <a class="btn viewed" target="_blank" href="<?= Yii::$app->homeUrl ?>uploads/step5/<?= $documents->id ?>/<?= $documents->doc ?>">View</a>
+                                    <a class="btn viewed viewed-project" id="<?= $documents->id ?>" target="_blank" href="<?= Yii::$app->homeUrl ?>uploads/step5/<?= $documents->id ?>/<?= $documents->doc ?>">View</a>
                                 </div>
                             </div>
+
+                            <div id="demo_<?= $documents->id ?>" class="test"  style="display:none">
+                                <i class="fa fa-check" aria-hidden="true"></i> 
+                                <label><input type="checkbox" class="step5-project-acknowledgement" value="<?= $documents->id ?>"></label> <div class="dec-text">Yes. I,  have read ALL pages of the above document to the fullest extent of my understanding of explanations and detailing of my project investment I, <?= Yii::$app->user->identity->name ?> will hold the liability of misinterpretations pertaining to the document above upon proceeding to the next step of <strong>'5. Project Documents Review '.</strong> </div>
+                            </div>
+
                         </div>
                     <?php } ?>
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .test {
+        padding: 24px 10px 12px 12px;
+        text-align: left;
+        font-size: 14px;
+        float: left;
+        width: 100%;
+        height: auto !important;
+        background-color: #EBEFEF !important;
+        margin-bottom: 5px;
+        border-left: 4px solid #2c6278;
+        position: relative;
+        top: -9px;
+        left: -4px;
+        line-height: 25px;
+    }
+    .fa.fa-check {
+        background-color: #26afb3;
+        border-radius: 22px;
+        padding: 4px 4px;
+        color: #ffffff;
+        display: none;
+    }
+    .dec-text {
+        width: 95%;
+        float: right;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+        $('.viewed-project').click(function () {
+            var id = $(this).attr('id');
+            $("#demo_" + id).css({"display": "block"});
+        });
+
+        $('.step5-project-acknowledgement').click(function () {
+            var step_document = $(this).val();
+            $.ajax({
+                                type: 'POST',
+                                cache: false,
+                                data: {step_document: step_document},
+                                url: '<?= Yii::$app->homeUrl ?>dashboard/step5-documents',
+                                success: function (data) {
+
+                                }
+                        });
+        });
+    });
+</script>

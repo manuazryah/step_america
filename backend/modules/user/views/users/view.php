@@ -524,6 +524,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $this->render('_form_step2', [
                             'model' => $model,
                             'step2_model' => $step2_model,
+                            'user_steps_status' => $user_steps_status,
                         ])
                         ?>
                     </div>
@@ -604,7 +605,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php } ?>
 
                     </div>
-                    <?php if (isset($user_steps_status->step_3_completed) && $user_steps_status->step_3_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep2" value="step3" id="3" > <label> Approve this step</label><?php } ?>
+                    <input type="checkbox" class="approve_all_steps" name="approvestep2" value="step3" id="3" <?php if (isset($user_steps_status->step_3_completed) && $user_steps_status->step_3_completed == 1) { ?> checked <?php } ?>> <label> Approve this step</label>
                 </div>
 
                 <!-----------------------------------------------------Step 03 ends------------------------------------------------>
@@ -630,7 +631,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </tbody>
                             </table>
 
-                            <?php if (isset($user_steps_status->step_4_completed) && $user_steps_status->step_4_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep4" value="step4" id="4" > <label> Approve this step</label><?php } ?>
+                            <input type="checkbox" class="approve_all_steps" name="approvestep4" value="step4" id="4" <?php if (isset($user_steps_status->step_4_completed) && $user_steps_status->step_4_completed == 1) { ?> checked <?php } ?>> <label> Approve this step</label>
                         </div>
                     </div>
                 </div>
@@ -639,12 +640,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                 <!-----------------------------------------------------Step 05------------------------------------------------>
-
                 <div id="tab05" class="tab-contents">
                     <div class="tab-pane fade active in pad-25-0" id="step5">
-
                         <table class="table">
-
                             <thead>
                                 <tr>
                                     <th>Serial No</th>
@@ -654,12 +652,25 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                $prjct_doc = 0;
+                                foreach ($sep5_user_projects as $sep5_projects) {
+                                    $prjct_doc_detail = common\models\Step5Form::findOne($sep5_projects->project);
+                                    $project_detail = \common\models\Projects::findOne($prjct_doc_detail->project);
+                                    $prjct_doc++;
+                                    ?>
+                                    <tr>
+                                        <td><?= $prjct_doc ?></td>
+                                        <td><?= $project_detail->project_title ?></td>
+                                        <td><a href="<?= Yii::$app->homeUrl ?>../uploads/step5/<?= $prjct_doc_detail->id ?>/<?= $prjct_doc_detail->doc ?>" target="_blank"><?= $prjct_doc_detail->doc ?></a></td>
+                                        <td><?= date('Y-m-d', strtotime($sep5_projects->date)) ?></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
-                       <?php if (isset($user_steps_status->step_5_completed) && $user_steps_status->step_5_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep5" value="step5" id="5" > <label> Approve this step</label><?php } ?> 
+                        <input type="checkbox" class="approve_all_steps" name="approvestep5" value="step5" id="5" <?php if (isset($user_steps_status->step_5_completed) && $user_steps_status->step_5_completed == 1) { ?>checked <?php } ?>> <label> Approve this step</label>
                     </div>
                 </div>
-
                 <!-----------------------------------------------------Step 05 ends------------------------------------------------>
 
                 <!-----------------------------------------------------Step 06------------------------------------------------>
@@ -696,7 +707,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tr>
                                 </tbody>
                             </table>
-                            <?php if (isset($user_steps_status->step_6_completed) && $user_steps_status->step_6_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep6" value="step6" id="6" > <label> Approve this step</label><?php } ?>
+                            <input type="checkbox" class="approve_all_steps" name="approvestep6" value="step6" id="6" <?php if (isset($user_steps_status->step_6_completed) && $user_steps_status->step_6_completed == 1) { ?>checked <?php } ?>> <label> Approve this step</label>
                         </div>
                     </div>
                 </div>
@@ -734,7 +745,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tbody>
                                 </table>
                             </div>
-                            <?php if (isset($user_steps_status->step_7_completed) && $user_steps_status->step_7_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep7" value="step7" id="7" > <label> Approve this step</label><?php } ?>
+                            <input type="checkbox" class="approve_all_steps" name="approvestep7" value="step7" id="7" <?php if (isset($user_steps_status->step_7_completed) && $user_steps_status->step_7_completed == 1) { ?> checked <?php } ?>> <label> Approve this step</label>
                         </div>
                     </div>
                 </div>
@@ -824,7 +835,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 </div>
 
-                                <?php if (isset($user_steps_status->step_8_completed) && $user_steps_status->step_8_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep8" value="step8" id="8" > <label> Approve this step</label><?php } ?>
+                                <input type="checkbox" class="approve_all_steps" name="approvestep8" value="step8" id="8" <?php if (isset($user_steps_status->step_8_completed) && $user_steps_status->step_8_completed == 1) { ?>checked <?php } ?>> <label> Approve this step</label>
 
 
 
@@ -869,10 +880,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $form1->field($step9_data, 'reference_number')->textInput() ?>
                         <?= $form1->field($step9_data, 'invoice_file')->fileInput() ?>
 
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-success','style'=>'float:right']) ?>
+                        <?= Html::submitButton('Submit', ['class' => 'btn btn-success', 'style' => 'float:right']) ?>
                     </div>
 
-                    <?php if (isset($user_steps_status->step_9_completed) && $user_steps_status->step_9_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep9" value="step9" id="9" > <label> Approve this step</label><?php } ?>
+                    <input type="checkbox" class="approve_all_steps" name="approvestep9" value="step9" id="9" <?php if (isset($user_steps_status->step_9_completed) && $user_steps_status->step_9_completed == 1) { ?> checked <?php } ?>> <label> Approve this step</label>
                     <?php ActiveForm::end(); ?>
                 </div>
 
@@ -891,12 +902,18 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Jhon</td>
-                                        <td>Acknowledgement Approved</td>
+                                        <td><?= $model->name ?></td>
+                                        <td><?php
+                                            if ($user_steps_status->acknowledgement == 1) {
+                                                echo 'Acknowledgement Approved';
+                                            } else {
+                                                echo 'Acknowledgement Pending';
+                                            }
+                                            ?></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <?php if (isset($user_steps_status->step_3_completed) && $user_steps_status->step_3_completed != 1) { ?><input type="checkbox" class="approve_all_steps" name="approvestep10" value="step3" id="10" > <label> Approve this step</label><?php } ?>
+                            <input type="checkbox" class="approve_all_steps" name="approvestep10" value="step3" id="10" <?php if (isset($user_steps_status->step_10_completed) && $user_steps_status->step_10_completed == 1) { ?> checked <?php } ?>> <label> Approve this step</label>
                         </div>
                     </div>
                 </div>
@@ -907,17 +924,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div id="tab11" class="tab-contents">
                     <div class="tab-pane fade active in" id="step11">
                         <h4></h4>
-                        <!--  <form action="" method="post"> -->
-                        <div class="form-group">
-                            <label>Application Number</label>
-                            <input class="form-control" id="AppNo" type="text" name="Apptn_No" placeholder="Enter Application Number" value="" required="required">
+                        <?php $form11 = ActiveForm::begin([]); ?>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <?= $form11->field($user_steps_status, 'application_number')->textInput() ?>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-success" name="application_no_submit" style="margin-top: 30px;">Save</button>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary" onclick="Step10Application('2')">Save</button>
-                        </div>
-                        <!--  </form> -->
-                        <input type="checkbox" name="approvestep1" value="step10" id="approve_step1">
-                        <label>Approve this step</label>
+                        <?php ActiveForm::end(); ?>
+                        <input type="checkbox" class="approve_all_steps" name="approvestep11" value="step3" id="11" <?php if (isset($user_steps_status->step_11_completed) && $user_steps_status->step_11_completed == 1) { ?> checked <?php } ?>> <label> Approve this step</label>
                     </div>
                 </div>
 
@@ -1050,16 +1067,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 $('.approve_all_steps').click(function () {
                     var user = $('#user_id').val();
                     var step = $(this).attr('id');
+
+                    if ($(this).prop('checked') == true) {
+                        var flag1 = 1;
+                    } else {
+                        var flag1 = 0;
+                    }
+
                     $.ajax({
                         type: 'POST',
                         cache: false,
-                        data: {user: user, step: step},
+                        data: {user: user, step: step, step_value: flag1},
                         url: '<?= Yii::$app->homeUrl ?>user/users/steps-approve-status',
                         success: function (data) {
                             if (data == 1) {
-                                var next = parseInt(step) + 1;
-                                $('#step_' + next).trigger('click');
-                                alert('Step ' + step + ' approved');
+                                if (flag1 == 1) {
+                                    var next = parseInt(step) + 1;
+                                    $('#step_' + next).trigger('click');
+                                    alert('Step ' + step + ' approved');
+                                }
                             }
                         }
                     });

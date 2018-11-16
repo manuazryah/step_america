@@ -45,6 +45,18 @@ return [
             'rules' => [
             ],
         ],
+              'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => []
+                ],
+                
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js' => []
+                ],
+            ],
+        ],
+        
     ],
     'params' => $params,
 ];

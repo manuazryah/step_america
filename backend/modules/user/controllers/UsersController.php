@@ -64,20 +64,20 @@ class UsersController extends Controller {
         $project = \common\models\Projects::findOne($user_steps_status->selected_project);
         $step9_data = \common\models\Step9Data::find()->where(['user_id' => $id])->one();
         $step8_data = \common\models\Step8Data::find()->where(['user_id' => $id])->one();
+        $sep5_user_projects = \common\models\Step5UserProject::find()->where(['user_id' => $id])->all();
         if (empty($step9_data)) {
             $step9_data = new \common\models\Step9Data();
-            $step9invoice_file_='';
+            $step9invoice_file_ = '';
         } else {
             $step9invoice_file_ = $step9_data->invoice_file;
         }
         if (empty($step8_data)) {
             $step8_data = new \common\models\Step8Data();
-            $step8_bank_wire_confirmation_scan_='';
-            $bank_statment_log_='';
-            
-        } else{
-            $step8_bank_wire_confirmation_scan_=$step8_data->bank_wire_confirmation_scan;
-            $bank_statment_log_=$step8_data->bank_statment_log;
+            $step8_bank_wire_confirmation_scan_ = '';
+            $bank_statment_log_ = '';
+        } else {
+            $step8_bank_wire_confirmation_scan_ = $step8_data->bank_wire_confirmation_scan;
+            $bank_statment_log_ = $step8_data->bank_statment_log;
         }
         if (empty($step2_model)) {
             $step2_model = new \common\models\Step2AccountDetails();
@@ -97,10 +97,13 @@ class UsersController extends Controller {
             Yii::$app->session->setFlash('success', "Account Details Save Successfully");
         }
         if ($step9_data->load(Yii::$app->request->post())) {
-            $this->Step9Data(Yii::$app->request->post(), $step9_data,$step9invoice_file_);
+            $this->Step9Data(Yii::$app->request->post(), $step9_data, $step9invoice_file_);
         }
         if ($step8_data->load(Yii::$app->request->post())) {
-            $this->Step8Data(Yii::$app->request->post(), $step8_data,$step8_bank_wire_confirmation_scan_,$bank_statment_log_);
+            $this->Step8Data(Yii::$app->request->post(), $step8_data, $step8_bank_wire_confirmation_scan_, $bank_statment_log_);
+        }
+        if ($user_steps_status->load(Yii::$app->request->post())) {
+            $user_steps_status->save();
         }
 
         return $this->render('view', [
@@ -116,6 +119,7 @@ class UsersController extends Controller {
                     'project' => $project,
                     'step9_data' => $step9_data,
                     'step8_data' => $step8_data,
+                    'sep5_user_projects' => $sep5_user_projects,
         ]);
     }
 
@@ -139,7 +143,7 @@ class UsersController extends Controller {
         return TRUE;
     }
 
-    public function Step9Data($data, $step9_data,$step9invoice_file_) {
+    public function Step9Data($data, $step9_data, $step9invoice_file_) {
         $step9_invoice_file = UploadedFile::getInstance($step9_data, 'invoice_file');
         if (!empty($step9_invoice_file)) {
             $step9_data->invoice_file = $step9_invoice_file->extension;
@@ -152,10 +156,10 @@ class UsersController extends Controller {
         $step9_data->save();
     }
 
-    public function Step8Data($data, $step8_data,$step8_bank_wire_confirmation_scan_,$bank_statment_log_) {
+    public function Step8Data($data, $step8_data, $step8_bank_wire_confirmation_scan_, $bank_statment_log_) {
         $step8_bank_wire_confirmation_scan = UploadedFile::getInstance($step8_data, 'bank_wire_confirmation_scan');
         $bank_statment_log = UploadedFile::getInstance($step8_data, 'bank_statment_log');
-       // $dhp_agreement = UploadedFile::getInstance($model, 'dhp_agreement');
+        // $dhp_agreement = UploadedFile::getInstance($model, 'dhp_agreement');
         if (!empty($step8_bank_wire_confirmation_scan)) {
             $step8_data->bank_wire_confirmation_scan = $step8_bank_wire_confirmation_scan->name;
         } else {
@@ -170,13 +174,13 @@ class UsersController extends Controller {
             $this->UploadStep8($step8_data, $step8_bank_wire_confirmation_scan, $bank_statment_log);
         }
     }
-    
-     /*
+
+    /*
      * Upload Documents
      */
 
     public function UploadStep8($model, $step8_bank_wire_confirmation_scan, $bank_statment_log) {
-        $path = Yii::$app->basePath . '/../uploads/step8/'.$model->user_id.'/admin/';
+        $path = Yii::$app->basePath . '/../uploads/step8/' . $model->user_id . '/admin/';
         if (!file_exists($path)) {
             \yii\helpers\FileHelper::createDirectory($path, $mode = 0775, $recursive = true);
         }
@@ -296,13 +300,18 @@ class UsersController extends Controller {
 
     public function actionApproveStatus() {
         $model = \common\models\UserSteps::find()->where(['user_id' => $_POST['user']])->one();
+        $user = \common\models\Users::findOne($_POST['user']);
         if (empty($model)) {
             $model = new \common\models\UserSteps();
         }
         $model->step_1_completed = 1;
         $model->step_1_complete_date = date('Y-m-d');
-        if ($model->save())
+
+        if ($model->save()) {
+            $user->current_step = 1;
+            $user->save();
             $approved = 1;
+        }
         return $approved;
     }
 
@@ -316,17 +325,28 @@ class UsersController extends Controller {
     }
 
     public function actionStepsApproveStatus() {
-    
+
         $model = \common\models\UserSteps::find()->where(['user_id' => $_POST['user']])->one();
+        $user = \common\models\Users::findOne($_POST['user']);
         if (empty($model)) {
             $model = new \common\models\UserSteps();
         }
         $step = 'step_' . $_POST['step'] . '_completed';
         $step_date = 'step_' . $_POST['step'] . '_complete_date';
-        $model->$step = 1;
+        $model->$step = $_POST['step_value'];
         $model->$step_date = date('Y-m-d');
-        if ($model->save())
+        if ($model->save()) {
+            if ($_POST['step'] != 11) {
+                $user->current_step = $_POST['step'];
+                $user->save();
+            }
             $approved = 1;
+        }
+        if ($_POST['step_value'] == 1)
+            $message = 'Admin approved step ' . $_POST['step'];
+        else
+            $message = 'Admin disapproved step ' . $_POST['step'];
+        Yii::$app->SetValues->Notification(1, $_POST['user'], 1, $message);
         return $approved;
     }
 

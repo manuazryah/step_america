@@ -43,6 +43,7 @@ class StepsWidget extends Widget {
                 $step8 = \common\models\Step8::findOne(1)->page_title;
                 $step9 = \common\models\Step9::findOne(1)->page_title;
                 $step10 = \common\models\Step10::findOne(1)->page_title;
+                $user_steps= \common\models\UserSteps::find()->where(['user_id'=> Yii::$app->user->identity->id])->one();
 
                 return $this->render('steps_view', [
                             'step1' => $step1,
@@ -56,6 +57,7 @@ class StepsWidget extends Widget {
                             'step9' => $step9,
                             'step10' => $step10,
                             'step' => $this->step,
+                            'user_steps' => $user_steps,
                 ]);
         }
 

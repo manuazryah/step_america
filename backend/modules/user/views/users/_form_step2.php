@@ -97,7 +97,7 @@ use yii\widgets\ActiveForm;
             <?php
             if (!empty($step2_model->invoice_file)) {
                 ?>
-                <a target="_blank" href="<?= Yii::$app->homeUrl ?>../uploads/step2/invoice/<?= $model->id ?>/<?= $step2_model->invoice_file; ?>"><?= $step2_model->invoice_file ?></a>
+                <a target="_blank" href="<?= Yii::$app->homeUrl ?>../uploads/step2/invoice/<?= $step2_model->id ?>/<?= $step2_model->invoice_file; ?>"><?= $step2_model->invoice_file ?></a>
                 <?php
             }
             ?>
@@ -114,6 +114,6 @@ use yii\widgets\ActiveForm;
 
 
     <?php ActiveForm::end(); ?>
-    <input type="checkbox" class="approve_all_steps" name="approvestep2" value="step2" id="2" >
+    <input type="checkbox" class="approve_all_steps" name="approvestep2" value="step2" id="2" <?php if (isset($user_steps_status->step_2_completed) && $user_steps_status->step_2_completed == 1) { ?>checked <?php } ?>>
     <label>Approve this step</label>
 </div>

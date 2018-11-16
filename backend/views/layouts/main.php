@@ -118,11 +118,11 @@ $controler = Yii::$app->controller->id;
                                                                 </a>
                                                                 <ul class="treeview-menu">
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Access Powers', ['/admin/admin-posts/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> Access Powers', ['/admin/admin-posts/index'], ['class' => 'title']) ?>
                                                                         </li>
 
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Admin Users', ['/admin/admin-users/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> Admin Users', ['/admin/admin-users/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                 </ul>
                                                         </li>
@@ -171,34 +171,34 @@ $controler = Yii::$app->controller->id;
                                                                     
                                                                     
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step1, 30, "<br />\n"), ['/steps/step1/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step1, 30, "<br />\n"), ['/steps/step1/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step2, 30, "<br />\n"), ['/steps/step2/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step2, 30, "<br />\n"), ['/steps/step2/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step3, 30, "<br />\n"), ['/steps/step3/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step3, 30, "<br />\n"), ['/steps/step3/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step4, 30, "<br />\n"), ['/steps/step4/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step4, 30, "<br />\n"), ['/steps/step4/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step5, 30, "<br />\n"), ['/steps/step5/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step5, 30, "<br />\n"), ['/steps/step5/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step6, 30, "<br />\n"), ['/steps/step6/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step6, 30, "<br />\n"), ['/steps/step6/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step7, 30, "<br />\n"), ['/steps/step7/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step7, 30, "<br />\n"), ['/steps/step7/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step8, 30, "<br />\n"), ['/steps/step8/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step8, 30, "<br />\n"), ['/steps/step8/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step9, 30, "<br />\n"), ['/steps/step9/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step9, 30, "<br />\n"), ['/steps/step9/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> ' . wordwrap($step10, 30, "<br />\n"), ['/steps/step10/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> ' . wordwrap($step10, 30, "<br />\n"), ['/steps/step10/index'], ['class' => 'title']) ?>
                                                                         </li>
 
                                                                 </ul>
@@ -217,15 +217,15 @@ $controler = Yii::$app->controller->id;
                                                                 <ul class="treeview-menu">
 
                                                                         <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Country', ['/masters/country/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> Country', ['/masters/country/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         
                                                                          <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Upload Category', ['/masters/step3-category/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> Upload Category', ['/masters/step3-category/index'], ['class' => 'title']) ?>
                                                                         </li>
                                                                         
                                                                          <li>
-                                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Upload Subcategory', ['/masters/step3-subcategory/index'], ['class' => 'title']) ?>
+                                                                                <?= Html::a('<i class="fa fa-angle-right"></i> Upload Subcategory', ['/masters/step3-subcategory/index'], ['class' => 'title']) ?>
                                                                         </li>
 
 

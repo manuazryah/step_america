@@ -1,12 +1,139 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Oct 17, 2018, 11:55:07 AM
-    Author     : user
-*/
+@media (min-width:992px) and (max-width:1199px) {
+.steps-content-box .steps-box .icon-box{
+	width:70px;
+	height:70px;
+	background-size:70px;
+
+}
+.steps-content-box::after{
+	top: 69px;
+    height: 7px;
+}
+.steps-content-box .steps-box .icon-box2{
+	background-position:0px -70px;
+}
+.steps-content-box .steps-box .icon-box3{
+	background-position:0px -140px;
+}
+.steps-content-box .steps-box .icon-box4{
+	background-position:0px -210px;
+}
+.steps-content-box .steps-box .icon-box5{
+	background-position:0px -280px;
+}
+.steps-content-box .steps-box .icon-box6{
+	background-position:0px -350px;
+}
+.steps-content-box .steps-box .icon-box7{
+	background-position:0px -420px;
+}
+.steps-content-box .steps-box .icon-box8{
+	background-position:0px -490px;
+}
+.steps-content-box .steps-box .icon-box9{
+	background-position:0px -560px;
+}
+.steps-content-box .steps-box .icon-box10{
+	background-position:0px -630px;
+}	
+
+}
+
+
+@media (min-width:768px) and (max-width:991px) {
+	.steps-content-box .steps-box .icon-box{
+	width:55px;
+	height:55px;
+	background-size:55px;
+
+}
+.steps-content-box::after{
+	top: 59px;
+    height: 6px;
+}
+.steps-content-box .steps-box .icon-box2{
+	background-position:0px -55px;
+}
+.steps-content-box .steps-box .icon-box3{
+	background-position:0px -110px;
+}
+.steps-content-box .steps-box .icon-box4{
+	background-position:0px -165px;
+}
+.steps-content-box .steps-box .icon-box5{
+	background-position:0px -220px;
+}
+.steps-content-box .steps-box .icon-box6{
+	background-position:0px -275px;
+}
+.steps-content-box .steps-box .icon-box7{
+	background-position:0px -330px;
+}
+.steps-content-box .steps-box .icon-box8{
+	background-position:0px -385px;
+}
+.steps-content-box .steps-box .icon-box9{
+	background-position:0px -440px;
+}
+.steps-content-box .steps-box .icon-box10{
+	background-position:0px -495px;
+}	
+}
+
+@media (max-width:767px) {
+	.steps-content-box .col-md-1{
+	-ms-flex: 0 0 19.90%;
+    flex: 0 0 19.90%;
+    max-width: 19.90%;
+}
+.steps-content-box .steps-box{
+	margin-bottom:30px;
+}
+.steps-content-box .steps-box .icon-box{
+	width:55px;
+	height:55px;
+	background-size:55px;
+
+}
+.steps-content-box::after{
+	display:none;
+}
+.steps-content-box .steps-box .icon-box2{
+	background-position:0px -55px;
+}
+.steps-content-box .steps-box .icon-box3{
+	background-position:0px -110px;
+}
+.steps-content-box .steps-box .icon-box4{
+	background-position:0px -165px;
+}
+.steps-content-box .steps-box .icon-box5{
+	background-position:0px -220px;
+}
+.steps-content-box .steps-box .icon-box6{
+	background-position:0px -275px;
+}
+.steps-content-box .steps-box .icon-box7{
+	background-position:0px -330px;
+}
+.steps-content-box .steps-box .icon-box8{
+	background-position:0px -385px;
+}
+.steps-content-box .steps-box .icon-box9{
+	background-position:0px -440px;
+}
+.steps-content-box .steps-box .icon-box10{
+	background-position:0px -495px;
+}
+}
+@media (max-width:650px) {
+.dashboard-view-application .link{
+	font-size:12px;
+	display:block;
+}
+}
+
+
 @media (min-width: 576px){
     .navbar-expand-sm .navbar-nav .dropdown-menu {
         position: absolute;
@@ -15,3 +142,10 @@ and open the template in the editor.
     }
 }
 
+@media (max-width: 490px){
+.steps-content-box .col-md-1{
+	-ms-flex: 0 0 32.90%;
+    flex: 0 0 32.90%;
+    max-width: 32.90%;
+}
+}

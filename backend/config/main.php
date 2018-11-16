@@ -34,6 +34,9 @@ return [
         'user' => [
             'class' => 'backend\modules\user\Module',
         ],
+        'gridview' => [
+            'class' => 'kartik\grid\Module',
+        ]
     ],
     'components' => [
         'request' => [
@@ -51,7 +54,7 @@ return [
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                    [
+                [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],

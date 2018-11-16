@@ -1,0 +1,203 @@
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+	font-family: 'Montserrat', sans-serif;
+}
+.navbar-dark .navbar-brand {
+    padding-top: 9px;
+}
+.nav-master-che{
+	background:#39cccc;
+	border:none;
+}
+.home-border-top{
+	border-top:none;
+}
+.navbar {
+    border-radius:0px; 
+}
+.box-header{
+    padding: 15px;
+}
+.box-body {
+    padding: 15px;
+}
+.box-header .box-title{
+	color:#5a5a5a;
+	font-weight:500;
+	font-size:16px;
+}
+.steps-content-box{
+	padding:35px 35px 35px 35px;
+	position:relative; 
+	z-index:1;
+}
+.steps-content-box::after{
+	background: #dfe4ea;
+    width: 88%;
+    position: absolute;
+    left: 0px;
+    top:76px;
+    height: 10px;
+    content: "";
+    z-index: -1;
+    right: 0px;
+    margin: 0px auto;
+}
+.steps-content-box .col-md-1{
+	-ms-flex: 0 0 9.90%;
+    flex: 0 0 9.90%;
+    max-width: 9.90%;
+}
+.steps-content-box .steps-box{
+	text-align:center;
+	-webkit-filter: grayscale(100%); 
+    filter: grayscale(100%);
+	opacity:.5;
+}
+.steps-content-box .steps-active{
+	-webkit-filter: grayscale(0%); 
+    filter: grayscale(0%);
+	opacity:1;
+}
+.steps-content-box .steps-box .sub-head{
+	color:#2f3030;
+	font-size:15px;
+	font-weight:600;
+}
+.steps-content-box .steps-box .icon-box{
+	width:90px;
+	height:90px;
+	background:url(../img/icons/Steps-Content.png) no-repeat;
+	margin:0px auto;
+	margin-bottom:10px;
+}
+.steps-content-box .steps-box .icon-box2{
+	background-position:0px -90px;
+}
+.steps-content-box .steps-box .icon-box3{
+	background-position:0px -180px;
+}
+.steps-content-box .steps-box .icon-box4{
+	background-position:0px -270px;
+}
+.steps-content-box .steps-box .icon-box5{
+	background-position:0px -360px;
+}
+.steps-content-box .steps-box .icon-box6{
+	background-position:0px -450px;
+}
+.steps-content-box .steps-box .icon-box7{
+	background-position:0px -540px;
+}
+.steps-content-box .steps-box .icon-box8{
+	background-position:0px -630px;
+}
+.steps-content-box .steps-box .icon-box9{
+	background-position:0px -720px;
+}
+.steps-content-box .steps-box .icon-box10{
+	background-position:0px -810px;
+}
+.dashboard-view-application{
+	margin:20px 0px 20px 0px;
+
+}
+.dashboard-view-application .link{
+	padding:13px 60px 13px 15px;
+	background:#0d8181;
+	color:#FFF;
+	font-weight:500;
+	font-size:16px;
+	border-radius:3px;
+	position:relative;	
+}
+.dashboard-view-application .link::after{
+	background:url(../img/icons/arow.png);
+	width:23px;
+	height:23px;
+	position:absolute;
+	right:20px;
+	top:10px;
+	content:"";
+	display:inline-block;
+}
+
+.min-height-box{
+	min-height:401px;
+}
+.dashboard-Steps-top{
+	padding:15px 25px;
+}
+.dashboard-Steps-top .text{
+	font-weight:400;
+	font-size:13px;
+	color:#5a5a5a;
+}
+.dashboard-Steps-top .list{
+	padding:10px 0px;
+	margin:0px 0px;
+	list-style:none;
+}
+.dashboard-Steps-top .list li{
+	background:url(../img/icons/tick.png) 0px 2px no-repeat;
+	padding:0px 0px 10px 25px;
+	font-weight:400;
+	font-size:13px;
+	color:#5a5a5a;
+}
+.dashboard-Steps-top .Steps-links{
+	background:#16a64c;
+	padding:8px 25px;
+	color:#FFF;
+	font-weight:500;
+	display:inline-block;
+	margin:15px 0px 15px 0px;
+	text-transform:uppercase;
+	border-radius:50px;
+	
+}
+.dashboard-Bounce-Rate{
+	padding:10px 25px;
+	background:url(../img/map-bg.png) center 20px no-repeat;
+	min-height:300px;
+}
+.dashboard-Bounce-Rate .Bounce-box{
+	text-align: center;
+    width: 50%;
+    display: block;
+    margin: 0px auto;
+}
+.dashboard-Bounce-Rate .Success{
+	background:url(../img/icons/flag.png) 0px 0px no-repeat;
+	padding:0px 0px 0px 35px;
+	margin-top:25px;
+	font-weight:600;
+	font-size:13px;
+	text-transform:uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

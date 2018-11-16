@@ -33,7 +33,7 @@ class UserSteps extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['user_id', 'retainer_contract_approve', 'dhp_approve', 'step_1_completed', 'step_3_completed'], 'integer'],
-            [['retainer_contract_download', 'dhp_download_date', 'step_1_complete_date', 'step_3_complete_date', 'selected_project', 'step_4_completed', 'step_4_complete_date', 'step_5_completed', 'step_5_complete_date', 'deposited_on', 'deposited_amount', 'currency', 'confirmation_ref_id','step_2_completed','step_2_complete_date','step_6_completed','step_6_complete_date','step_7_completed','step_7_complete_date','step_8_completed','step_8_complete_date','step_9_completed','step_9_complete_date','step_10_completed','step_10_complete_date'], 'safe'],
+            [['retainer_contract_download', 'dhp_download_date', 'step_1_complete_date', 'step_3_complete_date', 'selected_project', 'step_4_completed', 'step_4_complete_date', 'step_5_completed', 'step_5_complete_date', 'deposited_on', 'deposited_amount', 'currency', 'confirmation_ref_id','step_2_completed','step_2_complete_date','step_6_completed','step_6_complete_date','step_7_completed','step_7_complete_date','step_8_completed','step_8_complete_date','step_9_completed','step_9_complete_date','step_10_completed','step_10_complete_date','application_number'], 'safe'],
         ];
     }
 
