@@ -182,7 +182,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="col-sm-6 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'immigration_expiration_date')->textInput() ?>
+                                    <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->immigration_expiration_date = date('d-m-Y', strtotime($model->immigration_expiration_date));
+                                    } else {
+                                        $model->immigration_expiration_date = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'immigration_expiration_date',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -207,13 +223,46 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'issuance_date')->textInput() ?>
+                                     <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->issuance_date = date('d-m-Y', strtotime($model->issuance_date));
+                                    } else {
+                                        $model->issuance_date = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'issuance_date',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
+                                    
                                 </div>
                             </div>
 
                             <div class="col-sm-6 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'expiration_date')->textInput() ?>
+                                    <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->expiration_date = date('d-m-Y', strtotime($model->expiration_date));
+                                    } else {
+                                        $model->expiration_date = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'expiration_date',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +304,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'visa_issuance_date')->textInput() ?>
+                                     
+                                    <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->visa_issuance_date = date('d-m-Y', strtotime($model->visa_issuance_date));
+                                    } else {
+                                        $model->visa_issuance_date = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'visa_issuance_date',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
                                 </div>
                             </div>
 

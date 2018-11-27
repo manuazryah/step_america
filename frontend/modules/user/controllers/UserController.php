@@ -75,6 +75,12 @@ class UserController extends Controller {
         }
         if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
             $model->user_id = Yii::$app->user->identity->id;
+            $model->spouse_1_dob = date('Y-m-d', strtotime($model->spouse_1_dob));
+            $model->spouse_2_dob = date('Y-m-d', strtotime($model->spouse_2_dob));
+            $model->marriage_date = date('Y-m-d', strtotime($model->marriage_date));
+            $model->dob = date('Y-m-d', strtotime($model->dob));
+            $model->passport_issuance_date = date('Y-m-d', strtotime($model->passport_issuance_date));
+            $model->passport_expiration_date = date('Y-m-d', strtotime($model->passport_expiration_date));
             if ($model->validate() && $model->save()) {
                 return $this->redirect(['childrens']);
             }

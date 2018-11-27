@@ -14,107 +14,118 @@ use yii\filters\VerbFilter;
  */
 class Step3CategoryController extends Controller {
 
-        /**
-         * @inheritdoc
-         */
-        public function behaviors() {
-                return [
-                    'verbs' => [
-                        'class' => VerbFilter::className(),
-                        'actions' => [
-                            'delete' => ['POST'],
-                        ],
-                    ],
-                ];
+    public function beforeAction($action) {
+        if (!parent::beforeAction($action)) {
+            return false;
         }
-
-        /**
-         * Lists all Step3Category models.
-         * @return mixed
-         */
-        public function actionIndex() {
-                $searchModel = new Step3CategorySearch();
-                $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-                return $this->render('index', [
-                            'searchModel' => $searchModel,
-                            'dataProvider' => $dataProvider,
-                ]);
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['/site/index']);
+            return false;
         }
+        return true;
+    }
 
-        /**
-         * Displays a single Step3Category model.
-         * @param integer $id
-         * @return mixed
-         */
-        public function actionView($id) {
-                return $this->render('view', [
-                            'model' => $this->findModel($id),
-                ]);
+    /**
+     * @inheritdoc
+     */
+    public function behaviors() {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Lists all Step3Category models.
+     * @return mixed
+     */
+    public function actionIndex() {
+        $searchModel = new Step3CategorySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Displays a single Step3Category model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id) {
+        return $this->render('view', [
+                    'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Creates a new Step3Category model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate() {
+        $model = new Step3Category();
+
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->save()) {
+            Yii::$app->getSession()->setFlash('success', "Create Successfully");
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('create', [
+                        'model' => $model,
+            ]);
         }
+    }
 
-        /**
-         * Creates a new Step3Category model.
-         * If creation is successful, the browser will be redirected to the 'view' page.
-         * @return mixed
-         */
-        public function actionCreate() {
-                $model = new Step3Category();
+    /**
+     * Updates an existing Step3Category model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdate($id) {
+        $model = $this->findModel($id);
 
-                if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->save()) {
-                        Yii::$app->getSession()->setFlash('success', "Create Successfully");
-                        return $this->redirect(['index']);
-                } else {
-                        return $this->render('create', [
-                                    'model' => $model,
-                        ]);
-                }
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->save()) {
+            Yii::$app->getSession()->setFlash('success', "Updated Successfully");
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('update', [
+                        'model' => $model,
+            ]);
         }
+    }
 
-        /**
-         * Updates an existing Step3Category model.
-         * If update is successful, the browser will be redirected to the 'view' page.
-         * @param integer $id
-         * @return mixed
-         */
-        public function actionUpdate($id) {
-                $model = $this->findModel($id);
+    /**
+     * Deletes an existing Step3Category model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDelete($id) {
+        $this->findModel($id)->delete();
 
-                if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->save()) {
-                        Yii::$app->getSession()->setFlash('success', "Updated Successfully");
-                        return $this->redirect(['index']);
-                } else {
-                        return $this->render('update', [
-                                    'model' => $model,
-                        ]);
-                }
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the Step3Category model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Step3Category the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id) {
+        if (($model = Step3Category::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
-
-        /**
-         * Deletes an existing Step3Category model.
-         * If deletion is successful, the browser will be redirected to the 'index' page.
-         * @param integer $id
-         * @return mixed
-         */
-        public function actionDelete($id) {
-                $this->findModel($id)->delete();
-
-                return $this->redirect(['index']);
-        }
-
-        /**
-         * Finds the Step3Category model based on its primary key value.
-         * If the model is not found, a 404 HTTP exception will be thrown.
-         * @param integer $id
-         * @return Step3Category the loaded model
-         * @throws NotFoundHttpException if the model cannot be found
-         */
-        protected function findModel($id) {
-                if (($model = Step3Category::findOne($id)) !== null) {
-                        return $model;
-                } else {
-                        throw new NotFoundHttpException('The requested page does not exist.');
-                }
-        }
+    }
 
 }

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\Country;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Header */
@@ -79,7 +80,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'spouse_1_dob')->textInput() ?>
+                                    <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->spouse_1_dob = date('d-m-Y', strtotime($model->spouse_1_dob));
+                                    } else {
+                                        $model->spouse_1_dob = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'spouse_1_dob',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
+                                    
                                 </div>
                             </div>
 
@@ -131,7 +149,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'spouse_2_dob')->textInput() ?>
+                                    
+                                    <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->spouse_2_dob = date('d-m-Y', strtotime($model->spouse_2_dob));
+                                    } else {
+                                        $model->spouse_2_dob = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'spouse_2_dob',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
                                 </div>
                             </div>
 
@@ -164,7 +199,23 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'marriage_date')->textInput() ?>
+                                     <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->marriage_date = date('d-m-Y', strtotime($model->marriage_date));
+                                    } else {
+                                        $model->marriage_date = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'marriage_date',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
                                 </div>
                             </div>
 
@@ -214,7 +265,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'dob')->textInput() ?>
+                                     <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->dob = date('d-m-Y', strtotime($model->dob));
+                                    } else {
+                                        $model->dob = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'dob',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
+                                    
                                 </div>
                             </div>
 
@@ -246,7 +314,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="col-sm-4 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'passport_issuance_date')->textInput() ?>
+                                    <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->passport_issuance_date = date('d-m-Y', strtotime($model->passport_issuance_date));
+                                    } else {
+                                        $model->passport_issuance_date = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'passport_issuance_date',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +339,23 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-4 col-xs-12">
                                 <div class="sa-inp-gp">
-                                    <?= $form->field($model, 'passport_expiration_date')->textInput() ?>
+                                    <?php
+                                    if (!$model->isNewRecord) {
+                                        $model->passport_expiration_date = date('d-m-Y', strtotime($model->passport_expiration_date));
+                                    } else {
+                                        $model->passport_expiration_date = date('d-m-Y');
+                                    }
+                                    echo DatePicker::widget([
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'type' => DatePicker::TYPE_INPUT,
+                                        'attribute' => 'passport_expiration_date',
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                        ]
+                                    ]);
+                                    ?>
                                 </div>
                             </div>
 

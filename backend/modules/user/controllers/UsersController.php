@@ -19,6 +19,17 @@ use common\models\UserConatctInfo;
  */
 class UsersController extends Controller {
 
+    public function beforeAction($action) {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['/site/index']);
+            return false;
+        }
+        return true;
+    }
+
     /**
      * @inheritdoc
      * 
@@ -311,6 +322,9 @@ class UsersController extends Controller {
             $user->current_step = 1;
             $user->save();
             $approved = 1;
+            $message = 'Admin approved step 1';
+            Yii::$app->SetValues->Notification(1, $_POST['user'], 1, $message);
+            Yii::$app->SetValues->NotificationMail(1, $_POST['user']);
         }
         return $approved;
     }
@@ -333,7 +347,7 @@ class UsersController extends Controller {
         }
         $step = 'step_' . $_POST['step'] . '_completed';
         $step_date = 'step_' . $_POST['step'] . '_complete_date';
-        $model->$step = $_POST['step_value'];
+        $model->$step = 1;
         $model->$step_date = date('Y-m-d');
         if ($model->save()) {
             if ($_POST['step'] != 11) {
@@ -342,11 +356,12 @@ class UsersController extends Controller {
             }
             $approved = 1;
         }
-        if ($_POST['step_value'] == 1)
-            $message = 'Admin approved step ' . $_POST['step'];
-        else
-            $message = 'Admin disapproved step ' . $_POST['step'];
+        //   if ($_POST['step_value'] == 1)
+        $message = 'Admin approved step ' . $_POST['step'];
+//        else
+//            $message = 'Admin disapproved step ' . $_POST['step'];
         Yii::$app->SetValues->Notification(1, $_POST['user'], 1, $message);
+        Yii::$app->SetValues->NotificationMail($_POST['step'], $_POST['user']);
         return $approved;
     }
 

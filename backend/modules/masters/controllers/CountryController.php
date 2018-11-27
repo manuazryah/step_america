@@ -14,6 +14,17 @@ use yii\filters\VerbFilter;
  */
 class CountryController extends Controller {
 
+    public function beforeAction($action) {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['/site/index']);
+            return false;
+        }
+        return true;
+    }
+
     /**
      * @inheritdoc
      */
@@ -61,7 +72,7 @@ class CountryController extends Controller {
     public function actionCreate() {
         $model = new Country();
 
-        if ($model->load(Yii::$app->request->post())&& Yii::$app->SetValues->Attributes($model) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->save()) {
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -79,7 +90,7 @@ class CountryController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())&& Yii::$app->SetValues->Attributes($model) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->save()) {
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
