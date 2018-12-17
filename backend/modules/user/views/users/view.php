@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="users-view">
         <div class="box-body">
             <?= Html::a('<span> Manage Users</span>', ['index'], ['class' => 'btn btn-success mrg-bot-15']) ?>
-            <?= Html::a('Change Password', ['change-password', 'id' => Yii::$app->EncryptDecrypt->Encrypt('encrypt', $model->id)], ['class' => 'btn btn-success mrg-bot-15','style'=>'background-color:#1a485b']) ?>
+            <?= Html::a('Change Password', ['change-password', 'id' => Yii::$app->EncryptDecrypt->Encrypt('encrypt', $model->id)], ['class' => 'btn btn-success mrg-bot-15', 'style' => 'background-color:#1a485b']) ?>
             <table class="table user-view-tbl">
                 <tr>
                     <th>Name</th>
@@ -605,8 +605,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php } ?>
 
                     </div>
-                    <?php if (isset($user_steps_status->step_3_completed) && $user_steps_status->step_3_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep2"  id="3" value="Approve"><?php } ?>
 
+                    <?php if (isset($user_steps_status->step_2_completed) && $user_steps_status->step_2_completed == 1) { ?>
+                        <?php if (isset($user_steps_status->step_3_completed) && $user_steps_status->step_3_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep2"  id="3" value="Approve"><?php } ?>
+                    <?php } ?>
                 </div>
 
                 <!-----------------------------------------------------Step 03 ends------------------------------------------------>
@@ -627,13 +629,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <tbody>
                                     <tr class="last-name">
                                         <td>1</td>
-                                        <td><?= $project->project_title ?></td>
+                                        <td><?php if(isset($project->project_title)){ echo $project->project_title;} ?></td>
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <?php if (isset($user_steps_status->step_4_completed) && $user_steps_status->step_4_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep4"  id="4" value="Approve"><?php } ?>
-
+                            <?php if (isset($user_steps_status->step_3_completed) && $user_steps_status->step_3_completed == 1) { ?>
+                                <?php if (isset($user_steps_status->step_4_completed) && $user_steps_status->step_4_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep4"  id="4" value="Approve"><?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -670,8 +672,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php } ?>
                             </tbody>
                         </table>
-                        <?php if (isset($user_steps_status->step_5_completed) && $user_steps_status->step_5_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep5"  id="5" value="Approve"><?php } ?>
 
+                        <?php if (isset($user_steps_status->step_4_completed) && $user_steps_status->step_4_completed == 1) { ?>
+                            <?php if (isset($user_steps_status->step_5_completed) && $user_steps_status->step_5_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep5"  id="5" value="Approve"><?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
                 <!-----------------------------------------------------Step 05 ends------------------------------------------------>
@@ -710,7 +714,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tr>
                                 </tbody>
                             </table>
-                            <?php if (isset($user_steps_status->step_6_completed) && $user_steps_status->step_6_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep6"  id="6" value="Approve"><?php } ?>
+                            <?php if (isset($user_steps_status->step_5_completed) && $user_steps_status->step_5_completed == 1) { ?>
+                                <?php if (isset($user_steps_status->step_6_completed) && $user_steps_status->step_6_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep6"  id="6" value="Approve"><?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -748,8 +754,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tbody>
                                 </table>
                             </div>
-                            <?php if (isset($user_steps_status->step_7_completed) && $user_steps_status->step_7_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep7"  id="7" value="Approve"><?php } ?>
 
+                            <?php if (isset($user_steps_status->step_6_completed) && $user_steps_status->step_6_completed == 1) { ?>
+                                <?php if (isset($user_steps_status->step_7_completed) && $user_steps_status->step_7_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep7"  id="7" value="Approve"><?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -839,9 +847,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 </div>
 
-
-                                <?php if (isset($user_steps_status->step_8_completed) && $user_steps_status->step_8_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep8"  id="8" value="Approve"><?php } ?>
-
+                                <?php if (isset($user_steps_status->step_7_completed) && $user_steps_status->step_7_completed == 1) { ?>
+                                    <?php if (isset($user_steps_status->step_8_completed) && $user_steps_status->step_8_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep8"  id="8" value="Approve"><?php } ?>
+                                <?php } ?>
 
                             </div>
                             <!-- .panel-body -->
@@ -886,9 +894,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <?= Html::submitButton('Submit', ['class' => 'btn btn-success', 'style' => 'float:right']) ?>
                     </div>
-
-                    <?php if (isset($user_steps_status->step_9_completed) && $user_steps_status->step_9_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep9"  id="9" value="Approve"><?php } ?>
-
+                    <?php if (isset($user_steps_status->step_8_completed) && $user_steps_status->step_8_completed == 1) { ?>
+                        <?php if (isset($user_steps_status->step_9_completed) && $user_steps_status->step_9_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep9"  id="9" value="Approve"><?php } ?>
+                    <?php } ?>
                     <?php ActiveForm::end(); ?>
                 </div>
 
@@ -918,8 +926,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tr>
                                 </tbody>
                             </table>
-                            <?php if (isset($user_steps_status->step_10_completed) && $user_steps_status->step_10_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep10"  id="10" value="Approve"><?php } ?>
-
+                            <?php if (isset($user_steps_status->step_9_completed) && $user_steps_status->step_9_completed == 1) { ?>
+                                <?php if (isset($user_steps_status->step_10_completed) && $user_steps_status->step_10_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep10"  id="10" value="Approve"><?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -940,8 +949,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                         <?php ActiveForm::end(); ?>
-                        <?php if (isset($user_steps_status->step_11_completed) && $user_steps_status->step_11_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep11"  id="11" value="Approve"><?php } ?>
-
+                        <?php if (isset($user_steps_status->step_10_completed) && $user_steps_status->step_10_completed == 1) { ?>
+                            <?php if (isset($user_steps_status->step_11_completed) && $user_steps_status->step_11_completed != 1) { ?> <input type="submit" class="btn btn-primary approve_all_steps" name="approvestep11"  id="11" value="Approve"><?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -1035,8 +1045,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 if (data == 1) {
                                     $('#approve_step1_retainer').attr('disabled', true);
                                     $('#approve_step1_dhp').attr('disabled', true);
-                                    $('#step_2').trigger('click');
                                     alert('Step 1 approved');
+                                    location.reload();
                                 }
                             }
                         });
@@ -1090,8 +1100,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             if (data == 1) {
 
                                 var next = parseInt(step) + 1;
-                                $('#step_' + next).trigger('click');
+//                                $('#step_' + next).trigger('click');
                                 alert('Step ' + step + ' approved');
+                                location.reload();
 
                             }
                         }

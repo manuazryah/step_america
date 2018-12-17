@@ -9,7 +9,7 @@ use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model common\models\Header */
 
-$this->title = 'Header';
+$this->title = 'Step America';
 $this->params['breadcrumbs'][] = ['label' => 'Headers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

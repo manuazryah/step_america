@@ -103,9 +103,10 @@ use yii\grid\GridView;
                                         'format' => 'raw',
                                         'header' => 'Uploaded file',
                                         'value' => function($model) {
-                                            if (isset($model->file) && $model->file != '')
+                                            if (isset($model->file) && $model->file != ''){
                                                 $img = '<a target="_blank" title="Click here to view" href="' . Yii::$app->homeUrl . '/uploads/step3/' . $model->id . '.' . $model->file . '"/>' . $model->file_name . '';
                                             return $img;
+                                            }
                                         }
                                     ],
                                     [

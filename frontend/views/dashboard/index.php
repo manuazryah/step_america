@@ -4,7 +4,7 @@
     <div class="col-md-4">
         <div class="box box-primary home-border-top min-height-box">
             <div class="box-header with-border">
-                <h3 class="box-title">Steps Heading</h3>
+                <h3 class="box-title">Steps America</h3>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                 </div>
@@ -15,9 +15,10 @@
                 <ul class="list">
                     <li>High Level Expertise on US Citizenship by Investment Program </li>
                     <li>Access STEP America’s streamlined & end-to-end investment consultancy services </li>
+                    
                 </ul>
                 <p class="text">In addition to USCIS EB-5 services, STEP will actively scan the legislative horizon for expected changes to the federal USCIS immigration policies. </p>
-                 <?= \yii\helpers\Html::a('continue Steps',['dashboard/home'],['class'=>'Steps-links'])?>
+                <?= \yii\helpers\Html::a('continue Steps',['dashboard/home'],['class'=>'Steps-links'])?>
             </div>
         </div>
     </div>
@@ -171,7 +172,7 @@ $step= Yii::$app->user->identity->current_step;
 <script>
     $(document).ready(function () {
         $("#custom-color").percircle({
-            progressBarColor: "#39cccc",
+            progressBarColor: "#008176",
             percent: <?=$step?>0
         });
     });

@@ -229,7 +229,7 @@ class UsersController extends Controller {
                 $user_steps->user_id = $model->id;
                 $user_steps->save();
                 Yii::$app->session->setFlash('success', "User Created Successfully");
-                $model = new Users();
+                return $this->redirect(['index']);
             }
         }
         return $this->render('create', [
@@ -324,7 +324,6 @@ class UsersController extends Controller {
             $approved = 1;
             $message = 'Admin approved step 1';
             Yii::$app->SetValues->Notification(1, $_POST['user'], 1, $message);
-            Yii::$app->SetValues->NotificationMail(1, $_POST['user']);
         }
         return $approved;
     }
@@ -363,6 +362,19 @@ class UsersController extends Controller {
         Yii::$app->SetValues->Notification(1, $_POST['user'], 1, $message);
         Yii::$app->SetValues->NotificationMail($_POST['step'], $_POST['user']);
         return $approved;
+    }
+
+    public function actionCheckUsername() {
+        if (Yii::$app->request->isAjax) {
+            $username = $_POST['username'];
+            $user_exists = Users::find()->where(['user_name' => $username])->exists();
+            if($user_exists){
+                $error=1;
+            } else{
+                $error=0;
+            }
+            return $error;
+        }
     }
 
 }

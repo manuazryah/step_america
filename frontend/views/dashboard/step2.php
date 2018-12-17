@@ -32,7 +32,7 @@ use yii\helpers\Html;
                 <div class="step-description">
                     <?= $step2->description ?>
                 </div>
-
+                
                 <div class="step-info-box"> 
                     <h5>Initial Legal Wire Payment Instuctions</h5>
                     <div class="agre1">
@@ -53,13 +53,13 @@ use yii\helpers\Html;
 
                             </div>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <div class="off-my"><p><?= Yii::$app->user->identity->name ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->debit_acc_bank_name ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->debit_acc_bank_institution_no ?> </p></div>
-                                <div class="off-my"><p><?= $step2_data->debit_acc_transit_no ?> </p></div>
-                                <div class="off-my"><p><?= $step2_data->debit_acc_swift_code ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->debit_acc_no ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->debit_acc_address ?></p></div>
+                                <div class="off-my"><p><?= Yii::$app->user->identity->name?></p></div>
+                                <div class="off-my"><p><?=$step2_data->debit_acc_bank_name?></p></div>
+                                <div class="off-my"><p><?=$step2_data->debit_acc_bank_institution_no?> </p></div>
+                                <div class="off-my"><p><?=$step2_data->debit_acc_transit_no?> </p></div>
+                                <div class="off-my"><p><?=$step2_data->debit_acc_swift_code?></p></div>
+                                <div class="off-my"><p><?=$step2_data->debit_acc_no?></p></div>
+                                <div class="off-my"><p><?=$step2_data->debit_acc_address?></p></div>
                             </div>
 
                             <div class="on-myA"><p><strong>B: Beneficiary Account Holder:</strong></p></div>
@@ -77,13 +77,13 @@ use yii\helpers\Html;
 
                             </div>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <div class="off-my"><p><?= $step2_data->company_name ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->benefi_acc_bank_name ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->benefi_acc_bank_institution_no ?> </p></div>
-                                <div class="off-my"><p><?= $step2_data->benefi_acc_transit_no ?> </p></div>
-                                <div class="off-my"><p><?= $step2_data->benefi_acc_swift_code ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->benefi_acc_no ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->benefi_acc_address ?></p></div>
+                                <div class="off-my"><p><?=$step2_data->company_name?></p></div>
+                                <div class="off-my"><p><?=$step2_data->benefi_acc_bank_name?></p></div>
+                                <div class="off-my"><p><?=$step2_data->benefi_acc_bank_institution_no?> </p></div>
+                                <div class="off-my"><p><?=$step2_data->benefi_acc_transit_no?> </p></div>
+                                <div class="off-my"><p><?=$step2_data->benefi_acc_swift_code?></p></div>
+                                <div class="off-my"><p><?=$step2_data->benefi_acc_no?></p></div>
+                                <div class="off-my"><p><?=$step2_data->benefi_acc_address?></p></div>
                             </div>
 
                             <div class="on-myA"><p><strong>C: Wire Transfer Amount:</strong></p></div>
@@ -99,20 +99,20 @@ use yii\helpers\Html;
 
                             </div>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <div class="off-my"><p><?= $step2_data->invoice ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->currency ?></p></div>
-                                <div class="off-my"><p><?= $step2_data->exchange_rate ?> </p></div>
-                                <div class="off-my"><p><?= $step2_data->transfer_amount ?> </p></div>
-                                <div class="off-my"><p><?= $step2_data->reference_no ?></p></div>
+                                <div class="off-my"><p><?=$step2_data->invoice?></p></div>
+                                <div class="off-my"><p><?=$step2_data->currency?></p></div>
+                                <div class="off-my"><p><?=$step2_data->exchange_rate?> </p></div>
+                                <div class="off-my"><p><?=$step2_data->transfer_amount?> </p></div>
+                                <div class="off-my"><p><?=$step2_data->reference_no?></p></div>
                             </div>
 
                             <div class="date-download">
-                                <a class="download-link" href="<?= Yii::$app->homeUrl ?>uploads/step2/invoice/<?= $step2_data->id ?>/<?= $step2_data->invoice_file ?>" target="_blank">DOWNLOAD INVOICE</a>
+                                <a class="download-link" href="<?= Yii::$app->homeUrl?>uploads/step2/invoice/<?= $step2_data->id?>/<?=$step2_data->invoice_file?>" target="_blank">DOWNLOAD INVOICE</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </div>

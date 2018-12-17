@@ -54,7 +54,7 @@ return [
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                [
+                    [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
@@ -68,6 +68,17 @@ return [
             'showScriptName' => false,
             'rules' =>
             require(__DIR__ . '/url_rules.php')
+        ],
+         'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => []
+                ],
+                
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js' => []
+                ],
+            ],
         ],
     ],
     'params' => $params,

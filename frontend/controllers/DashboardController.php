@@ -72,22 +72,22 @@ class DashboardController extends \yii\web\Controller {
             return $this->redirect('step3');
         }
 
-        if ($_POST['questionnaire_submit']) {
+        if (isset($_POST['questionnaire_submit'])) {
             $this->Step3Questionnaire($_POST);
             return $this->render('step3', ['step3' => $step3, 'model' => $model, 'searchModel' => $searchModel, 'dataProvider' => $dataProvider, 'user_step_details' => $user_step_details, 'id' => $id]);
         }
-
-        if ($_POST['uploads_completed_user']) {
-            $user_uploads = \common\models\Step3Uploads::find()->where(['user_id' => Yii::$app->user->identity->id])->andWhere(['<>', 'status', 2])->andWhere(['<>', 'status', 3])->andWhere(['<>', 'status', 0])->all();
+        
+         if (isset($_POST['uploads_completed_user'])) {
+            $user_uploads = \common\models\Step3Uploads::find()->where(['user_id' => Yii::$app->user->identity->id])->andWhere(['<>', 'status', 2])->andWhere(['<>', 'status', 3])->andWhere(['<>','status',0])->all();
             foreach ($user_uploads as $user_upload) {
                 $user_upload->status = 4;
                 $user_upload->save();
             }
-            $user_step_details->step3_user_submit = 1;
+            $user_step_details->step3_user_submit=1;
             $user_step_details->save();
             return $this->redirect('step4');
         }
-
+        
         if ($step3_uploads_count > 0) {
             return $this->render('step3', ['step3' => $step3, 'model' => $model, 'searchModel' => $searchModel, 'dataProvider' => $dataProvider, 'user_step_details' => $user_step_details, 'id' => $id]);
         } else {
@@ -244,7 +244,7 @@ class DashboardController extends \yii\web\Controller {
             }
             $uploaded_file->saveAs($path . $step8_data->$field);
         }
-        $step8_data->user_id = \Yii::$app->user->identity->id;
+        $step8_data->user_id= \Yii::$app->user->identity->id;
         $step8_data->save();
     }
 
@@ -293,22 +293,21 @@ class DashboardController extends \yii\web\Controller {
         }
         echo $options;
     }
-
+    
     public function actionStep5Documents() {
-        $model = \common\models\Step5UserProject::find()->where(['user_id' => Yii::$app->user->identity->id, 'project' => Yii::$app->request->post('step_document')])->exists();
-        if (!$model) {
-            $model = new \common\models\Step5UserProject();
-            $model->user_id = Yii::$app->user->identity->id;
-            $model->project = Yii::$app->request->post('step_document');
-            $model->date = date('Y-m-d');
-            $model->save();
-        }
+        $model = new \common\models\Step5UserProject();
+        $model->user_id = Yii::$app->user->identity->id;
+        $model->project = Yii::$app->request->post('step_document');
+        $model->date = date('Y-m-d');
+        $model->save();
     }
-
+    
     public function actionStep10Acknowledgement() {
         $user_step_status = \common\models\UserSteps::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
         $user_step_status->acknowledgement = 1;
         $user_step_status->save();
     }
+    
+    
 
 }

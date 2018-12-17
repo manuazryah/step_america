@@ -20,6 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
                         <?= Html::a('<span> Create Subcategory</span>', ['create'], ['class' => 'btn btn-block manage-btn']) ?>
+                        <button class="btn btn-white" id="search-option" style="float: right;background: #7fb335;color: #fff;">
+                         <i class="linecons-search"></i>
+                         <span>Search</span>
+                        </button>
                         <?= \common\widgets\Alert::widget() ?>
                         <?=
                         GridView::widget([
@@ -48,4 +52,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- /.box-body -->
 </div>
 <!-- /.box -->
-
+<script>
+    $(document).ready(function () {
+        $(".filters").slideToggle();
+        $("#search-option").click(function () {
+            $(".filters").slideToggle();
+        });
+    });
+</script>

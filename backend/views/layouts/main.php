@@ -249,7 +249,7 @@ $controler = Yii::$app->controller->id;
                         <footer class="main-footer">
                                 <div class="pull-right hidden-xs">
                                 </div>
-                                <strong>Copyright &copy; 2018-2019 <a href="http://azryah.com/">epitome.ae</a>.</strong> All rights
+                                <strong>Copyright &copy; 2018-2019 <a href="http://epitome.ae/">epitome.ae</a>.</strong> All rights
                                 reserved.
                         </footer>
                         <div class="chat-popup" id="myForm">

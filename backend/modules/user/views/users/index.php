@@ -20,7 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <?= Html::a('<span> Create Users</span>', ['create'], ['class' => 'btn btn-block manage-btn']) ?>
-          <button class="btn btn-white" id="search-option" style="float: right;background: #7fb335;color: #fff;">
+            <?= common\widgets\Alert::widget() ?>
+            <button class="btn btn-white" id="search-option" style="float: right;background: #7fb335;color: #fff;">
                 <i class="linecons-search"></i>
                 <span>Search</span>
             </button>
@@ -30,14 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'name',
                 'user_name',
                 'email:email',
+                 'phone',
                 'current_step',
-                 [
-                        'class' => 'yii\grid\ActionColumn',
-                        'header' => 'Action',
-                        'template' => '{update}',
-                    ],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'header' => 'Action',
+                    'template' => '{update}',
+                ],
             ];
-            
+
             $exportColumns = [
                 ['class' => 'yii\grid\SerialColumn'],
                 'name',
@@ -46,12 +48,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'phone',
                 'address',
             ];
-            
+
             echo ExportMenu::widget([
-    'dataProvider' => $dataProvider,
-    'columns' => $exportColumns
-]);
-              
+                'dataProvider' => $dataProvider,
+                'columns' => $exportColumns
+            ]);
+
             echo GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,

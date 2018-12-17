@@ -43,8 +43,8 @@ class Users extends ActiveRecord implements IdentityInterface {
      */
     public function rules() {
         return [
-            [['address', 'user_name', 'password', 'name', 'email', 'phone'], 'required', 'on' => 'create'],
-            [['address', 'name', 'email', 'phone'], 'required', 'on' => 'update'],
+            [['user_name', 'password', 'name', 'email', 'phone'], 'required', 'on' => 'create'],
+            [['name', 'email', 'phone'], 'required', 'on' => 'update'],
             [['user_name'], 'unique', 'message' => 'Username must be unique.', 'on' => 'create'],
             [['user_name'], 'unique', 'message' => 'Username must be unique.', 'on' => 'update'],
             [['address'], 'string'],
