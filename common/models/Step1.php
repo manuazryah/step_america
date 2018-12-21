@@ -41,11 +41,11 @@ class Step1 extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['description'], 'string'],
-            [['drafted_on', 'contract_agreement_drafted_on', 'contract_agreement_modified_on', 'questionaire_drafted_on', 'DOC', 'DOU'], 'safe'],
+            [['drafted_on', 'contract_agreement_drafted_on', 'contract_agreement_modified_on', 'questionaire_drafted_on', 'DOC', 'DOU', 'drafted_by', 'contract_agreement_drafted_by', 'questionaire_drafted_by',], 'safe'],
             [['status', 'CB', 'UB'], 'integer'],
             [['page_title'], 'string', 'max' => 250],
             [['retainer_contract_agreement', 'dhp_agreement'], 'string', 'max' => 100],
-            [['description', 'page_title', 'drafted_by', 'contract_agreement_drafted_by', 'contract_agreement_modified_by', 'questionaire_drafted_by', 'drafted_on', 'contract_agreement_drafted_on', 'contract_agreement_modified_on', 'questionaire_drafted_on'], 'required'],
+            [['description', 'page_title', 'contract_agreement_modified_by', 'contract_agreement_modified_on',], 'required'],
             [['retainer_contract_agreement', 'dhp_agreement'], 'file', 'extensions' => 'jpg, png, jpeg, pdf, txt, doc, docx'],
         ];
     }

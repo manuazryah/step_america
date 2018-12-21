@@ -14,33 +14,26 @@ use yii\widgets\ActiveForm;
         <div class="row">
                 <div class='col-md-3 col-xs-12'>
                         <?= $form->field($model, 'post_name')->textInput(['maxlength' => true, 'placeholder' => 'Post Name']) ?>
-
                 </div>
                 <div class='col-md-3 col-xs-12'>
-                        <?= $form->field($model, 'admin')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => 'Admin  Module Permission']) ?>
-
+                        <?= $form->field($model, 'admin')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => '--Select--']) ?>
                 </div>
                 <div class='col-md-3 col-xs-12'>
-                        <?= $form->field($model, 'steps')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => 'Steps  Module Permission']) ?>
-
+                        <?= $form->field($model, 'steps')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => '--Select--']) ?>
                 </div>
                 <div class='col-md-3 col-xs-12'>
-                        <?= $form->field($model, 'users')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => 'User  Module Permission']) ?>
-
+                        <?= $form->field($model, 'users')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => '--Select--']) ?>
                 </div>
         </div>
         <div class="row">
                 <div class='col-md-3 col-xs-12'>
-                        <?= $form->field($model, 'user_steps')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => 'User Steps  Module Permission']) ?>
-
+                        <?= $form->field($model, 'user_steps')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => '--Select--']) ?>
                 </div>
                 <div class='col-md-3 col-xs-12'>
-                        <?= $form->field($model, 'masters')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => 'Masters  Module Permission']) ?>
-
+                        <?= $form->field($model, 'masters')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => '--Select--']) ?>
                 </div>
                 <div class='col-md-3 col-xs-12'>
                         <?= $form->field($model, 'status')->dropDownList(['1' => 'Enabled', '0' => 'Disabled']) ?>
-
                 </div>
         </div>
 

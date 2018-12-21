@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-body table-responsive">
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-            <?= Html::a('<span> Create Users</span>', ['create'], ['class' => 'btn btn-block manage-btn']) ?>
+            <?php if (Yii::$app->session['post']['users'] == 1) { ?><?= Html::a('<span> Create Users</span>', ['create'], ['class' => 'btn btn-block manage-btn']) ?><?php } ?>
             <?= common\widgets\Alert::widget() ?>
             <button class="btn btn-white" id="search-option" style="float: right;background: #7fb335;color: #fff;">
                 <i class="linecons-search"></i>

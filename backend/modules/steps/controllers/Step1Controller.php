@@ -38,6 +38,7 @@ class Step1Controller extends Controller {
         $retainer_contract_agreement_ = $model->retainer_contract_agreement;
         $dhp_agreement_ = $model->dhp_agreement;
         if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
+           // var_dump($model);exit;
             $retainer_contract_agreement = UploadedFile::getInstance($model, 'retainer_contract_agreement');
             $dhp_agreement = UploadedFile::getInstance($model, 'dhp_agreement');
             if (!empty($retainer_contract_agreement)) {
@@ -52,7 +53,7 @@ class Step1Controller extends Controller {
             }
             if ($model->validate() && $model->save()) {
                 $this->Upload($model, $retainer_contract_agreement, $dhp_agreement);
-            }
+            } 
             Yii::$app->session->setFlash('success', "Step 1 Save Successfully");
         } return $this->render('update', [
                     'model' => $model,
